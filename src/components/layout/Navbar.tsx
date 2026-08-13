@@ -8,6 +8,8 @@ const navLinks = [
   { to: '/rhinoplasty', label: 'Rhinoplasty' },
   { to: '/gallery', label: 'Gallery' },
   { to: '/testimonials', label: 'Testimonials' },
+  { to: '/blog', label: 'Journal' },
+  { to: '/faq', label: 'FAQs' },
   { to: '/contact', label: 'Contact' },
 ];
 
@@ -34,10 +36,10 @@ export default function Navbar() {
       <motion.header
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        transition={{ type: 'spring', bounce: 0, duration: 0.6 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-500 ${
           scrolled || !isHomePage
-            ? 'bg-white/95 backdrop-blur-md shadow-card border-b border-gold/10'
+            ? 'glass-surface shadow-card scroll-edge'
             : 'bg-transparent'
         }`}
       >
@@ -51,25 +53,25 @@ export default function Navbar() {
                 Dr. Vijay Khatri
               </span>
               <span className={`font-sans text-[10px] tracking-[0.18em] uppercase transition-colors duration-300 ${
-                scrolled || !isHomePage ? 'text-gold' : 'text-gold-light'
+                scrolled || !isHomePage ? 'text-clay' : 'text-clay-light'
               }`}>
                 Rhinoplasty · Karachi
               </span>
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-7">
+            <nav className="hidden lg:flex items-center gap-5 xl:gap-6">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.to}
                   to={link.to}
                   end={link.to === '/'}
                   className={({ isActive }) =>
-                    `font-sans text-sm tracking-wide transition-colors duration-200 relative group ${
+                    `font-sans text-[13px] xl:text-sm tracking-wide transition-colors duration-200 relative group whitespace-nowrap ${
                       isActive
-                        ? 'text-gold font-medium'
+                        ? 'text-clay font-medium'
                         : scrolled || !isHomePage
-                        ? 'text-charcoal hover:text-gold'
+                        ? 'text-charcoal hover:text-clay'
                         : 'text-white/80 hover:text-white'
                     }`
                   }
@@ -77,7 +79,7 @@ export default function Navbar() {
                   {({ isActive }) => (
                     <>
                       {link.label}
-                      <span className={`absolute -bottom-1 left-0 h-px bg-gold transition-all duration-300 ${
+                      <span className={`absolute -bottom-1 left-0 h-px bg-clay transition-all duration-300 ${
                         isActive ? 'w-full' : 'w-0 group-hover:w-full'
                       }`} />
                     </>
@@ -94,11 +96,13 @@ export default function Navbar() {
             </nav>
 
             {/* Mobile Hamburger */}
-            <button
+            <motion.button
               id="mobile-menu-toggle"
               onClick={() => setMenuOpen(!menuOpen)}
+              whileTap={{ scale: 0.88 }}
+              transition={{ type: 'spring', bounce: 0, duration: 0.25 }}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-              className={`md:hidden flex flex-col gap-1.5 p-2 transition-colors duration-200 ${
+              className={`lg:hidden flex flex-col gap-1.5 p-2 transition-colors duration-200 ${
                 scrolled || !isHomePage ? 'text-charcoal' : 'text-white'
               }`}
             >
@@ -114,7 +118,7 @@ export default function Navbar() {
                 animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
                 className="block w-6 h-px bg-current origin-center"
               />
-            </button>
+            </motion.button>
           </div>
         </div>
       </motion.header>
@@ -127,7 +131,7 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-charcoal flex flex-col pt-24 px-8 pb-12 md:hidden"
+            className="fixed inset-0 z-40 bg-charcoal flex flex-col pt-24 px-8 pb-12 lg:hidden overflow-y-auto"
           >
             <nav className="flex flex-col gap-2">
               {navLinks.map((link, i) => (
@@ -142,7 +146,7 @@ export default function Navbar() {
                     end={link.to === '/'}
                     className={({ isActive }) =>
                       `block font-serif text-3xl py-3 border-b border-white/10 transition-colors duration-200 ${
-                        isActive ? 'text-gold' : 'text-white hover:text-gold'
+                        isActive ? 'text-clay' : 'text-white hover:text-clay'
                       }`
                     }
                   >

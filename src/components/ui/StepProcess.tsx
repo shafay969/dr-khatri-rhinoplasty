@@ -16,7 +16,7 @@ export default function StepProcess({ steps }: StepProcessProps) {
   return (
     <div className="relative">
       {/* Connecting line (desktop) */}
-      <div className="hidden md:block absolute top-10 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+      <div className="hidden md:block absolute top-10 left-0 right-0 h-px bg-gradient-to-r from-transparent via-clay/30 to-transparent" />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {steps.map((step, i) => (
@@ -29,11 +29,11 @@ export default function StepProcess({ steps }: StepProcessProps) {
             className="flex flex-col items-center text-center gap-4"
           >
             {/* Number circle */}
-            <div className="relative w-20 h-20 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center group-hover:bg-gold/20 transition-colors">
-              <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gold flex items-center justify-center">
+            <div className="relative w-20 h-20 rounded-full bg-clay/10 border border-clay/30 flex items-center justify-center group-hover:bg-clay/20 transition-colors">
+              <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-clay flex items-center justify-center">
                 <span className="font-sans text-[10px] font-bold text-charcoal">{step.number}</span>
               </span>
-              <div className="text-gold w-8 h-8">{step.icon}</div>
+              <div className="text-clay w-8 h-8">{step.icon}</div>
             </div>
 
             <div>
@@ -43,7 +43,7 @@ export default function StepProcess({ steps }: StepProcessProps) {
 
             {/* Connector arrow (mobile) */}
             {i < steps.length - 1 && (
-              <div className="md:hidden text-gold/40 text-2xl">↓</div>
+              <div className="md:hidden text-clay/40 text-2xl">↓</div>
             )}
           </motion.div>
         ))}

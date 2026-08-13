@@ -16,7 +16,7 @@ export default function Timeline({ items }: TimelineProps) {
   return (
     <div className="relative">
       {/* Vertical line */}
-      <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-gold/50 via-gold/20 to-transparent" />
+      <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-clay/50 via-clay/20 to-transparent" />
 
       <div className="flex flex-col gap-10">
         {items.map((item, i) => (
@@ -56,7 +56,7 @@ function TimelineEntry({ item, index, isLeft }: { item: TimelineItem; index: num
         initial={{ scale: 0 }}
         animate={isInView ? { scale: 1 } : {}}
         transition={{ duration: 0.4, delay: 0.05, type: 'spring', stiffness: 300 }}
-        className="relative z-10 flex-shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-gold flex items-center justify-center shadow-gold"
+        className="relative z-10 flex-shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-clay flex items-center justify-center shadow-clay"
         style={{ order: 0 }}
       >
         <span className="font-sans text-xs font-bold text-charcoal">{index + 1}</span>

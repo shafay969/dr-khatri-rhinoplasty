@@ -54,7 +54,7 @@ export default function Rhinoplasty() {
         <motion.div
           animate={{ scale: [1, 1.2, 1], opacity: [0.08, 0.15, 0.08] }}
           transition={{ duration: 12, repeat: Infinity }}
-          className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gold/10 blur-3xl pointer-events-none"
+          className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-clay/10 blur-3xl pointer-events-none"
         />
         <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-8 lg:px-12 text-center">
           <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="section-label">
@@ -151,7 +151,7 @@ export default function Rhinoplasty() {
       </section>
 
       {/* ── CANDIDACY ── */}
-      <section className="py-24 bg-ivory">
+      <section className="py-24 bg-paper">
         <div className="max-w-5xl mx-auto px-5 md:px-8 lg:px-12">
           <div className="text-center mb-12">
             <span className="section-label">Is It Right for You?</span>
@@ -167,8 +167,8 @@ export default function Rhinoplasty() {
                 transition={{ delay: i * 0.07 }}
                 className="flex items-start gap-4 bg-white rounded-xl p-5 shadow-card"
               >
-                <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg viewBox="0 0 20 20" fill="none" stroke="#C9A96E" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                <div className="w-6 h-6 rounded-full bg-clay/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="#B8562F" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
                     <path d="M4 10l4 4 8-8" />
                   </svg>
                 </div>
@@ -194,7 +194,7 @@ export default function Rhinoplasty() {
       <section className="py-24 bg-charcoal relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, #C9A96E 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #B8562F 1px, transparent 0)',
             backgroundSize: '28px 28px',
           }}
         />
@@ -246,7 +246,7 @@ export default function Rhinoplasty() {
                 'Multiple prior procedures welcome',
               ].map((point, i) => (
                 <div key={i} className="flex items-center gap-4">
-                  <div className="w-2 h-2 rounded-full bg-gold flex-shrink-0" />
+                  <div className="w-2 h-2 rounded-full bg-clay flex-shrink-0" />
                   <p className="font-sans text-sm text-white/70">{point}</p>
                 </div>
               ))}
@@ -262,7 +262,7 @@ export default function Rhinoplasty() {
       </section>
 
       {/* ── FAQ / CTA ── */}
-      <section className="py-20 bg-ivory">
+      <section className="py-20 bg-paper">
         <div className="max-w-3xl mx-auto px-5 text-center">
           <h2 className="section-title mb-5">Have Questions?</h2>
           <p className="section-subtitle mb-8">

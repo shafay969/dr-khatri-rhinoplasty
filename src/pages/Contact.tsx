@@ -12,8 +12,8 @@ const MAPS_EMBED_URL =
 function ContactRow({ icon, label, value, href }: { icon: React.ReactNode; label: string; value: string; href?: string }) {
   const content = (
     <div className="flex items-start gap-4 p-5 bg-white rounded-xl shadow-card hover:shadow-card-hover transition-shadow duration-300 group">
-      <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0 group-hover:bg-gold/20 transition-colors duration-200">
-        <div className="text-gold w-5 h-5">{icon}</div>
+      <div className="w-10 h-10 rounded-full bg-clay/10 flex items-center justify-center flex-shrink-0 group-hover:bg-clay/20 transition-colors duration-200">
+        <div className="text-clay w-5 h-5">{icon}</div>
       </div>
       <div>
         <p className="font-sans text-[10px] tracking-widest uppercase text-muted mb-0.5">{label}</p>
@@ -32,7 +32,7 @@ export default function Contact() {
       <section className="py-20 bg-charcoal relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, #C9A96E 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #B8562F 1px, transparent 0)',
             backgroundSize: '32px 32px',
           }}
         />
@@ -60,7 +60,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="py-20 bg-ivory">
+      <section className="py-20 bg-paper">
         <div className="max-w-6xl mx-auto px-5 md:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact info */}

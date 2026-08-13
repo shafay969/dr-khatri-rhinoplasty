@@ -45,7 +45,7 @@ function LightboxModal({ src, label, onClose }: { src: string; label: string; on
           <button
             onClick={onClose}
             aria-label="Close lightbox"
-            className="absolute -top-3 -right-3 w-9 h-9 rounded-full bg-charcoal border border-white/20 flex items-center justify-center text-white hover:bg-gold hover:text-charcoal transition-colors duration-200"
+            className="absolute -top-3 -right-3 w-9 h-9 rounded-full bg-charcoal border border-white/20 flex items-center justify-center text-white hover:bg-clay hover:text-charcoal transition-colors duration-200"
           >
             <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
               <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
@@ -75,7 +75,7 @@ export default function Gallery() {
       <section className="py-20 bg-charcoal relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, #C9A96E 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #B8562F 1px, transparent 0)',
             backgroundSize: '32px 32px',
           }}
         />
@@ -105,7 +105,7 @@ export default function Gallery() {
       </section>
 
       {/* ── FILTER TABS ── */}
-      <section className="py-12 bg-ivory">
+      <section className="py-12 bg-paper">
         <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
           {/* Tab bar */}
           <div className="flex items-center justify-center gap-2 mb-12">
@@ -123,7 +123,7 @@ export default function Gallery() {
                 {activeTab === tab.id && (
                   <motion.div
                     layoutId="gallery-tab-indicator"
-                    className="absolute inset-0 bg-gold rounded-full"
+                    className="absolute inset-0 bg-clay rounded-full"
                     transition={{ type: 'spring', stiffness: 300, damping: 28 }}
                   />
                 )}

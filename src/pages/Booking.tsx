@@ -60,7 +60,7 @@ export default function Booking() {
       <section className="py-20 bg-charcoal relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, #C9A96E 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #B8562F 1px, transparent 0)',
             backgroundSize: '32px 32px',
           }}
         />
@@ -88,7 +88,7 @@ export default function Booking() {
         </div>
       </section>
 
-      <section className="py-20 bg-ivory">
+      <section className="py-20 bg-paper">
         <div className="max-w-4xl mx-auto px-5 md:px-8 lg:px-12">
           {/* Quick actions */}
           <motion.div
@@ -102,8 +102,8 @@ export default function Booking() {
               id="booking-call-now"
               className="flex items-center gap-4 bg-charcoal text-white rounded-2xl p-5 hover:bg-charcoal/80 transition-colors duration-200 group"
             >
-              <div className="w-11 h-11 rounded-full bg-gold/20 flex items-center justify-center group-hover:bg-gold/30 transition-colors">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+              <div className="w-11 h-11 rounded-full bg-clay/20 flex items-center justify-center group-hover:bg-clay/30 transition-colors">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#B8562F" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .96h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.75a16 16 0 006.29 6.29l1.15-1.15a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                 </svg>
               </div>
@@ -154,8 +154,8 @@ export default function Booking() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center py-10"
               >
-                <div className="w-16 h-16 rounded-full bg-gold/20 flex items-center justify-center mx-auto mb-4">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
+                <div className="w-16 h-16 rounded-full bg-clay/20 flex items-center justify-center mx-auto mb-4">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#B8562F" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
                     <path d="M20 6L9 17l-5-5" />
                   </svg>
                 </div>
@@ -185,7 +185,7 @@ export default function Booking() {
                       value={form.name}
                       onChange={handleChange}
                       placeholder="Your name"
-                      className="w-full border border-gray-200 rounded-xl px-4 py-3 font-sans text-sm text-charcoal placeholder-gray-300 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all duration-200"
+                      className="w-full border border-gray-200 rounded-xl px-4 py-3 font-sans text-sm text-charcoal placeholder-gray-300 focus:outline-none focus:border-clay focus:ring-2 focus:ring-clay/20 transition-all duration-200"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
@@ -200,7 +200,7 @@ export default function Booking() {
                       value={form.phone}
                       onChange={handleChange}
                       placeholder="+92 3XX XXXXXXX"
-                      className="w-full border border-gray-200 rounded-xl px-4 py-3 font-sans text-sm text-charcoal placeholder-gray-300 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all duration-200"
+                      className="w-full border border-gray-200 rounded-xl px-4 py-3 font-sans text-sm text-charcoal placeholder-gray-300 focus:outline-none focus:border-clay focus:ring-2 focus:ring-clay/20 transition-all duration-200"
                     />
                   </div>
                 </div>
@@ -216,7 +216,7 @@ export default function Booking() {
                       type="date"
                       value={form.date}
                       onChange={handleChange}
-                      className="w-full border border-gray-200 rounded-xl px-4 py-3 font-sans text-sm text-charcoal focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all duration-200"
+                      className="w-full border border-gray-200 rounded-xl px-4 py-3 font-sans text-sm text-charcoal focus:outline-none focus:border-clay focus:ring-2 focus:ring-clay/20 transition-all duration-200"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
@@ -228,7 +228,7 @@ export default function Booking() {
                       name="procedure"
                       value={form.procedure}
                       onChange={handleChange}
-                      className="w-full border border-gray-200 rounded-xl px-4 py-3 font-sans text-sm text-charcoal focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all duration-200 bg-white"
+                      className="w-full border border-gray-200 rounded-xl px-4 py-3 font-sans text-sm text-charcoal focus:outline-none focus:border-clay focus:ring-2 focus:ring-clay/20 transition-all duration-200 bg-white"
                     >
                       {procedureOptions.map((o) => (
                         <option key={o} value={o}>{o}</option>
@@ -248,7 +248,7 @@ export default function Booking() {
                     value={form.message}
                     onChange={handleChange}
                     placeholder="Tell us about your concerns or what you'd like to change (optional)"
-                    className="w-full border border-gray-200 rounded-xl px-4 py-3 font-sans text-sm text-charcoal placeholder-gray-300 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all duration-200 resize-none"
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3 font-sans text-sm text-charcoal placeholder-gray-300 focus:outline-none focus:border-clay focus:ring-2 focus:ring-clay/20 transition-all duration-200 resize-none"
                   />
                 </div>
 

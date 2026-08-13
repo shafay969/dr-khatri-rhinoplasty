@@ -21,9 +21,10 @@ export default function WhatsAppButton() {
       aria-label="Chat on WhatsApp"
       id="floating-whatsapp-btn"
       initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ delay: 1.5, type: 'spring', stiffness: 200, damping: 15 }}
-      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg hover:scale-110 transition-transform duration-200 group"
+      animate={{ scale: 1, opacity: 1, transition: { delay: 1.5, type: 'spring', stiffness: 200, damping: 15 } }}
+      whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 300, damping: 20 } }}
+      whileTap={{ scale: 0.94, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
+      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg group"
     >
       {/* Pulse ring */}
       <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30 pointer-events-none" />

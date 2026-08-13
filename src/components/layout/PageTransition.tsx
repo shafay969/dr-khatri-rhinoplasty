@@ -20,7 +20,7 @@ export default function PageTransition({ children, keyProp }: PageTransitionProp
       initial="initial"
       animate="animate"
       exit="exit"
-      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ type: 'spring', bounce: 0, duration: 0.45 }}
       className="page-transition-wrapper"
     >
       {children}

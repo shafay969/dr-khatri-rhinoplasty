@@ -11,6 +11,8 @@ const quickLinks = [
   { to: '/rhinoplasty', label: 'Rhinoplasty' },
   { to: '/gallery', label: 'Gallery' },
   { to: '/testimonials', label: 'Testimonials' },
+  { to: '/blog', label: 'The Journal' },
+  { to: '/faq', label: 'FAQs' },
   { to: '/booking', label: 'Book Consultation' },
   { to: '/contact', label: 'Contact' },
 ];
@@ -41,7 +43,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <p className="font-serif text-2xl font-semibold mb-1">Dr. Vijay Khatri</p>
-            <p className="text-gold text-xs tracking-[0.18em] uppercase font-sans mb-5">
+            <p className="text-clay text-xs tracking-[0.18em] uppercase font-sans mb-5">
               Rhinoplasty · Karachi
             </p>
             <p className="font-sans text-white/50 text-sm leading-relaxed max-w-xs">
@@ -55,7 +57,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Instagram"
                 id="footer-instagram-link"
-                className="text-white/50 hover:text-gold transition-colors duration-200"
+                className="text-white/50 hover:text-clay transition-colors duration-200"
               >
                 <InstagramIcon />
               </a>
@@ -74,7 +76,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <p className="font-sans text-[11px] tracking-[0.15em] uppercase text-gold mb-5 font-semibold">
+            <p className="font-sans text-[11px] tracking-[0.15em] uppercase text-clay mb-5 font-semibold">
               Quick Links
             </p>
             <ul className="flex flex-col gap-2.5">
@@ -82,7 +84,7 @@ export default function Footer() {
                 <li key={l.to}>
                   <Link
                     to={l.to}
-                    className="font-sans text-sm text-white/50 hover:text-gold transition-colors duration-200"
+                    className="font-sans text-sm text-white/50 hover:text-clay transition-colors duration-200"
                   >
                     {l.label}
                   </Link>
@@ -93,7 +95,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <p className="font-sans text-[11px] tracking-[0.15em] uppercase text-gold mb-5 font-semibold">
+            <p className="font-sans text-[11px] tracking-[0.15em] uppercase text-clay mb-5 font-semibold">
               Contact
             </p>
             <ul className="flex flex-col gap-3">
@@ -106,13 +108,13 @@ export default function Footer() {
               </li>
               <li>
                 {/* PLACEHOLDER — replace with verified phone number before launch */}
-                <a href="tel:+923332572052" className="font-sans text-sm text-white/50 hover:text-gold transition-colors duration-200">
+                <a href="tel:+923332572052" className="font-sans text-sm text-white/50 hover:text-clay transition-colors duration-200">
                   +92 333 2572052
                 </a>
               </li>
               <li>
                 {/* PLACEHOLDER — replace with verified email before launch */}
-                <a href="mailto:info@drkhatri.pk" className="font-sans text-sm text-white/50 hover:text-gold transition-colors duration-200">
+                <a href="mailto:info@drkhatri.pk" className="font-sans text-sm text-white/50 hover:text-clay transition-colors duration-200">
                   info@drkhatri.pk
                 </a>
               </li>

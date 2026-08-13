@@ -57,18 +57,18 @@ export default function NewsletterPopup() {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-            className="relative w-full max-w-lg overflow-hidden bg-charcoal border border-gold/20 rounded-2xl p-8 md:p-10 shadow-gold"
+            className="relative w-full max-w-lg overflow-hidden bg-charcoal border border-clay/20 rounded-2xl p-8 md:p-10 shadow-clay"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Elegant Background Gradients */}
-            <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-gold/10 blur-2xl pointer-events-none" />
-            <div className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-gold/5 blur-2xl pointer-events-none" />
+            <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-clay/10 blur-2xl pointer-events-none" />
+            <div className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-clay/5 blur-2xl pointer-events-none" />
 
             {/* Close Button */}
             <button
               onClick={handleClose}
               aria-label="Close popup"
-              className="absolute top-4 right-4 text-white/40 hover:text-gold transition-colors duration-200"
+              className="absolute top-4 right-4 text-white/40 hover:text-clay transition-colors duration-200"
             >
               <svg viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
                 <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
@@ -81,8 +81,8 @@ export default function NewsletterPopup() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center py-6"
               >
-                <div className="w-16 h-16 rounded-full bg-gold/20 flex items-center justify-center mx-auto mb-5">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
+                <div className="w-16 h-16 rounded-full bg-clay/20 flex items-center justify-center mx-auto mb-5">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#B8562F" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
                     <path d="M20 6L9 17l-5-5" />
                   </svg>
                 </div>
@@ -114,7 +114,7 @@ export default function NewsletterPopup() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your First Name"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-sans text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30 transition-all duration-200"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-sans text-sm text-white placeholder-white/30 focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay/30 transition-all duration-200"
                     />
                   </div>
                   <div className="flex flex-col gap-1">
@@ -126,7 +126,7 @@ export default function NewsletterPopup() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Your Email Address"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-sans text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30 transition-all duration-200"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-sans text-sm text-white placeholder-white/30 focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay/30 transition-all duration-200"
                     />
                   </div>
 

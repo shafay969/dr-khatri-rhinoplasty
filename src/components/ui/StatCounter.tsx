@@ -37,7 +37,7 @@ export default function StatCounter({ value, suffix, label, duration = 2 }: Stat
         <span className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal tabular-nums leading-none">
           {displayValue}
         </span>
-        <span className="font-serif text-2xl md:text-3xl font-bold text-gold mb-1">
+        <span className="font-serif text-2xl md:text-3xl font-bold text-clay mb-1">
           {suffix}
         </span>
       </motion.div>

@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 interface BeforeAfterSliderProps {
@@ -8,62 +8,58 @@ interface BeforeAfterSliderProps {
   onOpenLightbox?: (src: string) => void;
 }
 
+const MIN = 2;
+const MAX = 98;
+
+const clamp = (val: number, min: number, max: number) => Math.min(Math.max(val, min), max);
+
+// Progressive resistance past a boundary — real things slow before they stop
+function rubberband(overshoot: number, dimension: number, constant = 0.55) {
+  return (overshoot * dimension * constant) / (dimension + constant * Math.abs(overshoot));
+}
+
 export default function BeforeAfterSlider({ before, after, label, onOpenLightbox }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(50); // percentage 0–100
   const [isDragging, setIsDragging] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState({ before: false, after: false });
 
-  const clamp = (val: number, min: number, max: number) => Math.min(Math.max(val, min), max);
-
   const updatePosition = useCallback((clientX: number) => {
     const el = containerRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const relX = clientX - rect.left;
-    const pct = clamp((relX / rect.width) * 100, 2, 98);
-    setPosition(pct);
+    const width = rect.width;
+    const minX = (MIN / 100) * width;
+    const maxX = (MAX / 100) * width;
+    let x = clientX - rect.left;
+
+    if (x < minX) {
+      x = minX - rubberband(minX - x, width);
+    } else if (x > maxX) {
+      x = maxX + rubberband(x - maxX, width);
+    }
+    // Safety floor/ceiling so the clipped-image math never divides by ~0
+    setPosition(clamp((x / width) * 100, 0.5, 99.5));
   }, []);
 
-  // Mouse events
-  const handleMouseDown = (e: React.MouseEvent) => {
+  // Pointer Events (mouse/touch/pen unified) with capture — tracking continues
+  // 1:1 with the pointer even when it leaves the element's bounds.
+  const handlePointerDown = (e: React.PointerEvent) => {
     e.preventDefault();
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     setIsDragging(true);
     updatePosition(e.clientX);
   };
 
-  useEffect(() => {
+  const handlePointerMove = (e: React.PointerEvent) => {
     if (!isDragging) return;
-    const onMove = (e: MouseEvent) => updatePosition(e.clientX);
-    const onUp = () => setIsDragging(false);
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onUp);
-    return () => {
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('mouseup', onUp);
-    };
-  }, [isDragging, updatePosition]);
-
-  // Touch events
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setIsDragging(true);
-    updatePosition(e.touches[0].clientX);
+    updatePosition(e.clientX);
   };
 
-  useEffect(() => {
-    if (!isDragging) return;
-    const onMove = (e: TouchEvent) => {
-      e.preventDefault();
-      updatePosition(e.touches[0].clientX);
-    };
-    const onEnd = () => setIsDragging(false);
-    window.addEventListener('touchmove', onMove, { passive: false });
-    window.addEventListener('touchend', onEnd);
-    return () => {
-      window.removeEventListener('touchmove', onMove);
-      window.removeEventListener('touchend', onEnd);
-    };
-  }, [isDragging, updatePosition]);
+  const endDrag = () => {
+    setIsDragging(false);
+    setPosition((p) => clamp(p, MIN, MAX)); // settle back from any rubber-banded overshoot
+  };
 
   const allLoaded = imagesLoaded.before && imagesLoaded.after;
 
@@ -81,7 +77,7 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
         <button
           onClick={() => onOpenLightbox(after)}
           aria-label="View full size"
-          className="absolute top-3 right-3 z-20 bg-charcoal/70 backdrop-blur-sm p-2 rounded-full text-white/60 hover:text-gold transition-colors duration-200"
+          className="absolute top-3 right-3 z-20 bg-charcoal/70 backdrop-blur-sm p-2 rounded-full text-white/60 hover:text-clay transition-colors duration-200"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
             <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
@@ -92,9 +88,11 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
       {/* Image Container */}
       <div
         ref={containerRef}
-        className="relative w-full aspect-[3/4] cursor-col-resize select-none"
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
+        className="relative w-full aspect-[3/4] cursor-col-resize select-none touch-none"
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
       >
         {/* Skeleton */}
         {!allLoaded && (
@@ -115,7 +113,7 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
 
         {/* BEFORE image (clipped) */}
         <div
-          className="absolute inset-0 overflow-hidden"
+          className={`absolute inset-0 overflow-hidden ${!isDragging ? 'transition-[width] duration-300 ease-out' : ''}`}
           style={{ width: `${position}%` }}
         >
           <img
@@ -133,18 +131,17 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
 
         {/* Divider line */}
         <div
-          className="absolute inset-y-0 w-0.5 bg-gold z-10 pointer-events-none"
+          className={`absolute inset-y-0 w-0.5 bg-clay z-10 pointer-events-none ${!isDragging ? 'transition-[left] duration-300 ease-out' : ''}`}
           style={{ left: `${position}%`, transform: 'translateX(-50%)' }}
         />
 
         {/* Handle */}
         <motion.div
-          className="ba-slider-handle absolute top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-gold shadow-gold flex items-center justify-center border-2 border-white/30"
+          className={`ba-slider-handle absolute top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-clay shadow-clay flex items-center justify-center border-2 border-white/30 ${!isDragging ? 'transition-[left] duration-300 ease-out' : ''}`}
           style={{ left: `${position}%` }}
           animate={{ scale: isDragging ? 1.15 : 1 }}
           transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-          onMouseDown={handleMouseDown}
-          onTouchStart={handleTouchStart}
+          onPointerDown={handlePointerDown}
         >
           {/* Left-right arrows */}
           <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -154,8 +151,8 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
 
         {/* BEFORE label */}
         <div
-          className="absolute bottom-4 z-10 pointer-events-none"
-          style={{ left: `${Math.max(position - 2, 2)}%`, transform: 'translateX(-100%)' }}
+          className={`absolute bottom-4 z-10 pointer-events-none ${!isDragging ? 'transition-[left] duration-300 ease-out' : ''}`}
+          style={{ left: `${Math.max(position - 2, MIN)}%`, transform: 'translateX(-100%)' }}
         >
           <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-white/70 whitespace-nowrap px-2">
             Before
@@ -164,8 +161,8 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
 
         {/* AFTER label */}
         <div
-          className="absolute bottom-4 z-10 pointer-events-none"
-          style={{ left: `${Math.min(position + 2, 98)}%` }}
+          className={`absolute bottom-4 z-10 pointer-events-none ${!isDragging ? 'transition-[left] duration-300 ease-out' : ''}`}
+          style={{ left: `${Math.min(position + 2, MAX)}%` }}
         >
           <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-white/70 whitespace-nowrap px-2">
             After

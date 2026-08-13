@@ -13,7 +13,7 @@ export default function About() {
       <section className="py-20 md:py-28 bg-charcoal relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, #C9A96E 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #B8562F 1px, transparent 0)',
             backgroundSize: '32px 32px',
           }}
         />
@@ -46,7 +46,7 @@ export default function About() {
       </section>
 
       {/* ── BIO SECTION ── */}
-      <section className="py-20 md:py-28 bg-ivory">
+      <section className="py-20 md:py-28 bg-paper">
         <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
             {/* Doctor photo */}
@@ -69,8 +69,8 @@ export default function About() {
                     const parent = target.parentElement;
                     if (parent && !parent.querySelector('.photo-placeholder')) {
                       const placeholder = document.createElement('div');
-                      placeholder.className = 'photo-placeholder absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-charcoal via-charcoal/90 to-[#2A1F0E]';
-                      placeholder.innerHTML = '<div class="w-20 h-20 rounded-full bg-gold/20 flex items-center justify-center"><svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="1.5" class="w-10 h-10"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><p class="font-sans text-white/40 text-xs tracking-widest uppercase text-center px-6">Doctor photo<br/>place here</p>';
+                      placeholder.className = 'photo-placeholder absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-charcoal via-charcoal/90 to-[#2E1710]';
+                      placeholder.innerHTML = '<div class="w-20 h-20 rounded-full bg-clay/20 flex items-center justify-center"><svg viewBox="0 0 24 24" fill="none" stroke="#B8562F" stroke-width="1.5" class="w-10 h-10"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><p class="font-sans text-white/40 text-xs tracking-widest uppercase text-center px-6">Doctor photo<br/>place here</p>';
                       parent.appendChild(placeholder);
                     }
                   }}
@@ -83,7 +83,7 @@ export default function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, type: 'spring' }}
-                className="absolute -bottom-6 -right-6 bg-gold text-charcoal rounded-2xl p-5 shadow-gold hidden md:block"
+                className="absolute -bottom-6 -right-6 bg-clay text-charcoal rounded-2xl p-5 shadow-clay hidden md:block"
               >
                 {/* PLACEHOLDER — stat for demo */}
                 <p className="font-serif text-3xl font-bold">500+</p>
@@ -179,7 +179,7 @@ export default function About() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-20 bg-ivory">
+      <section className="py-20 bg-paper">
         <div className="max-w-3xl mx-auto px-5 text-center">
           <h2 className="section-title mb-5">Ready to Take the First Step?</h2>
           <p className="section-subtitle mb-8">

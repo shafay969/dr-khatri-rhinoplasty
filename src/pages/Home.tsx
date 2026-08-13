@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import StatCounter from '../components/ui/StatCounter';
 import TestimonialCard from '../components/ui/TestimonialCard';
 import BeforeAfterSlider from '../components/ui/BeforeAfterSlider';
+import InstagramPhoneMockup from '../components/ui/InstagramPhoneMockup';
 import { stats } from '../data/stats';
 import { testimonials } from '../data/testimonials';
 import { teaserPairs } from '../data/gallery';
@@ -68,23 +69,23 @@ export default function Home() {
       {/* ── HERO ── */}
       <section className="relative min-h-screen flex items-center" aria-label="Hero">
         {/* Background — animated gradient until real photo */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0D0D0D] via-[#1A1A1A] to-[#2A1F0E] overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0F0D0B] via-[#17140F] to-[#2E1710] overflow-hidden">
           {/* Animated orbs */}
           <motion.div
             animate={{ scale: [1, 1.15, 1], opacity: [0.12, 0.22, 0.12] }}
             transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-gold/20 blur-3xl"
+            className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-clay/20 blur-3xl"
           />
           <motion.div
             animate={{ scale: [1.1, 1, 1.1], opacity: [0.08, 0.16, 0.08] }}
             transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-            className="absolute bottom-1/3 left-1/4 w-80 h-80 rounded-full bg-gold/10 blur-3xl"
+            className="absolute bottom-1/3 left-1/4 w-80 h-80 rounded-full bg-clay/10 blur-3xl"
           />
           {/* Subtle grid */}
           <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
-              backgroundImage: 'linear-gradient(#C9A96E 1px, transparent 1px), linear-gradient(90deg, #C9A96E 1px, transparent 1px)',
+              backgroundImage: 'linear-gradient(#B8562F 1px, transparent 1px), linear-gradient(90deg, #B8562F 1px, transparent 1px)',
               backgroundSize: '60px 60px',
             }}
           />
@@ -101,8 +102,8 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="flex items-center gap-3 mb-6"
               >
-                <div className="w-8 h-px bg-gold" />
-                <span className="font-sans text-xs tracking-[0.2em] uppercase text-gold">
+                <div className="w-8 h-px bg-clay" />
+                <span className="font-sans text-xs tracking-[0.2em] uppercase text-clay">
                   {/* PLACEHOLDER — tagline for demo */}
                   Turkish Technique · Karachi Practice
                 </span>
@@ -113,7 +114,7 @@ export default function Home() {
                 variants={staggerContainer}
                 initial="initial"
                 animate="animate"
-                className="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-tight mb-6 text-balance"
+                className="font-serif text-4xl md:text-6xl lg:text-7xl text-white display-type mb-6 text-balance"
               >
                 {['Your', 'Natural', 'Nose,'].map((word, i) => (
                   <motion.span key={i} variants={wordReveal} className="inline-block mr-4">
@@ -170,7 +171,7 @@ export default function Home() {
                   transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
                   className="w-5 h-8 border border-white/20 rounded-full flex items-start justify-center pt-1"
                 >
-                  <div className="w-1 h-2 bg-gold/60 rounded-full" />
+                  <div className="w-1 h-2 bg-clay/60 rounded-full" />
                 </motion.div>
                 <span className="font-sans text-xs tracking-widest uppercase text-white/30">Scroll</span>
               </motion.div>
@@ -186,17 +187,17 @@ export default function Home() {
               {/* Glassmorphic Art Card */}
               <div className="relative w-full max-w-sm aspect-[4/5] bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-md overflow-hidden flex flex-col justify-between shadow-2xl group">
                 {/* Background Shimmer & Pulse */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-gold/10 via-transparent to-transparent pointer-events-none group-hover:opacity-100 transition-opacity duration-500 opacity-50" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-clay/10 via-transparent to-transparent pointer-events-none group-hover:opacity-100 transition-opacity duration-500 opacity-50" />
                 
                 {/* Corner details */}
-                <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-gold/40" />
-                <div className="absolute top-4 right-4 w-4 h-4 border-t border-r border-gold/40" />
-                <div className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-gold/40" />
-                <div className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-gold/40" />
+                <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-clay/40" />
+                <div className="absolute top-4 right-4 w-4 h-4 border-t border-r border-clay/40" />
+                <div className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-clay/40" />
+                <div className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-clay/40" />
 
                 {/* Animated Golden Ratio Facial Profile Contour Line-Art */}
                 <div className="absolute inset-0 flex items-center justify-center p-8 opacity-90">
-                  <svg viewBox="0 0 200 250" fill="none" className="w-full h-full text-gold">
+                  <svg viewBox="0 0 200 250" fill="none" className="w-full h-full text-clay">
                     {/* Golden circles/ratio markers */}
                     <motion.circle 
                       cx="110" cy="115" r="45" stroke="currentColor" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.3"
@@ -243,12 +244,12 @@ export default function Home() {
                 {/* Top Badge */}
                 <div className="relative z-10 flex items-center justify-between text-white/50 text-[9px] tracking-[0.2em] font-sans uppercase">
                   <span>Aesthetic Harmony</span>
-                  <span className="text-gold">Active Grid</span>
+                  <span className="text-clay">Active Grid</span>
                 </div>
 
                 {/* Bottom Overlay Info */}
                 <div className="relative z-10 flex flex-col gap-1.5 mt-auto">
-                  <div className="inline-flex self-start bg-gold/10 text-gold border border-gold/30 rounded-full px-2.5 py-0.5 text-[9px] tracking-widest uppercase font-semibold">
+                  <div className="inline-flex self-start bg-clay/10 text-clay border border-clay/30 rounded-full px-2.5 py-0.5 text-[9px] tracking-widest uppercase font-semibold">
                     Istanbul Training
                   </div>
                   <h4 className="font-serif text-lg text-white font-medium tracking-tight">
@@ -264,11 +265,11 @@ export default function Home() {
         </div>
 
         {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-ivory to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-paper to-transparent pointer-events-none" />
       </section>
 
       {/* ── STATS ── */}
-      <section className="py-20 bg-ivory" aria-label="Statistics">
+      <section className="py-20 bg-paper" aria-label="Statistics">
         <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
             {stats.map((stat, i) => (
@@ -328,7 +329,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: i * 0.12 }}
                 className="card p-8 flex flex-col gap-5 group hover:-translate-y-1 transition-transform duration-300"
               >
-                <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center text-gold group-hover:bg-gold/20 transition-colors duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-clay/10 flex items-center justify-center text-clay group-hover:bg-clay/20 transition-colors duration-300">
                   {card.icon}
                 </div>
                 <h3 className="font-serif text-xl font-semibold text-charcoal">{card.title}</h3>
@@ -352,7 +353,7 @@ export default function Home() {
       </section>
 
       {/* ── BEFORE / AFTER TEASER ── */}
-      <section className="py-24 bg-ivory" aria-label="Before and After Gallery Teaser">
+      <section className="py-24 bg-paper" aria-label="Before and After Gallery Teaser">
         <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-12">
             <div>
@@ -402,14 +403,14 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: i * 0.12 }}
                 className="bg-white/5 border border-white/10 rounded-2xl p-7 flex flex-col gap-4"
               >
-                <div className="text-gold/30 font-serif text-5xl leading-none">&ldquo;</div>
+                <div className="text-clay/30 font-serif text-5xl leading-none">&ldquo;</div>
                 <p className="font-sans text-white/70 text-sm leading-relaxed flex-1">
                   {/* PLACEHOLDER — demo testimonial */}
                   {t.text}
                 </p>
                 <div className="flex items-center gap-3 pt-3 border-t border-white/10">
-                  <div className="w-9 h-9 rounded-full bg-gold/20 flex items-center justify-center">
-                    <span className="font-serif text-sm font-semibold text-gold">{t.initials}</span>
+                  <div className="w-9 h-9 rounded-full bg-clay/20 flex items-center justify-center">
+                    <span className="font-serif text-sm font-semibold text-clay">{t.initials}</span>
                   </div>
                   <div>
                     <p className="font-sans text-sm text-white font-medium">{t.name}</p>
@@ -424,6 +425,79 @@ export default function Home() {
             <Link to="/testimonials" className="btn-ghost-white">
               Read All Testimonials
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── INSTAGRAM ── */}
+      <section className="py-24 bg-paper overflow-hidden" aria-label="Instagram">
+        <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            {/* Copy */}
+            <div className="lg:col-span-6 lg:order-1 order-2 text-center lg:text-left">
+              <motion.span
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="section-label"
+              >
+                Follow Along
+              </motion.span>
+              <motion.h2
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="section-title mt-3 mb-5"
+              >
+                See the Work Before You Ever Book
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="section-subtitle max-w-md mx-auto lg:mx-0 mb-8"
+              >
+                Dr. Khatri posts real case walkthroughs, recovery breakdowns, and behind-the-scenes
+                footage from the OR on Instagram — not just polished after-photos. It's the most
+                honest look at his work you'll find before stepping into a consultation.
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
+              >
+                <a
+                  href="https://instagram.com/vijay.k.khatri"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="home-instagram-follow-cta"
+                  className="btn-primary text-sm px-7 py-3.5"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                    <rect x="2" y="2" width="20" height="20" rx="5.5" ry="5.5" />
+                    <circle cx="12" cy="12" r="4.2" />
+                    <circle cx="17.4" cy="6.6" r="0.6" fill="currentColor" stroke="none" />
+                  </svg>
+                  Follow @vijay.k.khatri
+                </a>
+                <span className="font-sans text-xs text-muted">10.6K followers · verified account</span>
+              </motion.div>
+            </div>
+
+            {/* Phone mockup */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ type: 'spring', bounce: 0, duration: 0.7 }}
+              className="lg:col-span-6 order-1 lg:order-2"
+            >
+              <InstagramPhoneMockup />
+            </motion.div>
           </div>
         </div>
       </section>

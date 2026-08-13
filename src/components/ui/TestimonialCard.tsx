@@ -13,8 +13,8 @@ function StarRating({ rating }: { rating: number }) {
         <svg
           key={i}
           viewBox="0 0 20 20"
-          fill={i < rating ? '#C9A96E' : 'none'}
-          stroke={i < rating ? '#C9A96E' : '#D1D5DB'}
+          fill={i < rating ? '#B8562F' : 'none'}
+          stroke={i < rating ? '#B8562F' : '#D1D5DB'}
           strokeWidth={1.5}
           className="w-4 h-4"
         >
@@ -35,7 +35,7 @@ export default function TestimonialCard({ testimonial, delay = 0 }: TestimonialC
       className="card p-7 flex flex-col gap-4 hover:shadow-card-hover transition-shadow duration-300"
     >
       {/* Quote mark */}
-      <div className="text-gold/25 font-serif text-5xl leading-none select-none">&ldquo;</div>
+      <div className="text-clay/25 font-serif text-5xl leading-none select-none">&ldquo;</div>
 
       <StarRating rating={testimonial.rating} />
 
@@ -46,8 +46,8 @@ export default function TestimonialCard({ testimonial, delay = 0 }: TestimonialC
 
       <div className="flex items-center gap-3 pt-2 border-t border-gray-100">
         {/* Avatar */}
-        <div className="w-10 h-10 rounded-full bg-gold/15 flex items-center justify-center flex-shrink-0">
-          <span className="font-serif text-sm font-semibold text-gold">{testimonial.initials}</span>
+        <div className="w-10 h-10 rounded-full bg-clay/15 flex items-center justify-center flex-shrink-0">
+          <span className="font-serif text-sm font-semibold text-clay">{testimonial.initials}</span>
         </div>
         <div>
           <p className="font-sans text-sm font-semibold text-charcoal">{testimonial.name}</p>
