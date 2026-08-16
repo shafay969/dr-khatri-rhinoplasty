@@ -72,8 +72,8 @@ export default function InstagramPhoneMockup() {
         className="absolute -top-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 bg-charcoal text-white text-[10px] font-sans font-medium tracking-wide px-3 py-1.5 rounded-full shadow-card whitespace-nowrap"
       >
         <span className="relative flex w-1.5 h-1.5">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sage-light opacity-75" />
-          <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-sage-light" />
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+          <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-400" />
         </span>
         @{INSTAGRAM_HANDLE}
       </motion.div>

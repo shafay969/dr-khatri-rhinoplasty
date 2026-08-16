@@ -82,7 +82,7 @@ export default function NewsletterPopup() {
                 className="text-center py-6"
               >
                 <div className="w-16 h-16 rounded-full bg-clay/20 flex items-center justify-center mx-auto mb-5">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#B8562F" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#B06A76" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
                     <path d="M20 6L9 17l-5-5" />
                   </svg>
                 </div>

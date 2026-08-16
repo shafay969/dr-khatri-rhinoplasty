@@ -60,7 +60,7 @@ export default function Booking() {
       <section className="py-20 bg-charcoal relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, #B8562F 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #B06A76 1px, transparent 0)',
             backgroundSize: '32px 32px',
           }}
         />
@@ -103,7 +103,7 @@ export default function Booking() {
               className="flex items-center gap-4 bg-charcoal text-white rounded-2xl p-5 hover:bg-charcoal/80 transition-colors duration-200 group"
             >
               <div className="w-11 h-11 rounded-full bg-clay/20 flex items-center justify-center group-hover:bg-clay/30 transition-colors">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#B8562F" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#B06A76" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .96h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.75a16 16 0 006.29 6.29l1.15-1.15a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                 </svg>
               </div>
@@ -155,7 +155,7 @@ export default function Booking() {
                 className="text-center py-10"
               >
                 <div className="w-16 h-16 rounded-full bg-clay/20 flex items-center justify-center mx-auto mb-4">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#B8562F" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#B06A76" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
                     <path d="M20 6L9 17l-5-5" />
                   </svg>
                 </div>

@@ -15,7 +15,7 @@ export default function Blog() {
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, #B8562F 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #B06A76 1px, transparent 0)',
             backgroundSize: '32px 32px',
           }}
         />

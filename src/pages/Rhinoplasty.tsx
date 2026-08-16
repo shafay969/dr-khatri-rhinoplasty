@@ -168,7 +168,7 @@ export default function Rhinoplasty() {
                 className="flex items-start gap-4 bg-white rounded-xl p-5 shadow-card"
               >
                 <div className="w-6 h-6 rounded-full bg-clay/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg viewBox="0 0 20 20" fill="none" stroke="#B8562F" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="#B06A76" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
                     <path d="M4 10l4 4 8-8" />
                   </svg>
                 </div>
@@ -194,7 +194,7 @@ export default function Rhinoplasty() {
       <section className="py-24 bg-charcoal relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, #B8562F 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #B06A76 1px, transparent 0)',
             backgroundSize: '28px 28px',
           }}
         />

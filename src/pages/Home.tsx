@@ -69,7 +69,7 @@ export default function Home() {
       {/* ── HERO ── */}
       <section className="relative min-h-screen flex items-center" aria-label="Hero">
         {/* Background — animated gradient until real photo */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F0D0B] via-[#17140F] to-[#2E1710] overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0A1017] via-[#16283D] to-[#1F3347] overflow-hidden">
           {/* Animated orbs */}
           <motion.div
             animate={{ scale: [1, 1.15, 1], opacity: [0.12, 0.22, 0.12] }}
@@ -85,7 +85,7 @@ export default function Home() {
           <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
-              backgroundImage: 'linear-gradient(#B8562F 1px, transparent 1px), linear-gradient(90deg, #B8562F 1px, transparent 1px)',
+              backgroundImage: 'linear-gradient(#B06A76 1px, transparent 1px), linear-gradient(90deg, #B06A76 1px, transparent 1px)',
               backgroundSize: '60px 60px',
             }}
           />

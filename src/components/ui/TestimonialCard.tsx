@@ -13,8 +13,8 @@ function StarRating({ rating }: { rating: number }) {
         <svg
           key={i}
           viewBox="0 0 20 20"
-          fill={i < rating ? '#B8562F' : 'none'}
-          stroke={i < rating ? '#B8562F' : '#D1D5DB'}
+          fill={i < rating ? '#B06A76' : 'none'}
+          stroke={i < rating ? '#B06A76' : '#D1D5DB'}
           strokeWidth={1.5}
           className="w-4 h-4"
         >

@@ -13,7 +13,7 @@ export default function About() {
       <section className="py-20 md:py-28 bg-charcoal relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, #B8562F 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #B06A76 1px, transparent 0)',
             backgroundSize: '32px 32px',
           }}
         />
@@ -69,8 +69,8 @@ export default function About() {
                     const parent = target.parentElement;
                     if (parent && !parent.querySelector('.photo-placeholder')) {
                       const placeholder = document.createElement('div');
-                      placeholder.className = 'photo-placeholder absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-charcoal via-charcoal/90 to-[#2E1710]';
-                      placeholder.innerHTML = '<div class="w-20 h-20 rounded-full bg-clay/20 flex items-center justify-center"><svg viewBox="0 0 24 24" fill="none" stroke="#B8562F" stroke-width="1.5" class="w-10 h-10"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><p class="font-sans text-white/40 text-xs tracking-widest uppercase text-center px-6">Doctor photo<br/>place here</p>';
+                      placeholder.className = 'photo-placeholder absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-charcoal via-charcoal/90 to-[#0A121C]';
+                      placeholder.innerHTML = '<div class="w-20 h-20 rounded-full bg-clay/20 flex items-center justify-center"><svg viewBox="0 0 24 24" fill="none" stroke="#B06A76" stroke-width="1.5" class="w-10 h-10"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><p class="font-sans text-white/40 text-xs tracking-widest uppercase text-center px-6">Doctor photo<br/>place here</p>';
                       parent.appendChild(placeholder);
                     }
                   }}
