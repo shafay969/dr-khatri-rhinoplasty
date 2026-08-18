@@ -40,20 +40,6 @@ export const galleryPairs: GalleryPair[] = [
     after: '/gallery/nose-4-after.webp',
     label: 'Revision Rhinoplasty',
   },
-  {
-    id: 'nose-5',
-    category: 'rhinoplasty',
-    before: '/gallery/nose-5-before.webp',
-    after: '/gallery/nose-5-after.webp',
-    label: 'Bridge Refinement',
-  },
-  {
-    id: 'nose-6',
-    category: 'rhinoplasty',
-    before: '/gallery/nose-6-before.webp',
-    after: '/gallery/nose-6-after.webp',
-    label: 'Nasal Tip Contouring',
-  },
 ];
 
 // Teaser pairs shown on the Home page (first 3)

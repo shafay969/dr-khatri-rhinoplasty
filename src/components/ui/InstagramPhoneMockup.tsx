@@ -23,14 +23,14 @@ const INSTAGRAM_BIO = 'Turkish Rhinoplasty: Leading Rhinoplasty Surgeon Based in
 
 const reels = [
   { src: '/gallery/nose-2-after.webp', views: '48.2K', caption: 'Tip refinement — 3 month result' },
-  { src: '/gallery/nose-5-after.webp', views: '112K', caption: 'Bridge refinement walkthrough' },
+  { src: '/gallery/nose-3-after.webp', views: '84.3K', caption: 'Dorsal hump reduction, explained' },
   { src: '/gallery/nose-1-after.webp', views: '29.6K', caption: 'Primary rhinoplasty reveal' },
   { src: '/gallery/nose-4-after.webp', views: '67.9K', caption: 'Revision case, explained' },
 ];
 
 const highlights = [
   { label: 'Before/After', src: '/gallery/nose-3-after.webp' },
-  { label: 'Recovery', src: '/gallery/nose-6-after.webp' },
+  { label: 'Recovery', src: '/gallery/nose-4-after.webp' },
   { label: 'Clinic', src: '/gallery/nose-2-after.webp' },
 ];
 

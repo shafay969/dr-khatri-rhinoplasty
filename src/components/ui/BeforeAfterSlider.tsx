@@ -88,7 +88,7 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
       {/* Image Container */}
       <div
         ref={containerRef}
-        className="relative w-full aspect-[3/4] cursor-col-resize select-none touch-none"
+        className="relative w-full h-[36vh] max-h-[340px] min-h-[220px] sm:h-auto sm:max-h-none sm:aspect-[3/4] cursor-col-resize select-none touch-pan-y"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={endDrag}
