@@ -14,11 +14,70 @@ export interface BlogPost {
   category: string;
   date: string; // ISO
   readTime: string;
-  coverGradient: string; // tailwind gradient utility classes
+  coverGradient: string; // tailwind gradient utility classes — fallback wash behind `cover`
+  cover: string; // path to cover illustration in /public/blog/
   content: BlogSection[];
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: 'non-surgical-rhinoplasty-vs-surgery-karachi',
+    title: "The Liquid Nose Job Boom in Karachi: What Filler Can Actually Fix (and What It Can't)",
+    excerpt:
+      "Filler promises a nose job with no scalpel and no downtime. It genuinely helps some noses — and quietly complicates others down the line. Here's the honest, unsponsored breakdown.",
+    category: 'Non-Surgical Options',
+    date: '2026-08-10',
+    readTime: '6 min read',
+    coverGradient: 'from-clay-dark via-charcoal to-sage-dark',
+    cover: '/blog/non-surgical-vs-surgical.svg',
+    content: [
+      {
+        paragraphs: [
+          "At least a couple of times a month, someone sits down for a consultation and opens with some version of: “I actually already tried to fix this — with filler, a few months ago.” Sometimes it under-corrected and they want to know if surgery is the “real” fix. Sometimes filler did something they didn't expect, and they're not entirely sure what's going on under the skin anymore. Either way, it's clear the “liquid nose job” has become most people's first stop before they ever think about surgery — Karachi especially, where a filler appointment is easier to book than a proper consultation. So it's worth being plain about what it actually does, because the marketing around it blurs a distinction that matters: filler adds volume. Surgery removes, repositions, and rebuilds it. Those aren't two versions of the same procedure — they're different tools solving different problems.",
+        ],
+      },
+      {
+        heading: 'What a “Liquid Nose Job” Is Actually Doing',
+        paragraphs: [
+          "Non-surgical rhinoplasty is dermal filler — almost always hyaluronic acid — injected at specific points along the bridge or tip to change how the nose reads from the front or in profile. It isn't reshaping cartilage or bone. It's adding small, precise deposits of volume in places that create the illusion of a straighter or more balanced line.",
+          "The classic example is camouflaging a mild dorsal hump: instead of removing the bump, an injector adds filler just above and below it, so the bridge appears to run straight even though the hump is technically still sitting there underneath. It's a genuinely clever trick of the eye, and in skilled hands it can look convincing in photos. But the underlying structure hasn't changed at all — you've built scaffolding around the problem, not solved it.",
+        ],
+      },
+      {
+        heading: 'What It Can Genuinely Help With',
+        paragraphs: [
+          "I'm not going to pretend filler is only for people who don't know better. There are situations where it does a reasonable job: a small dorsal depression or asymmetry, a tip that could use a touch more definition or a subtle lift, minor irregularities left over from a previous rhinoplasty that don't justify redoing the whole surgery. For someone who wants a preview of what a slightly different nose might look like before committing to anything permanent, it can work as a genuinely useful, low-stakes trial — as long as everyone's honest that it's temporary and additive, not corrective.",
+        ],
+      },
+      {
+        heading: 'What Filler Cannot Do, No Matter How Good the Injector Is',
+        paragraphs: [
+          "This is the part that gets glossed over in a lot of the marketing I see: filler cannot make a nose smaller. It cannot reduce a prominent hump, narrow wide nasal bones, or lift a tip that's being pulled down by cartilage rather than skin. It cannot fix a breathing problem — a deviated septum or a collapsed nasal valve doesn't respond to volume, because the issue was never a shortage of tissue. If what you actually want is a smaller, straighter, or more refined nose, filler is working against that goal, not toward it, since you'd be adding material to a nose you want to look less prominent.",
+          "There's a risk here that doesn't get enough airtime, too: the nose has an unusually unforgiving blood supply for filler work. Injected into or too close to the wrong vessel, it can cut off blood flow to the skin — and in rare, well-documented cases, to the retina. It isn't common, but it's serious enough that it should only ever be done by someone with real, specific training in nasal vascular anatomy, not just general facial filler experience. That's not a scare tactic. It's probably the single most important safety fact about nasal filler that patients are rarely told upfront.",
+        ],
+      },
+      {
+        heading: "Why It's Become So Popular in Karachi Specifically",
+        paragraphs: [
+          "Some of this is the obvious appeal — no anesthesia, a fifteen-minute appointment, no time off work or college, a price tag that feels far more approachable than surgery. But a lot of it is also sheer availability. Filler is offered at a huge range of clinics and dermatology practices across the city, often by people with genuine skill in general facial aesthetics but limited, specific training in nasal anatomy — which is a narrower and considerably less forgiving subspecialty than cheek or lip filler. Combine an easy, walk-in-friendly procedure with heavy promotion on social media and a real demand for quick, low-commitment fixes, and it's not surprising it's taken off the way it has.",
+        ],
+      },
+      {
+        heading: "The Catch Nobody Mentions: It's Temporary, and It Can Complicate Things Later",
+        paragraphs: [
+          "Hyaluronic acid filler dissolves. Most patients need a touch-up somewhere between nine and eighteen months to maintain the result, which means the real cost of the “cheaper” option is a recurring one, not a single payment — closer to a subscription than a purchase. That reframing matters more than whatever any individual session costs.",
+          "There's a second issue that matters even more if surgery might be in your future: repeated filler in the same spot, over months or years, can build up low-grade scar tissue and fibrosis in the skin and soft-tissue envelope. That doesn't make surgery impossible later, but it does make a surgeon's job harder — dissecting through fibrotic tissue is less predictable than working with a nose that's never been touched, and it can affect how cleanly the skin drapes over new structure underneath. If there's a real chance you'll want a permanent surgical correction down the line, that's a conversation worth having with a surgeon before you start a long-term filler routine, not after.",
+        ],
+      },
+      {
+        heading: 'So How Do You Actually Decide?',
+        paragraphs: [
+          "The honest filter is fairly simple. If your main complaint is that your nose is too big, too wide, too bulbous, or you have a breathing issue, filler was never built to solve any of those — no injector can talk their way around that physics, however good they are with a needle. If your concern is a minor irregularity, a small asymmetry, or you genuinely just want to test a subtle change before deciding on anything permanent, filler from someone specifically trained in nasal anatomy is a reasonable, honest choice — provided you go in knowing it's temporary and additive, never corrective.",
+          "And if you're not sure which category describes you, that's a completely normal reason to book a consultation rather than a filler appointment first. A good one should be able to tell you plainly whether filler could realistically help, or whether you'd just be spending a year and a half doing touch-ups on a fix that was never going to solve the actual problem.",
+        ],
+      },
+    ],
+  },
   {
     slug: 'turkish-rhinoplasty-what-it-actually-means',
     title: "What “Turkish Rhinoplasty” Actually Means (And Why the Name Gets Thrown Around Too Loosely)",
@@ -28,6 +87,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-06-02',
     readTime: '7 min read',
     coverGradient: 'from-clay-dark via-clay to-clay-light',
+    cover: '/blog/turkish-rhinoplasty.svg',
     content: [
       {
         paragraphs: [
@@ -67,6 +127,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-05-14',
     readTime: '8 min read',
     coverGradient: 'from-sage-dark via-sage to-sage-light',
+    cover: '/blog/recovery-timeline.svg',
     content: [
       {
         paragraphs: [
@@ -110,6 +171,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-04-22',
     readTime: '6 min read',
     coverGradient: 'from-charcoal via-clay-dark to-clay',
+    cover: '/blog/south-asian-noses.svg',
     content: [
       {
         paragraphs: [
@@ -153,6 +215,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-03-30',
     readTime: '6 min read',
     coverGradient: 'from-sage via-charcoal to-sage-dark',
+    cover: '/blog/open-vs-closed.svg',
     content: [
       {
         paragraphs: [
@@ -195,6 +258,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-03-05',
     readTime: '5 min read',
     coverGradient: 'from-clay via-sage-dark to-charcoal',
+    cover: '/blog/consultation-questions.svg',
     content: [
       {
         paragraphs: [

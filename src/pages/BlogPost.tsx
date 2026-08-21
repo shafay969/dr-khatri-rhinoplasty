@@ -17,6 +17,7 @@ export default function BlogPost() {
     <div className="pt-20">
       {/* ── HERO ── */}
       <section className={`relative py-20 md:py-28 bg-gradient-to-br ${post.coverGradient} overflow-hidden`}>
+        <img src={post.cover} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-charcoal/50" />
         <div className="relative z-10 max-w-3xl mx-auto px-5 md:px-8 text-center">
           <motion.div
@@ -114,7 +115,14 @@ export default function BlogPost() {
                 to={`/blog/${p.slug}`}
                 className="group flex flex-col rounded-2xl overflow-hidden bg-paper shadow-card hover:shadow-card-hover transition-shadow duration-300"
               >
-                <div className={`relative aspect-[16/9] bg-gradient-to-br ${p.coverGradient}`} />
+                <div className={`relative aspect-[16/9] bg-gradient-to-br ${p.coverGradient} overflow-hidden`}>
+                  <img
+                    src={p.cover}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
                 <div className="p-5">
                   <span className="font-sans text-[10px] tracking-[0.15em] uppercase text-clay font-semibold">
                     {p.category}

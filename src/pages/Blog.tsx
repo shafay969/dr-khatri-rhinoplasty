@@ -57,11 +57,12 @@ export default function Blog() {
               className="group grid grid-cols-1 md:grid-cols-2 gap-0 rounded-2xl overflow-hidden bg-white shadow-card hover:shadow-card-hover transition-shadow duration-300"
             >
               <div className={`relative aspect-[4/3] md:aspect-auto bg-gradient-to-br ${featured.coverGradient} overflow-hidden`}>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-serif text-white/25 text-8xl select-none">
-                    {featured.category[0]}
-                  </span>
-                </div>
+                <img
+                  src={featured.cover}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                />
                 <div className="absolute top-4 left-4 bg-charcoal/70 backdrop-blur-sm px-3 py-1 rounded-full">
                   <p className="font-sans text-[10px] tracking-widest uppercase text-white/80">Featured</p>
                 </div>
@@ -109,11 +110,12 @@ export default function Blog() {
                   className="group flex flex-col h-full rounded-2xl overflow-hidden bg-white shadow-card hover:shadow-card-hover transition-shadow duration-300"
                 >
                   <div className={`relative aspect-[16/9] bg-gradient-to-br ${post.coverGradient} overflow-hidden`}>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="font-serif text-white/25 text-6xl select-none">
-                        {post.category[0]}
-                      </span>
-                    </div>
+                    <img
+                      src={post.cover}
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover"
+                      loading="lazy"
+                    />
                   </div>
                   <div className="p-6 md:p-7 flex flex-col flex-1">
                     <div className="flex items-center gap-3 mb-3">

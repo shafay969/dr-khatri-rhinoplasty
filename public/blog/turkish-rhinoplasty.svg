@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Line-art diagram of structural cartilage grafting in rhinoplasty">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7A424C"/>
+      <stop offset="50%" stop-color="#B06A76"/>
+      <stop offset="100%" stop-color="#E3B8BF"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="52%" cy="55%" r="58%">
+      <stop offset="0%" stop-color="#0A121C" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#0A121C" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="1.6" cy="1.6" r="1.6" fill="#FFFFFF" opacity="0.35"/>
+    </pattern>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#dots)" opacity="0.5"/>
+  <circle cx="1280" cy="170" r="230" fill="#E3B8BF" opacity="0.14" filter="url(#glow)"/>
+  <circle cx="230" cy="760" r="190" fill="#16283D" opacity="0.22" filter="url(#glow)"/>
+  <rect width="1600" height="900" fill="url(#vignette)"/>
+
+  <g stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M56,96 L56,56 L96,56"/>
+    <path d="M1504,56 L1544,56 L1544,96"/>
+    <path d="M56,804 L56,844 L96,844"/>
+    <path d="M1544,804 L1544,844 L1504,844"/>
+  </g>
+
+  <!-- Guide circles (golden-ratio motif, echoes homepage hero) -->
+  <g fill="none" stroke="#E3B8BF" stroke-dasharray="4 5">
+    <circle cx="835" cy="508" r="130" opacity="0.4" stroke-width="2"/>
+    <circle cx="835" cy="508" r="195" opacity="0.22" stroke-width="2"/>
+  </g>
+  <g stroke="#E3B8BF" stroke-opacity="0.3" stroke-width="1.5" stroke-dasharray="3 4">
+    <line x1="640" y1="508" x2="1030" y2="508"/>
+    <line x1="835" y1="313" x2="835" y2="703"/>
+  </g>
+
+  <!-- Profile silhouette (shared motif with homepage hero) -->
+  <g transform="translate(500,120) scale(3.1)">
+    <path d="M60,20 Q85,50 90,85 Q93,100 93,110 L108,125 L93,128 Q95,145 90,165 Q85,185 80,210"
+          fill="none" stroke="#FFFFFF" stroke-opacity="0.92" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Structural graft reinforcement marks -->
+  <g stroke="#E3B8BF" stroke-width="3" stroke-linecap="round">
+    <line x1="757" y1="368" x2="800" y2="352" opacity="0.85"/>
+    <circle cx="757" cy="368" r="4.5" fill="#E3B8BF" stroke="none"/>
+    <circle cx="800" cy="352" r="4.5" fill="#E3B8BF" stroke="none"/>
+
+    <line x1="768" y1="452" x2="815" y2="440" opacity="0.85"/>
+    <circle cx="768" cy="452" r="4.5" fill="#E3B8BF" stroke="none"/>
+    <circle cx="815" cy="440" r="4.5" fill="#E3B8BF" stroke="none"/>
+
+    <line x1="800" y1="495" x2="845" y2="500" opacity="0.85"/>
+    <circle cx="800" cy="495" r="4.5" fill="#E3B8BF" stroke="none"/>
+    <circle cx="845" cy="500" r="4.5" fill="#E3B8BF" stroke="none"/>
+  </g>
+</svg>

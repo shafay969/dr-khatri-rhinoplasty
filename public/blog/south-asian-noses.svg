@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Golden-ratio facial proportion diagram over a profile silhouette">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16283D"/>
+      <stop offset="55%" stop-color="#7A424C"/>
+      <stop offset="100%" stop-color="#B06A76"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="50%" cy="52%" r="58%">
+      <stop offset="0%" stop-color="#0A121C" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#0A121C" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="1.6" cy="1.6" r="1.6" fill="#FFFFFF" opacity="0.35"/>
+    </pattern>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#dots)" opacity="0.5"/>
+  <circle cx="1290" cy="190" r="230" fill="#E3B8BF" opacity="0.14" filter="url(#glow)"/>
+  <circle cx="230" cy="740" r="190" fill="#16283D" opacity="0.24" filter="url(#glow)"/>
+  <rect width="1600" height="900" fill="url(#vignette)"/>
+
+  <g stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M56,96 L56,56 L96,56"/>
+    <path d="M1504,56 L1544,56 L1544,96"/>
+    <path d="M56,804 L56,844 L96,844"/>
+    <path d="M1544,804 L1544,844 L1504,844"/>
+  </g>
+
+  <!-- Golden-ratio proportion diagram, matching the homepage hero motif -->
+  <g transform="translate(500,120) scale(3.1)">
+    <circle cx="110" cy="115" r="45" fill="none" stroke="#E3B8BF" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.4"/>
+    <circle cx="110" cy="115" r="72" fill="none" stroke="#E3B8BF" stroke-width="0.6" stroke-dasharray="4 4" opacity="0.22"/>
+    <line x1="30" y1="125" x2="180" y2="125" stroke="#E3B8BF" stroke-width="0.6" stroke-dasharray="2 2" opacity="0.3"/>
+    <line x1="93" y1="40" x2="93" y2="210" stroke="#E3B8BF" stroke-width="0.6" stroke-dasharray="2 2" opacity="0.3"/>
+    <line x1="93" y1="110" x2="140" y2="60" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+    <text x="145" y="58" fill="#FFFFFF" font-size="7" font-family="Georgia, serif" letter-spacing="1" opacity="0.7">115°</text>
+
+    <path d="M60,20 Q85,50 90,85 Q93,100 93,110 L108,125 L93,128 Q95,145 90,165 Q85,185 80,210"
+          fill="none" stroke="#FFFFFF" stroke-opacity="0.94" stroke-width="1.6"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
