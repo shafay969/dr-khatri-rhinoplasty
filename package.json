@@ -5,10 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && node scripts/prerender.mjs",
-    "build:no-prerender": "tsc && vite build",
-    "preview": "vite preview",
-    "postinstall": "playwright install --with-deps chromium"
+    "build": "tsc && vite build",
+    "build:prerender": "npx playwright install --with-deps chromium && tsc && vite build && node scripts/prerender.mjs",
+    "preview": "vite preview"
   },
   "dependencies": {
     "framer-motion": "^11.3.8",
