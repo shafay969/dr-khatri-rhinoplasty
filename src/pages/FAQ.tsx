@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import SEO from '../components/layout/SEO';
 import { faqs } from '../data/faqs';
 
 function FAQItem({ faq, isOpen, onToggle }: { faq: (typeof faqs)[number]; isOpen: boolean; onToggle: () => void }) {
@@ -49,6 +50,20 @@ export default function FAQ() {
 
   return (
     <div className="pt-20">
+      <SEO
+        title="Rhinoplasty FAQs Karachi | Dr. Vijay Khatri"
+        description="Honest answers to the questions rhinoplasty patients actually ask — pain, recovery, cost, candidacy, and more, from Dr. Vijay Khatri's Karachi practice."
+        path="/faq"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+          })),
+        }}
+      />
       {/* ── PAGE HERO ── */}
       <section className="py-20 bg-charcoal relative overflow-hidden">
         <div

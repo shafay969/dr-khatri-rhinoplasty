@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import SEO from '../components/layout/SEO';
 import BeforeAfterSlider from '../components/ui/BeforeAfterSlider';
 import { galleryPairs, GalleryPair } from '../data/gallery';
 
@@ -71,6 +72,11 @@ export default function Gallery() {
 
   return (
     <div className="pt-20">
+      <SEO
+        title="Rhinoplasty Before & After Photos Karachi | Dr. Vijay Khatri"
+        description="Real before-and-after rhinoplasty results from Dr. Vijay Khatri's Karachi practice — primary and revision cases, natural structural outcomes."
+        path="/gallery"
+      />
       {/* ── PAGE HERO ── */}
       <section className="py-20 bg-charcoal relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"

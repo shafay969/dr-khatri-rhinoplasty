@@ -1,13 +1,15 @@
 import { motion } from 'framer-motion';
+import SEO, { SITE_URL } from '../components/layout/SEO';
+import { business } from '../data/business';
 
-// PLACEHOLDER — all contact details below are placeholder values. Replace with verified clinic info before launch.
+// Confirmed 2026-08-24: real WhatsApp/phone number.
 const WHATSAPP_NUMBER = '+923332572052';
 const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to book a rhinoplasty consultation.");
 const INSTAGRAM = 'https://instagram.com/vijay.k.khatri';
 
-// PLACEHOLDER — Clifton, Karachi placeholder pin. Replace iframe src with real clinic Google Maps embed URL before launch.
-const MAPS_EMBED_URL =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14467.688538234786!2d67.01659!3d24.80943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33ddd6f37f97d%3A0x4d56d2b40d57c789!2sClifton%2C%20Karachi%2C%20Karachi%20City%2C%20Sindh%2C%20Pakistan!5e0!3m2!1sen!2s!4v1234567890';
+// Confirmed 2026-08-24 — MidCiti Hospital, Karachi (24.8977718, 67.0784749),
+// resolved from https://maps.app.goo.gl/rU1FBKaXKxGtPLAb9
+const MAPS_EMBED_URL = 'https://www.google.com/maps?q=24.8977718,67.0784749&z=17&output=embed';
 
 function ContactRow({ icon, label, value, href }: { icon: React.ReactNode; label: string; value: string; href?: string }) {
   const content = (
@@ -28,6 +30,32 @@ function ContactRow({ icon, label, value, href }: { icon: React.ReactNode; label
 export default function Contact() {
   return (
     <div className="pt-20">
+      <SEO
+        title="Contact & Location | Dr. Vijay Khatri Rhinoplasty Karachi"
+        description="Get in touch with Dr. Vijay Khatri, visiting consultant at MidCiti Hospital, near National Stadium, Karachi — WhatsApp, phone, email, or visit the clinic."
+        path="/contact"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'MedicalBusiness',
+          name: business.displayName,
+          url: `${SITE_URL}/contact`,
+          medicalSpecialty: 'Otolaryngologic',
+          telephone: business.telephone,
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: business.hospital.name,
+            addressLocality: business.hospital.addressLocality,
+            addressRegion: business.hospital.addressRegion,
+            addressCountry: 'PK',
+          },
+          geo: {
+            '@type': 'GeoCoordinates',
+            latitude: business.hospital.latitude,
+            longitude: business.hospital.longitude,
+          },
+          // NOTE: openingHours deliberately omitted — still unconfirmed as of 2026-08-24.
+        }}
+      />
       {/* ── PAGE HERO ── */}
       <section className="py-20 bg-charcoal relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
@@ -54,8 +82,7 @@ export default function Contact() {
             transition={{ delay: 0.3 }}
             className="font-sans text-white/50 text-sm max-w-md mx-auto"
           >
-            {/* PLACEHOLDER — intro for demo */}
-            We're based in Clifton, Karachi. Reach us via WhatsApp, phone, or email — or drop by the clinic.
+            Dr. Khatri operates at MidCiti Hospital, near National Stadium, Karachi. Reach us via WhatsApp, phone, or email — or drop by the clinic.
           </motion.p>
         </div>
       </section>
@@ -84,7 +111,7 @@ export default function Contact() {
                   </svg>
                 }
                 label="WhatsApp"
-                value="+92 333 2572052" // PLACEHOLDER
+                value="+92 333 2572052"
                 href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`}
               />
 
@@ -94,22 +121,12 @@ export default function Contact() {
                     <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .96h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.75a16 16 0 006.29 6.29l1.15-1.15a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                   </svg>
                 }
-                label="Phone" // PLACEHOLDER
+                label="Phone"
                 value="+92 333 2572052"
                 href="tel:+923332572052"
               />
 
-              <ContactRow
-                icon={
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <path d="M22 6l-10 7L2 6" />
-                  </svg>
-                }
-                label="Email" // PLACEHOLDER
-                value="info@drkhatri.pk"
-                href="mailto:info@drkhatri.pk"
-              />
+              {/* Email intentionally omitted — practice doesn't have a dedicated one yet (confirmed 2026-08-24) */}
 
               <ContactRow
                 icon={
@@ -131,8 +148,8 @@ export default function Contact() {
                     <circle cx="12" cy="10" r="3" />
                   </svg>
                 }
-                label="Clinic Address" // PLACEHOLDER
-                value="Clinic Address Placeholder, Clifton, Karachi"
+                label="Clinic Address"
+                value="MidCiti Hospital, near National Stadium, Gulshan-e-Iqbal, Karachi (Visiting Consultant)"
               />
 
               {/* Hours */}

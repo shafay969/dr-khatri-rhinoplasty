@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import SEO from '../components/layout/SEO';
 import StepProcess from '../components/ui/StepProcess';
 
 // PLACEHOLDER — all copy on this page is demo content. Replace with verified content before launch.
@@ -18,7 +19,7 @@ const procedureSteps = [
   {
     number: '02',
     title: 'Procedure',
-    description: 'Performed under general anaesthesia. Using open or closed approach depending on your case, Dr. Khatri reshapes the cartilage and bone with structural precision — not just surface shaving.',
+    description: 'Performed under general anaesthesia. Dr. Khatri uses Piezo (Harmonic) ultrasonic instrumentation to sculpt bone with precision — no hammer or chisel — reshaping cartilage and bone with structural precision rather than surface shaving.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
         <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
@@ -28,7 +29,7 @@ const procedureSteps = [
   {
     number: '03',
     title: 'Recovery',
-    description: 'Splint for 7–10 days. Swelling peaks at 2–3 weeks and gradually resolves. Most patients return to social activities within 3–4 weeks. Final results visible at 12 months.',
+    description: 'The Piezo technique means no tissue injury and, for most patients, no nasal packing or splints — recovery as early as 9 days, with minimal pain compared to traditional instrumentation.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
         <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -49,6 +50,11 @@ const candidacyItems = [
 export default function Rhinoplasty() {
   return (
     <div className="pt-20">
+      <SEO
+        title="Rhinoplasty in Karachi | Structural Turkish Technique — Dr. Vijay Khatri"
+        description="Primary, revision & functional rhinoplasty in Karachi using structural technique and Piezo (Harmonic) ultrasonic bone sculpting — no tissue injury, recovery as early as 9 days."
+        path="/rhinoplasty"
+      />
       {/* ── PAGE HERO ── */}
       <section className="py-20 md:py-28 bg-charcoal relative overflow-hidden">
         <motion.div
@@ -115,6 +121,11 @@ export default function Rhinoplasty() {
                   requires more defined underlying structure to show the refinement. Surface techniques
                   alone often produce underwhelming or unstable results in this skin type.
                 </p>
+                <p>
+                  Where bone needs to be reshaped, Dr. Khatri uses Piezo (Harmonic) ultrasonic
+                  instrumentation instead of a traditional hammer and chisel — precise bone sculpting
+                  with no tissue injury, and for most patients, no nasal packing or splints during recovery.
+                </p>
               </div>
             </motion.div>
 
@@ -131,6 +142,7 @@ export default function Rhinoplasty() {
                 { icon: '🪡', title: 'Closed Rhinoplasty', note: 'Minimal incisions, faster recovery for select cases' }, // PLACEHOLDER
                 { icon: '🧩', title: 'Cartilage Grafting', note: 'Structural support for lasting, natural results' }, // PLACEHOLDER
                 { icon: '💨', title: 'Septoplasty', note: 'Functional correction combined when needed' }, // PLACEHOLDER
+                { icon: '🔊', title: 'Piezo (Harmonic) Technique', note: 'Ultrasonic bone sculpting — no tissue injury, recovery as early as 9 days' },
               ].map((item, i) => (
                 <motion.div
                   key={i}

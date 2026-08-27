@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, MotionConfig } from 'framer-motion';
+import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import WhatsAppButton from './components/layout/WhatsAppButton';
@@ -39,18 +40,20 @@ function AnimatedRoutes() {
 
 export default function App() {
   return (
-    <MotionConfig reducedMotion="user">
-      <BrowserRouter>
-        <div className="min-h-screen flex flex-col bg-paper">
-          <Navbar />
-          <main className="flex-1">
-            <AnimatedRoutes />
-          </main>
-          <Footer />
-          <WhatsAppButton />
-          <NewsletterPopup />
-        </div>
-      </BrowserRouter>
-    </MotionConfig>
+    <HelmetProvider>
+      <MotionConfig reducedMotion="user">
+        <BrowserRouter>
+          <div className="min-h-screen flex flex-col bg-paper">
+            <Navbar />
+            <main className="flex-1">
+              <AnimatedRoutes />
+            </main>
+            <Footer />
+            <WhatsAppButton />
+            <NewsletterPopup />
+          </div>
+        </BrowserRouter>
+      </MotionConfig>
+    </HelmetProvider>
   );
 }

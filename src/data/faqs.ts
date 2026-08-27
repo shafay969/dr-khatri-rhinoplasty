@@ -38,4 +38,10 @@ export const faqs: FAQ[] = [
     answer:
       "Almost everyone is, structurally speaking — it's less about qualifying for the technique and more about whether it's the right fit for your goals and anatomy, which we figure out together at the consultation. A few things matter more than others: your skin thickness, how much cartilage you have available (including whether septal cartilage alone is enough or rib cartilage might be needed), and realistic expectations about what your specific nose and skin can achieve. The honest exceptions are usually medical — certain bleeding disorders, active nasal infections, or being under 16 to 18 depending on facial growth completion. Beyond that, the best way to know is to actually sit down, have your anatomy examined, and ask direct questions. That's what the consultation is for.",
   },
+  {
+    id: 'non-surgical-option',
+    question: 'Do you offer non-surgical rhinoplasty (filler), or only surgery?',
+    answer:
+      "It comes up a lot, usually from someone who's already had filler elsewhere and is trying to figure out what it actually did. The honest short answer is that filler and surgery solve different problems — filler adds volume to camouflage small irregularities, it can't reduce a hump or make a nose smaller, and it's temporary, needing a touch-up roughly every nine to eighteen months. If what you actually want is a smaller, straighter nose or a fix for a breathing issue, surgery is the only real path there. We've written a full, honest breakdown of what filler can and can't do on the blog — worth a read before you book anything, surgical or not, so you're spending your time and money on the option that actually matches what you want.",
+  },
 ];

@@ -1,5 +1,7 @@
-// PLACEHOLDER — replace with verified client content before launch
-// All statistics below are demo/placeholder numbers for pitch purposes only.
+// `experience` below is confirmed (practicing since 2012). `procedures`,
+// `satisfaction`, and `technique` are still unverified placeholder numbers —
+// see the SEO follow-up questions for what's still needed before these are
+// safe to use in structured data or launch copy.
 
 export interface Stat {
   id: string;
@@ -17,9 +19,9 @@ export const stats: Stat[] = [
   },
   {
     id: 'experience',
-    value: 12,
+    value: 14,
     suffix: '+',
-    label: 'Years of Surgical Experience', // PLACEHOLDER
+    label: 'Years of Surgical Experience', // confirmed — practicing since 2012
   },
   {
     id: 'satisfaction',
@@ -35,37 +37,39 @@ export const stats: Stat[] = [
   },
 ];
 
-// Credential / timeline items for the About page
-// PLACEHOLDER — replace with real credentials before launch
+// Credential / timeline items for the About page.
+// First four entries below are confirmed (2026-08-24). The remaining two
+// are still unverified placeholders — see the SEO follow-up questions for
+// what's needed before they're safe to publish as fact.
 export const credentials = [
   {
     year: '2012',
-    title: 'MBBS — Foundation',
-    description: 'Graduated with honours from a leading medical institution in Pakistan.', // PLACEHOLDER
+    title: 'Practicing Since 2012',
+    description: 'Over a decade of dedicated surgical practice in facial plastic and reconstructive surgery.',
+  },
+  {
+    year: 'Board Certified',
+    title: 'FCPS (CPSP) & MRCS (UK)',
+    description: 'Fellow of the College of Physicians and Surgeons Pakistan, and Member of the Royal College of Surgeons (UK).',
+  },
+  {
+    year: 'Technique',
+    title: 'Piezo (Harmonic) Rhinoplasty',
+    description: 'Ultrasonic bone-sculpting instrumentation in place of a traditional hammer and chisel — no tissue injury, no nasal packing or splints for most patients, and a recovery timeline as short as 9 days.',
+  },
+  {
+    year: 'Practice',
+    title: 'Visiting Consultant — MidCiti Hospital',
+    description: 'Operates at MidCiti Hospital, near National Stadium, Karachi, as a visiting consultant.',
   },
   {
     year: '2015',
     title: 'ENT Specialization',
-    description: 'Completed residency in Ear, Nose & Throat surgery, building a foundation of functional nasal anatomy.', // PLACEHOLDER
-  },
-  {
-    year: '2018',
-    title: 'Rhinoplasty Fellowship — Turkey',
-    description: 'Advanced training in open and closed rhinoplasty techniques under leading Turkish surgeons.', // PLACEHOLDER
-  },
-  {
-    year: '2019',
-    title: 'Practice Established — Karachi',
-    description: 'Returned to Pakistan and established a dedicated facial plastic surgery practice in Clifton, Karachi.', // PLACEHOLDER
+    description: 'Completed residency in Ear, Nose & Throat surgery, building a foundation of functional nasal anatomy.', // UNCONFIRMED — needs verification
   },
   {
     year: '2022',
     title: 'South Asian Anatomy Research',
-    description: 'Published work on adapting Turkish rhinoplasty structural techniques for South Asian facial anatomy.', // PLACEHOLDER
-  },
-  {
-    year: '2024',
-    title: '500+ Procedures Milestone',
-    description: 'Surpassed 500 successful primary and revision rhinoplasty procedures with a 98% patient satisfaction rate.', // PLACEHOLDER
+    description: 'Published work on adapting structural rhinoplasty techniques for South Asian facial anatomy.', // UNCONFIRMED — needs verification
   },
 ];

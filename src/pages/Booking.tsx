@@ -1,5 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
+import SEO from '../components/layout/SEO';
 
 // PLACEHOLDER — replace phone number with verified client contact before launch
 const WHATSAPP_NUMBER = '+923332572052';
@@ -56,6 +57,11 @@ export default function Booking() {
 
   return (
     <div className="pt-20">
+      <SEO
+        title="Book a Rhinoplasty Consultation | Dr. Vijay Khatri Karachi"
+        description="Book your rhinoplasty consultation with Dr. Vijay Khatri in Karachi — in-clinic or via WhatsApp."
+        path="/booking"
+      />
       {/* ── PAGE HERO ── */}
       <section className="py-20 bg-charcoal relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"

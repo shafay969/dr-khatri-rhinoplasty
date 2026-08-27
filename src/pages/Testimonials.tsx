@@ -2,12 +2,18 @@ import { motion } from 'framer-motion';
 import TestimonialCard from '../components/ui/TestimonialCard';
 import { testimonials } from '../data/testimonials';
 import { Link } from 'react-router-dom';
+import SEO from '../components/layout/SEO';
 
 // PLACEHOLDER — all testimonials are demo content. Replace with verified patient reviews before launch.
 
 export default function Testimonials() {
   return (
     <div className="pt-20">
+      <SEO
+        title="Patient Reviews & Testimonials | Dr. Vijay Khatri Rhinoplasty Karachi"
+        description="Hear directly from rhinoplasty patients treated by Dr. Vijay Khatri in Karachi — real experiences, real results."
+        path="/testimonials"
+      />
       {/* ── PAGE HERO ── */}
       <section className="py-20 bg-charcoal relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"

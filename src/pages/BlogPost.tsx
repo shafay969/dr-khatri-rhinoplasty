@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link, useParams, Navigate } from 'react-router-dom';
+import SEO, { SITE_URL } from '../components/layout/SEO';
 import { blogPosts, getBlogPostBySlug } from '../data/blog';
 
 const formatDate = (iso: string) =>
@@ -15,6 +16,24 @@ export default function BlogPost() {
 
   return (
     <div className="pt-20">
+      <SEO
+        title={`${post.title} | Dr. Vijay Khatri`}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        image={post.cover}
+        type="article"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: post.title,
+          description: post.excerpt,
+          image: `${SITE_URL}${post.cover}`,
+          datePublished: post.date,
+          author: { '@type': 'Person', name: 'Dr. Vijay Khatri' },
+          publisher: { '@type': 'Organization', name: 'Dr. Vijay Khatri — Rhinoplasty Surgeon, Karachi' },
+          mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+        }}
+      />
       {/* ── HERO ── */}
       <section className={`relative py-20 md:py-28 bg-gradient-to-br ${post.coverGradient} overflow-hidden`}>
         <img src={post.cover} alt="" className="absolute inset-0 w-full h-full object-cover" />

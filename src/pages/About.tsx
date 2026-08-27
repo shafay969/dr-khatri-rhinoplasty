@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import SEO, { SITE_URL } from '../components/layout/SEO';
 import Timeline from '../components/ui/Timeline';
 import { credentials } from '../data/stats';
+import { business } from '../data/business';
 
 // PLACEHOLDER — all bio content, numbers, and credential items below are demo placeholders
 // Replace with verified client information before launch
@@ -9,6 +11,36 @@ import { credentials } from '../data/stats';
 export default function About() {
   return (
     <div className="pt-20">
+      <SEO
+        title="About Dr. Vijay Khatri | Rhinoplasty Surgeon Karachi"
+        description="Meet Dr. Vijay Khatri — FCPS (CPSP) & MRCS (UK) certified, 14+ years in practice, specializing in Piezo (Harmonic) Rhinoplasty at MidCiti Hospital, Karachi."
+        path="/about"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Physician',
+          name: business.legalName,
+          honorificPrefix: 'Dr.',
+          url: `${SITE_URL}/about`,
+          medicalSpecialty: 'Otolaryngologic',
+          knowsAbout: ['Rhinoplasty', 'Piezo (Harmonic) Rhinoplasty', 'Facial Plastic Surgery'],
+          hasCredential: business.credentials.map((name) => ({
+            '@type': 'EducationalOccupationalCredential',
+            credentialCategory: 'certification',
+            name,
+          })),
+          worksFor: {
+            '@type': 'Hospital',
+            name: business.hospital.name,
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: business.hospital.addressLocality,
+              addressRegion: business.hospital.addressRegion,
+              addressCountry: 'PK',
+            },
+          },
+          sameAs: ['https://instagram.com/vijay.k.khatri'],
+        }}
+      />
       {/* ── PAGE HERO ── */}
       <section className="py-20 md:py-28 bg-charcoal relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
@@ -118,7 +150,7 @@ export default function About() {
                   don't just love how they look — they breathe and feel better too.
                 </p>
                 <p>
-                  Over 12+ years of practice, Dr. Khatri has performed hundreds of primary and revision
+                  Over 14+ years of practice, Dr. Khatri has performed hundreds of primary and revision
                   rhinoplasty procedures, building a reputation for natural-looking results that respect
                   each patient's own facial harmony rather than forcing a single "ideal" template onto
                   every face. His approach blends the structural techniques popularized by leading

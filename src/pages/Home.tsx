@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import SEO, { SITE_URL } from '../components/layout/SEO';
 import StatCounter from '../components/ui/StatCounter';
 import TestimonialCard from '../components/ui/TestimonialCard';
 import BeforeAfterSlider from '../components/ui/BeforeAfterSlider';
@@ -66,6 +67,18 @@ const turkishCards = [
 export default function Home() {
   return (
     <div className="overflow-x-hidden">
+      <SEO
+        title="Dr. Vijay Khatri — Best Rhinoplasty Surgeon in Karachi | Turkish Technique"
+        description="Karachi's Turkish-trained rhinoplasty specialist. Structural, natural-looking nose surgery for South Asian faces — primary, revision & functional rhinoplasty. Book a consultation."
+        path="/"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'Dr. Vijay Khatri — Rhinoplasty Surgeon, Karachi',
+          url: SITE_URL,
+          sameAs: ['https://instagram.com/vijay.k.khatri'],
+        }}
+      />
       {/* ── HERO ── */}
       <section className="relative min-h-screen flex items-center" aria-label="Hero">
         {/* Background — animated gradient until real photo */}

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import SEO from '../components/layout/SEO';
 import { blogPosts } from '../data/blog';
 
 const formatDate = (iso: string) =>
@@ -10,6 +11,11 @@ export default function Blog() {
 
   return (
     <div className="pt-20">
+      <SEO
+        title="The Journal — Rhinoplasty Insights | Dr. Vijay Khatri"
+        description="Honest, in-depth writing on rhinoplasty technique, recovery, and what to actually expect — from Dr. Vijay Khatri's Karachi practice."
+        path="/blog"
+      />
       {/* ── PAGE HERO ── */}
       <section className="py-20 bg-charcoal relative overflow-hidden">
         <div

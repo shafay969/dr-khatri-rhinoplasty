@@ -100,24 +100,17 @@ export default function Footer() {
             </p>
             <ul className="flex flex-col gap-3">
               <li>
-                {/* PLACEHOLDER — replace with verified clinic address before launch */}
                 <p className="font-sans text-sm text-white/50 leading-relaxed">
-                  Clinic Address Placeholder,<br />
-                  Clifton, Karachi, Pakistan
+                  MidCiti Hospital, near National Stadium,<br />
+                  Gulshan-e-Iqbal, Karachi
                 </p>
               </li>
               <li>
-                {/* PLACEHOLDER — replace with verified phone number before launch */}
                 <a href="tel:+923332572052" className="font-sans text-sm text-white/50 hover:text-clay transition-colors duration-200">
                   +92 333 2572052
                 </a>
               </li>
-              <li>
-                {/* PLACEHOLDER — replace with verified email before launch */}
-                <a href="mailto:info@drkhatri.pk" className="font-sans text-sm text-white/50 hover:text-clay transition-colors duration-200">
-                  info@drkhatri.pk
-                </a>
-              </li>
+              {/* Email intentionally omitted — practice doesn't have a dedicated one yet (confirmed 2026-08-24) */}
             </ul>
           </div>
         </div>
