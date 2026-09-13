@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Testimonial } from '../../data/testimonials';
+import BeforeAfterSlider from './BeforeAfterSlider';
 
 interface TestimonialCardProps {
   testimonial: Testimonial;
@@ -40,9 +41,21 @@ export default function TestimonialCard({ testimonial, delay = 0 }: TestimonialC
       <StarRating rating={testimonial.rating} />
 
       <p className="font-sans text-charcoal/80 text-sm leading-relaxed flex-1">
-        {/* PLACEHOLDER — demo testimonial content. Replace with verified patient review before launch */}
         {testimonial.text}
       </p>
+
+      {testimonial.photos && testimonial.photos.length > 0 && (
+        <div className="grid grid-cols-2 gap-3">
+          {testimonial.photos.map((pair) => (
+            <BeforeAfterSlider
+              key={pair.label}
+              before={pair.before}
+              after={pair.after}
+              label={pair.label}
+            />
+          ))}
+        </div>
+      )}
 
       <div className="flex items-center gap-3 pt-2 border-t border-gray-100">
         {/* Avatar */}
