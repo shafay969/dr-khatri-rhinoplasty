@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Line-art diagram of two overlapping nasal profiles representing a surgical revision correction">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7A424C"/>
+      <stop offset="55%" stop-color="#1F332E"/>
+      <stop offset="100%" stop-color="#16283D"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="50%" cy="52%" r="58%">
+      <stop offset="0%" stop-color="#0A121C" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#0A121C" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="1.6" cy="1.6" r="1.6" fill="#FFFFFF" opacity="0.35"/>
+    </pattern>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#dots)" opacity="0.5"/>
+  <circle cx="1300" cy="200" r="230" fill="#6C8C82" opacity="0.16" filter="url(#glow)"/>
+  <circle cx="240" cy="740" r="190" fill="#E3B8BF" opacity="0.14" filter="url(#glow)"/>
+  <rect width="1600" height="900" fill="url(#vignette)"/>
+
+  <g stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M56,96 L56,56 L96,56"/>
+    <path d="M1504,56 L1544,56 L1544,96"/>
+    <path d="M56,804 L56,844 L96,844"/>
+    <path d="M1544,804 L1544,844 L1504,844"/>
+  </g>
+
+  <!-- Two overlapping profile paths: the faded original outline being corrected into the resolved line -->
+  <g transform="translate(560,110) scale(3.1)">
+    <path d="M55,16 Q84,44 92,80 Q97,98 96,112 L112,124 L96,130 Q100,150 92,172 Q84,192 78,212"
+          fill="none" stroke="#E3B8BF" stroke-opacity="0.4" stroke-width="1.4" stroke-dasharray="3 4"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M60,20 Q85,50 90,85 Q93,100 93,110 L108,125 L93,128 Q95,145 90,165 Q85,185 80,210"
+          fill="none" stroke="#FFFFFF" stroke-opacity="0.94" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Corrective arrow bridging the two outlines -->
+  <g stroke="#E3B8BF" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.75">
+    <path d="M1010,300 Q1060,280 1105,300"/>
+    <path d="M1090,288 L1108,300 L1092,314"/>
+  </g>
+  <g stroke="#E3B8BF" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6">
+    <path d="M1000,420 Q1055,398 1100,422"/>
+    <path d="M1085,410 L1103,423 L1086,436"/>
+  </g>
+
+  <!-- Guide rings echoing the homepage hero motif -->
+  <g fill="none" stroke="#E3B8BF" stroke-dasharray="4 5">
+    <circle cx="1230" cy="620" r="120" opacity="0.28" stroke-width="2"/>
+    <circle cx="1230" cy="620" r="175" opacity="0.16" stroke-width="2"/>
+  </g>
+</svg>

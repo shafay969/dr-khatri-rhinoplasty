@@ -44,4 +44,40 @@ export const faqs: FAQ[] = [
     answer:
       "It comes up a lot, usually from someone who's already had filler elsewhere and is trying to figure out what it actually did. The honest short answer is that filler and surgery solve different problems — filler adds volume to camouflage small irregularities, it can't reduce a hump or make a nose smaller, and it's temporary, needing a touch-up roughly every nine to eighteen months. If what you actually want is a smaller, straighter nose or a fix for a breathing issue, surgery is the only real path there. We've written a full, honest breakdown of what filler can and can't do on the blog — worth a read before you book anything, surgical or not, so you're spending your time and money on the option that actually matches what you want.",
   },
+  {
+    id: 'revision-when-and-how',
+    question: "My first rhinoplasty didn't turn out right — how soon can I get revision surgery, and can it actually be fixed?",
+    answer:
+      "It depends heavily on how long ago your first surgery was. Swelling and soft tissue take a full year to fully settle, sometimes longer on thicker skin, so a nose that still looks off at four or six months is very often mid-healing rather than a finished, failed result — operating again before that year is up makes the second surgery less predictable, not more precise. Once you're past that mark, whether it's fixable depends on what's actually wrong: over-reduction, asymmetry, or a breathing problem from a collapsed nasal valve are all things a skilled revision surgeon can usually improve, though revision surgery works through scar tissue and is genuinely harder than a first operation, so 'improved' and 'perfect' aren't always the same promise. We've written a full breakdown of what revision surgery involves — including why rib cartilage sometimes becomes necessary the second time around — on the blog.",
+  },
+  {
+    id: 'male-rhinoplasty-different',
+    question: 'Is rhinoplasty for men actually different from a nose job for women, or is it the same surgery?',
+    answer:
+      "It's a genuinely different aesthetic target, not just a smaller version of the same plan. Most rhinoplasty conventions — a scooped, slightly concave bridge, a narrow and upturned tip — were built around what reads as balanced on a female face, and applying that same blueprint to a man tends to produce a nose that looks disconnected from a stronger jaw and brow. Male rhinoplasty generally aims for a straighter, sometimes even very slightly convex dorsal line and a tip that's refined without being narrowed into something delicate. Men also tend to have thicker, oilier skin, which affects how much fine tip definition is realistically achievable. If you're a man considering rhinoplasty, it's worth asking specifically to see a surgeon's male rhinoplasty results rather than judging from a general portfolio — we go into this in more depth on the blog.",
+  },
+  {
+    id: 'minimum-age',
+    question: "What's the right age to get rhinoplasty — is there a minimum, or a point where it's too late?",
+    answer:
+      "There's a genuine medical minimum on the young end: facial growth, including the nasal structure, generally needs to be complete before surgery, which typically means around 15 to 16 for girls and a year or two later for boys, though we confirm this individually rather than by a fixed number alone. Operating before growth is finished risks the nose developing unpredictably afterward. There's no meaningful upper age limit — I've operated on patients well into their fifties and sixties for both cosmetic and functional reasons, and healthy adults of any age can generally be good candidates, provided there's no medical condition that makes anesthesia or healing riskier. Age itself is rarely the deciding factor; overall health and realistic expectations matter more.",
+  },
+  {
+    id: 'scarring-aftercare',
+    question: 'Will rhinoplasty leave a visible scar, and how do I take care of it afterward?',
+    answer:
+      "For closed rhinoplasty, there's no external scar at all — every incision sits inside the nostrils. For open rhinoplasty, there's one small incision across the columella, the strip of skin between the nostrils, and in the vast majority of patients it heals into a thin, barely visible line within several months, tucked into a natural shadow under the tip. Keeping it out of direct sun for the first few months, applying a scar-supportive ointment if we recommend one at your follow-up, and avoiding picking at any scabbing during early healing all help it settle cleanly. If you're naturally prone to keloid or hypertrophic scarring, mention that at your consultation — it's uncommon on the nose specifically, but it's worth planning around rather than discovering afterward.",
+  },
+  {
+    id: 'consultation-what-to-bring',
+    question: 'What should I actually bring to my first rhinoplasty consultation to get the most out of it?',
+    answer:
+      "Bring reference photos if you have them — not to copy exactly, but to give us a concrete starting point for what you're drawn to, which we can then weigh against what your specific skin and cartilage can realistically achieve. Bring a list of any medications, supplements, or health conditions, since some of those affect bleeding risk or anesthesia planning. If breathing has ever been an issue — chronic congestion, one nostril feeling more blocked, snoring — mention it even if it wasn't your main reason for coming in, since it's often correctable in the same surgery. And bring your actual questions, written down if that helps; a rushed consultation where you leave with things unasked is a bad use of the appointment either way.",
+  },
+  {
+    id: 'glasses-after-surgery',
+    question: 'When can I wear glasses or sunglasses again after rhinoplasty?',
+    answer:
+      "This trips people up more than almost anything else in early recovery, especially patients who wear prescription glasses daily. The bridge of the nose needs to be fully clear of any weight resting on it while the underlying bone and cartilage are still settling into their new position, so glasses of any kind — including sunglasses — should stay off for at least 4 to 6 weeks after surgery, and sometimes longer if your correction involved significant bridge work. Resting frames on the nose too early can leave a visible indentation or, in a worse case, shift the healing structure underneath. If you rely on glasses for daily vision, contact lenses are the easiest workaround during this window, or we can talk through options like taping frames to the forehead temporarily. Worth mentioning at your consultation if you wear glasses regularly, so it's part of the plan rather than a surprise at your first post-op visit.",
+  },
 ];
