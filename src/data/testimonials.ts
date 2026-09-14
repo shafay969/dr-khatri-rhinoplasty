@@ -1,4 +1,4 @@
-// Ahmed's testimonial (id 't0') is a real, verified patient story with real before/after photos.
+// Abdullah's testimonial (id 't0') is a real, verified patient story with real before/after photos.
 // The remaining entries below are PLACEHOLDER demo content — replace with verified client
 // content before launch.
 
@@ -21,14 +21,14 @@ export interface Testimonial {
 export const testimonials: Testimonial[] = [
   {
     id: 't0',
-    name: 'Ahmed',
+    name: 'Abdullah',
     procedure: 'Rhinoplasty',
     rating: 5,
     text: "I'd been unhappy with my nose for years but kept putting off doing anything about it — I didn't want to end up looking 'operated on'. Dr. Khatri's consultation put that fear to rest immediately; he took the time to actually study my face before suggesting anything, and explained exactly what he'd do and why. The result matches what we talked about almost exactly. My profile feels balanced and it actually fits the rest of my face now, and breathing feels noticeably easier too. Recovery was more manageable than I'd braced myself for — I was back to my normal routine within a few weeks. Months later, I still catch myself checking the mirror longer than I need to.",
     initials: 'A',
     photos: [
-      { before: '/testimonials/ahmed-front-before.webp', after: '/testimonials/ahmed-front-after.webp', label: 'Front View' },
-      { before: '/testimonials/ahmed-profile-before.webp', after: '/testimonials/ahmed-profile-after.webp', label: 'Side Profile' },
+      { before: '/testimonials/abdullah-front-before.webp', after: '/testimonials/abdullah-front-after.webp', label: 'Front View' },
+      { before: '/testimonials/abdullah-profile-before.webp', after: '/testimonials/abdullah-profile-after.webp', label: 'Side Profile' },
     ],
   },
   {
