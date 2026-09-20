@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Line-art diagram of a rounded, bulbous nasal tip refining into a defined tip shape">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1F332E"/>
+      <stop offset="55%" stop-color="#6C8C82"/>
+      <stop offset="100%" stop-color="#16283D"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="50%" cy="52%" r="58%">
+      <stop offset="0%" stop-color="#0A121C" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#0A121C" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="1.6" cy="1.6" r="1.6" fill="#FFFFFF" opacity="0.35"/>
+    </pattern>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#dots)" opacity="0.5"/>
+  <circle cx="1300" cy="190" r="230" fill="#E3B8BF" opacity="0.14" filter="url(#glow)"/>
+  <circle cx="230" cy="750" r="190" fill="#B06A76" opacity="0.16" filter="url(#glow)"/>
+  <rect width="1600" height="900" fill="url(#vignette)"/>
+
+  <g stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M56,96 L56,56 L96,56"/>
+    <path d="M1504,56 L1544,56 L1544,96"/>
+    <path d="M56,804 L56,844 L96,844"/>
+    <path d="M1544,804 L1544,844 L1504,844"/>
+  </g>
+
+  <!-- Profile silhouette, shared motif with homepage hero -->
+  <g transform="translate(420,110) scale(3.1)">
+    <path d="M60,20 Q85,50 90,85 Q93,100 93,110 L108,125 L93,128 Q95,145 90,165 Q85,185 80,210"
+          fill="none" stroke="#FFFFFF" stroke-opacity="0.3"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Zoomed tip diagram: a wide, round bulbous contour overlaid with a refined, defined tip contour -->
+  <g transform="translate(980,300)">
+    <!-- bulbous tip: soft, wide, rounded double-dome -->
+    <path d="M0,220 Q-10,120 60,70 Q100,42 150,70 Q220,120 210,220"
+          fill="none" stroke="#E3B8BF" stroke-opacity="0.5" stroke-width="2.6" stroke-dasharray="4 5"
+          stroke-linecap="round"/>
+    <circle cx="70" cy="95" r="30" fill="none" stroke="#E3B8BF" stroke-opacity="0.4" stroke-width="2" stroke-dasharray="3 4"/>
+    <circle cx="140" cy="95" r="30" fill="none" stroke="#E3B8BF" stroke-opacity="0.4" stroke-width="2" stroke-dasharray="3 4"/>
+
+    <!-- refined tip: narrower, defined double-break contour -->
+    <path d="M35,220 Q28,150 70,110 Q105,80 140,110 Q182,150 175,220"
+          fill="none" stroke="#FFFFFF" stroke-opacity="0.95" stroke-width="2.8"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="80" cy="118" r="7" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="130" cy="118" r="7" fill="#FFFFFF" opacity="0.9"/>
+
+    <g stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="2" fill="none" stroke-linecap="round">
+      <path d="M-90,260 L-10,260"/>
+      <path d="M-26,248 L-8,260 L-26,272"/>
+    </g>
+  </g>
+
+  <g fill="none" stroke="#E3B8BF" stroke-dasharray="4 5">
+    <circle cx="835" cy="508" r="130" opacity="0.2" stroke-width="2"/>
+  </g>
+</svg>

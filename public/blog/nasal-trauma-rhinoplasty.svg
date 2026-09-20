@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Line-art diagram of a fractured nasal bridge realigning into a straight profile">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16283D"/>
+      <stop offset="55%" stop-color="#7A424C"/>
+      <stop offset="100%" stop-color="#0A121C"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="50%" cy="52%" r="58%">
+      <stop offset="0%" stop-color="#0A121C" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#0A121C" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="1.6" cy="1.6" r="1.6" fill="#FFFFFF" opacity="0.35"/>
+    </pattern>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#dots)" opacity="0.5"/>
+  <circle cx="1300" cy="190" r="230" fill="#B06A76" opacity="0.16" filter="url(#glow)"/>
+  <circle cx="230" cy="750" r="190" fill="#6C8C82" opacity="0.16" filter="url(#glow)"/>
+  <rect width="1600" height="900" fill="url(#vignette)"/>
+
+  <g stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M56,96 L56,56 L96,56"/>
+    <path d="M1504,56 L1544,56 L1544,96"/>
+    <path d="M56,804 L56,844 L96,844"/>
+    <path d="M1544,804 L1544,844 L1504,844"/>
+  </g>
+
+  <!-- Profile silhouette, shared motif with homepage hero -->
+  <g transform="translate(430,110) scale(3.1)">
+    <path d="M60,20 Q85,50 90,85 Q93,100 93,110 L108,125 L93,128 Q95,145 90,165 Q85,185 80,210"
+          fill="none" stroke="#FFFFFF" stroke-opacity="0.92" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Fracture-to-realignment diagram: a jagged deviated line settling into a straight one, with an impact mark -->
+  <g transform="translate(1000,240)">
+    <line x1="90" y1="0" x2="90" y2="400" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="2 3"/>
+
+    <!-- jagged pre-injury/fractured line -->
+    <path d="M46,0 L60,55 L28,90 L58,140 L32,185 L64,230 L40,270 L60,400"
+          fill="none" stroke="#E3B8BF" stroke-opacity="0.55" stroke-width="2.4" stroke-dasharray="4 5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- impact burst at the fracture point -->
+    <g transform="translate(28,90)" stroke="#E3B8BF" stroke-opacity="0.85" stroke-width="2.2" stroke-linecap="round">
+      <line x1="-16" y1="-16" x2="16" y2="16"/>
+      <line x1="-16" y1="16" x2="16" y2="-16"/>
+      <line x1="0" y1="-22" x2="0" y2="22"/>
+      <line x1="-22" y1="0" x2="22" y2="0"/>
+    </g>
+
+    <!-- realigned straight line -->
+    <path d="M90,0 L90,400"
+          fill="none" stroke="#FFFFFF" stroke-opacity="0.95" stroke-width="2.6"
+          stroke-linecap="round"/>
+
+    <g stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="2" fill="none" stroke-linecap="round">
+      <path d="M-80,320 L20,320"/>
+      <path d="M4,308 L22,320 L4,332"/>
+    </g>
+  </g>
+
+  <g fill="none" stroke="#E3B8BF" stroke-dasharray="4 5">
+    <circle cx="835" cy="508" r="130" opacity="0.2" stroke-width="2"/>
+  </g>
+</svg>

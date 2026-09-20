@@ -75,6 +75,36 @@ export const faqs: FAQ[] = [
       "Bring reference photos if you have them — not to copy exactly, but to give us a concrete starting point for what you're drawn to, which we can then weigh against what your specific skin and cartilage can realistically achieve. Bring a list of any medications, supplements, or health conditions, since some of those affect bleeding risk or anesthesia planning. If breathing has ever been an issue — chronic congestion, one nostril feeling more blocked, snoring — mention it even if it wasn't your main reason for coming in, since it's often correctable in the same surgery. And bring your actual questions, written down if that helps; a rushed consultation where you leave with things unasked is a bad use of the appointment either way.",
   },
   {
+    id: 'broken-nose-old-injury',
+    question: "I broke my nose years ago and it's been crooked ever since — can rhinoplasty still fix it now?",
+    answer:
+      "Yes, and this is one of the more common reasons people end up in my consultation room. If a fracture wasn't corrected within the two-or-so-week window when a simple closed reduction could have realigned the bone, it heals into whatever position it landed in — which is exactly what a rhinoplasty addresses, structurally, regardless of how long ago the injury happened. What's worth checking alongside the visible crookedness is whether the septum was deviated in the same injury, since the two are frequently linked and one nostril feeling more blocked than the other since that injury is a real clue, not a separate issue. We've written a full breakdown of nasal injuries and timing on the blog if you want the longer version.",
+  },
+  {
+    id: 'fresh-nasal-fracture-timing',
+    question: 'I just broke my nose — how soon do I need to see someone, and is it the same surgery as rhinoplasty?',
+    answer:
+      "See someone quickly — ideally within about two weeks of a fresh fracture, once initial swelling has settled enough for an accurate exam, but before the bone starts setting in a displaced position. For a straightforward fracture, the right procedure is usually a closed reduction, which is a shorter, simpler operation than a full rhinoplasty and manually repositions the bone back into alignment. It's a different procedure with a different timeline, which is why 'I broke my nose last week' and 'my nose has looked crooked since I broke it years ago' get two genuinely different answers at a consultation.",
+  },
+  {
+    id: 'bulbous-tip-only',
+    question: "I don't mind my bridge, I just hate how round and bulbous my nose tip looks — can that be fixed on its own?",
+    answer:
+      "Very often, yes — tip-only rhinoplasty is one of the more common isolated procedures I perform, and it doesn't require touching the bony bridge at all if that's not part of your complaint. A bulbous look usually comes down to the cartilage that shapes the tip sitting wide or splayed apart rather than close together with defined domes, and it's addressed through targeted suturing and selective cartilage trimming. If your tip also droops noticeably when you smile, mention that specifically — it's frequently caused by a small muscle pulling the tip down rather than the cartilage shape itself, and it changes part of the surgical plan. We go into the detail on the blog.",
+  },
+  {
+    id: 'sleeping-after-rhinoplasty',
+    question: 'How am I actually supposed to sleep after rhinoplasty, and for how long?',
+    answer:
+      "Head elevated above your heart — roughly a 30 to 45 degree incline using a wedge pillow or a few firm pillows stacked behind you — for at least the first one to two weeks, and flat on your back rather than on your side or stomach. Elevation reduces overnight swelling and fluid pooling in the face, and side or stomach sleeping risks pressure against a nose that's still healing while you're unconscious and can't feel it happening. Most patients adjust within a few nights; if you're used to sleeping on your stomach, it's genuinely worth practicing the elevated position for a few nights before surgery rather than making it a new adjustment during recovery itself.",
+  },
+  {
+    id: 'hijab-mask-after-surgery',
+    question: 'Can I still wear a hijab, glasses, or a mask during recovery, or does everything have to stay off my face?',
+    answer:
+      "All three are manageable, it just takes a small adjustment in how they're worn. A hijab is fine early in recovery as long as it's pinned or wrapped so fabric isn't resting with real weight directly across the bridge, especially while a splint is still on — pinning a little further back solves this for most patients. Glasses and sunglasses need to stay off the nose itself for 4 to 6 weeks, since resting frames can leave an indentation or shift the healing structure underneath; contact lenses or temporarily taping frames to the forehead are the usual workarounds. A cloth or surgical mask is fine too, provided the ear loops aren't cinched tight enough to press the mask itself across the bridge. None of this is complicated once you know to plan for it — worth raising at your pre-op appointment if it's part of your daily routine.",
+  },
+  {
     id: 'glasses-after-surgery',
     question: 'When can I wear glasses or sunglasses again after rhinoplasty?',
     answer:
