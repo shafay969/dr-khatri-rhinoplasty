@@ -5,8 +5,8 @@ import Timeline from '../components/ui/Timeline';
 import { credentials } from '../data/stats';
 import { business } from '../data/business';
 
-// PLACEHOLDER — all bio content, numbers, and credential items below are demo placeholders
-// Replace with verified client information before launch
+// Client-confirmed facts are stored in business.ts. Remaining biographical and
+// clinical wording requires the practice's review; do not add unsupported proof.
 
 export default function About() {
   return (
@@ -117,9 +117,8 @@ export default function About() {
                 transition={{ delay: 0.4, type: 'spring' }}
                 className="absolute -bottom-6 -right-6 bg-clay text-charcoal rounded-2xl p-5 shadow-clay hidden md:block"
               >
-                {/* PLACEHOLDER — stat for demo */}
-                <p className="font-serif text-3xl font-bold">500+</p>
-                <p className="font-sans text-xs font-semibold mt-0.5 opacity-70 uppercase tracking-wide">Procedures</p>
+                <p className="font-serif text-3xl font-bold">Since {business.practicingSince}</p>
+                <p className="font-sans text-xs font-semibold mt-0.5 opacity-70 uppercase tracking-wide">In practice</p>
               </motion.div>
             </motion.div>
 
@@ -143,19 +142,11 @@ export default function About() {
               <div className="flex flex-col gap-5 font-sans text-muted leading-relaxed">
                 <p>
                   Dr. Vijay Khatri is a Karachi-based facial plastic and reconstructive surgeon
-                  specializing in rhinoplasty using techniques refined through training in Turkey —
-                  home to some of the world's most respected rhinoplasty practices. With a foundation
-                  in ear, nose, and throat (ENT) surgery, Dr. Khatri brings a rare combination of
-                  functional surgical precision and aesthetic artistry to every procedure, so patients
-                  don't just love how they look — they breathe and feel better too.
+                  specializing in rhinoplasty using techniques refined through training in Turkey.
                 </p>
                 <p>
-                  Over 14+ years of practice, Dr. Khatri has performed hundreds of primary and revision
-                  rhinoplasty procedures, building a reputation for natural-looking results that respect
-                  each patient's own facial harmony rather than forcing a single "ideal" template onto
-                  every face. His approach blends the structural techniques popularized by leading
-                  Turkish surgeons with a close understanding of South Asian facial anatomy — a
-                  combination not commonly found among surgeons practicing in Pakistan.
+                  Dr. Khatri has been in practice since {business.practicingSince}. His approach blends
+                  structural techniques with an understanding of South Asian facial anatomy.
                 </p>
                 <p>
                   Dr. Khatri's philosophy is simple: every nose is different, and a good result should

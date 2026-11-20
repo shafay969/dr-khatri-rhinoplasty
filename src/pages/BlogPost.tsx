@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Link, useParams, Navigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import NotFound from './NotFound';
 import SEO, { SITE_URL } from '../components/layout/SEO';
 import { blogPosts, getBlogPostBySlug } from '../data/blog';
 
@@ -10,7 +11,7 @@ export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getBlogPostBySlug(slug) : undefined;
 
-  if (!post) return <Navigate to="/blog" replace />;
+  if (!post) return <NotFound />;
 
   const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
