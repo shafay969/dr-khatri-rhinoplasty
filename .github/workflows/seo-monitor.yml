@@ -1,0 +1,54 @@
+name: Public SEO monitoring
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/seo_monitor.py'
+      - 'scripts/test_seo_monitor.py'
+      - '.github/workflows/seo-monitor.yml'
+  schedule:
+    # Measurements start 30 minutes before the separate 13:00 UTC report.
+    - cron: '30 12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-seo-monitor-drvijaykhatri-com
+  cancel-in-progress: true
+
+jobs:
+  monitor:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out monitoring code
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Verify monitor logic offline
+        run: python3 scripts/test_seo_monitor.py
+      - name: Measure the public production website
+        # PRs test measurement delivery against unchanged production; existing
+        # production findings do not imply a regression in the proposed code.
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            python3 scripts/seo_monitor.py --output-dir .seo-private/monitoring --max-urls 30
+          else
+            python3 scripts/seo_monitor.py --output-dir .seo-private/monitoring --max-urls 30 --fail-on-high
+          fi
+      - name: Retain public technical results for seven days
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: public-seo-health-${{ github.run_id }}
+          path: .seo-private/monitoring/
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: warn
