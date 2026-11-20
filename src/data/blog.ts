@@ -618,7 +618,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: 'Days 1–9: The Part That Used to Be Miserable',
         paragraphs: [
-          "This is where the Piezo technique makes the biggest practical difference. Because the ultrasonic instrument sculpts bone without the blunt trauma a hammer and chisel cause to the surrounding tissue, most patients don't need nasal packing or an external splint at all — and the early recovery most people dread is realistically down to about 9 days rather than the 10-to-14-day window that's typical with traditional instrumentation. Pain is minimal for most patients; a few days of mild discomfort rather than the “hit in the face” sensation older techniques are known for. Bruising still happens, especially under the eyes, and that's normal — it isn't a preview of the final shape.",
+          "At your consultation, ask which instruments would be used, whether dressings or splints are planned, what discomfort to expect, and how follow-up will work. Ask the surgeon for a recovery plan tailored to your procedure and circumstances.",
         ],
       },
       {
