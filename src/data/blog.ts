@@ -603,7 +603,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'rhinoplasty-recovery-timeline-week-by-week',
     title: 'How Long Rhinoplasty Recovery Actually Takes With the Piezo Technique',
     excerpt:
-      "No packs, no splints, and a realistic 9-day floor for the early recovery — but 'early recovery' and 'final result' are still two different milestones. Here's the honest timeline.",
+      'Questions to discuss with your surgeon about rhinoplasty recovery, dressings, follow-up appointments and your individual recovery plan.',
     category: 'Recovery',
     date: '2026-05-14',
     readTime: '7 min read',
@@ -618,7 +618,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: 'Days 1–9: The Part That Used to Be Miserable',
         paragraphs: [
-          "This is where the Piezo technique makes the biggest practical difference. Because the ultrasonic instrument sculpts bone without the blunt trauma a hammer and chisel cause to the surrounding tissue, most patients don't need nasal packing or an external splint at all — and the early recovery most people dread is realistically down to about 9 days rather than the 10-to-14-day window that's typical with traditional instrumentation. Pain is minimal for most patients; a few days of mild discomfort rather than the “hit in the face” sensation older techniques are known for. Bruising still happens, especially under the eyes, and that's normal — it isn't a preview of the final shape.",
+          "At your consultation, ask which instruments would be used, whether dressings or splints are planned, what discomfort to expect, and how follow-up will work. Ask the surgeon for a recovery plan tailored to your procedure and circumstances.",
         ],
       },
       {
@@ -777,4 +777,29 @@ export const blogPosts: BlogPost[] = [
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((post) => post.slug === slug);
+}
+
+// Keep related reading relevant rather than repeating the first three posts.
+const relatedCategories = [
+  ['Patient Guide', 'Cost & Planning'],
+  ['Recovery'],
+  ['Technique', 'Non-Surgical Options'],
+  ['Trauma Rhinoplasty', 'Functional Rhinoplasty', 'Revision Surgery'],
+];
+const planningGuides = [
+  'questions-to-ask-before-rhinoplasty-consultation',
+  'how-to-choose-a-rhinoplasty-surgeon-in-karachi',
+  'rhinoplasty-cost-in-karachi-what-drives-the-price',
+];
+
+export function getRelatedBlogPosts(post: BlogPost): BlogPost[] {
+  const categories = relatedCategories.find((group) => group.includes(post.category)) ?? [];
+  const candidates = [
+    ...blogPosts.filter((candidate) => candidate.category === post.category),
+    ...blogPosts.filter((candidate) => categories.includes(candidate.category)),
+    ...planningGuides.flatMap((slug) => blogPosts.filter((candidate) => candidate.slug === slug)),
+  ];
+  return [...new Map(candidates.map((candidate) => [candidate.slug, candidate])).values()]
+    .filter((candidate) => candidate.slug !== post.slug)
+    .slice(0, 3);
 }

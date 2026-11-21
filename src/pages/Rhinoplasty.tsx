@@ -29,7 +29,7 @@ const procedureSteps = [
   {
     number: '03',
     title: 'Recovery',
-    description: 'The Piezo technique means no tissue injury and, for most patients, no nasal packing or splints — recovery as early as 9 days, with minimal pain compared to traditional instrumentation.',
+    description: 'Discuss recovery instructions, dressings, discomfort and follow-up arrangements during your consultation. Ask for a plan specific to your procedure and circumstances.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
         <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -51,8 +51,8 @@ export default function Rhinoplasty() {
   return (
     <div className="pt-20">
       <SEO
-        title="Rhinoplasty in Karachi | Structural Turkish Technique — Dr. Vijay Khatri"
-        description="Primary, revision & functional rhinoplasty in Karachi using structural technique and Piezo (Harmonic) ultrasonic bone sculpting — no tissue injury, recovery as early as 9 days."
+        title="Rhinoplasty in Karachi | Dr. Vijay Khatri"
+        description="Learn about rhinoplasty consultations with Dr. Vijay Khatri in Karachi. Discuss your goals, the proposed procedure and recovery arrangements with the surgeon."
         path="/rhinoplasty"
       />
       {/* ── PAGE HERO ── */}
@@ -123,8 +123,8 @@ export default function Rhinoplasty() {
                 </p>
                 <p>
                   Where bone needs to be reshaped, Dr. Khatri uses Piezo (Harmonic) ultrasonic
-                  instrumentation instead of a traditional hammer and chisel — precise bone sculpting
-                  with no tissue injury, and for most patients, no nasal packing or splints during recovery.
+                  instrumentation instead of a traditional hammer and chisel. Ask about the proposed
+                  instruments, dressings and follow-up arrangements at your consultation.
                 </p>
               </div>
             </motion.div>
@@ -142,7 +142,7 @@ export default function Rhinoplasty() {
                 { icon: '🪡', title: 'Closed Rhinoplasty', note: 'Minimal incisions, faster recovery for select cases' }, // PLACEHOLDER
                 { icon: '🧩', title: 'Cartilage Grafting', note: 'Structural support for lasting, natural results' }, // PLACEHOLDER
                 { icon: '💨', title: 'Septoplasty', note: 'Functional correction combined when needed' }, // PLACEHOLDER
-                { icon: '🔊', title: 'Piezo (Harmonic) Technique', note: 'Ultrasonic bone sculpting — no tissue injury, recovery as early as 9 days' },
+                { icon: '🔊', title: 'Piezo (Harmonic) Technique', note: 'Ask about the proposed instruments and recovery plan at consultation' },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -274,6 +274,25 @@ export default function Rhinoplasty() {
       </section>
 
       {/* ── FAQ / CTA ── */}
+      <section className="py-16 bg-white" aria-labelledby="patient-guides-heading">
+        <div className="max-w-5xl mx-auto px-5 md:px-8 lg:px-12">
+          <h2 id="patient-guides-heading" className="section-title mb-4">Plan Your Consultation</h2>
+          <p className="font-sans text-muted mb-8">Explore the journal and bring your questions to your consultation.</p>
+          <nav aria-label="Rhinoplasty patient guides" className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              { slug: 'rhinoplasty-cost-in-karachi-what-drives-the-price', label: 'Rhinoplasty cost in Karachi' },
+              { slug: 'questions-to-ask-before-rhinoplasty-consultation', label: 'Questions to ask at consultation' },
+              { slug: 'revision-rhinoplasty-karachi-fixing-a-previous-surgery', label: 'Revision rhinoplasty guide' },
+              { slug: 'rhinoplasty-aftercare-sleep-diet-daily-life', label: 'Rhinoplasty aftercare guide' },
+            ].map((guide) => (
+              <Link key={guide.slug} to={`/blog/${guide.slug}`} className="card p-5 font-sans text-sm text-charcoal underline underline-offset-4 hover:text-clay">
+                {guide.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </section>
+
       <section className="py-20 bg-paper">
         <div className="max-w-3xl mx-auto px-5 text-center">
           <h2 className="section-title mb-5">Have Questions?</h2>

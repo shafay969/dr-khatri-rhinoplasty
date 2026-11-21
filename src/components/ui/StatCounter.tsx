@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring, animate } from 'framer-motion';
+import { motion, useReducedMotion, animate } from 'framer-motion';
 import { useInView } from 'framer-motion';
 
 interface StatCounterProps {
@@ -12,10 +12,11 @@ interface StatCounterProps {
 export default function StatCounter({ value, suffix, label, duration = 2 }: StatCounterProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
-  const [displayValue, setDisplayValue] = useState(0);
+  const reduceMotion = useReducedMotion();
+  const [displayValue, setDisplayValue] = useState(value);
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || reduceMotion) return;
 
     const controls = animate(0, value, {
       duration,
@@ -24,7 +25,7 @@ export default function StatCounter({ value, suffix, label, duration = 2 }: Stat
     });
 
     return () => controls.stop();
-  }, [isInView, value, duration]);
+  }, [isInView, value, duration, reduceMotion]);
 
   return (
     <div ref={ref} className="text-center">

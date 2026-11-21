@@ -3,8 +3,8 @@ import SEO, { SITE_URL } from '../components/layout/SEO';
 import { business } from '../data/business';
 
 // Confirmed 2026-08-24: real WhatsApp/phone number.
-const WHATSAPP_NUMBER = '+923332572052';
-const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to book a rhinoplasty consultation.");
+const WHATSAPP_NUMBER = business.telephone.replace(/\D/g, '');
+const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to arrange a consultation.");
 const INSTAGRAM = 'https://instagram.com/vijay.k.khatri';
 
 // Confirmed 2026-08-24 — MidCiti Hospital, Karachi (24.8977718, 67.0784749),
@@ -32,7 +32,7 @@ export default function Contact() {
     <div className="pt-20">
       <SEO
         title="Contact & Location | Dr. Vijay Khatri Rhinoplasty Karachi"
-        description="Get in touch with Dr. Vijay Khatri, visiting consultant at MidCiti Hospital, near National Stadium, Karachi — WhatsApp, phone, email, or visit the clinic."
+        description="Get in touch with Dr. Vijay Khatri, visiting consultant at MidCiti Hospital, near National Stadium, Karachi — WhatsApp or phone to arrange a consultation."
         path="/contact"
         jsonLd={{
           '@context': 'https://schema.org',
@@ -82,7 +82,7 @@ export default function Contact() {
             transition={{ delay: 0.3 }}
             className="font-sans text-white/50 text-sm max-w-md mx-auto"
           >
-            Dr. Khatri operates at MidCiti Hospital, near National Stadium, Karachi. Reach us via WhatsApp, phone, or email — or drop by the clinic.
+            Dr. Khatri operates at MidCiti Hospital, near National Stadium, Karachi. Reach us via WhatsApp or phone to arrange a consultation.
           </motion.p>
         </div>
       </section>
@@ -123,7 +123,7 @@ export default function Contact() {
                 }
                 label="Phone"
                 value="+92 333 2572052"
-                href="tel:+923332572052"
+                href={`tel:${business.telephone}`}
               />
 
               {/* Email intentionally omitted — practice doesn't have a dedicated one yet (confirmed 2026-08-24) */}
@@ -155,19 +155,9 @@ export default function Contact() {
               {/* Hours */}
               <div className="mt-2 p-5 bg-white rounded-xl shadow-card">
                 <p className="font-sans text-[10px] tracking-widest uppercase text-muted mb-3">Clinic Hours</p>
-                {/* PLACEHOLDER — replace with verified clinic hours before launch */}
-                <div className="flex flex-col gap-1.5">
-                  {[
-                    { day: 'Monday – Friday', hours: '10:00 AM – 6:00 PM' },
-                    { day: 'Saturday', hours: '10:00 AM – 2:00 PM' },
-                    { day: 'Sunday', hours: 'By Appointment Only' },
-                  ].map((row) => (
-                    <div key={row.day} className="flex justify-between text-sm font-sans">
-                      <span className="text-muted">{row.day}</span>
-                      <span className="text-charcoal font-medium">{row.hours}</span>
-                    </div>
-                  ))}
-                </div>
+                <p className="font-sans text-sm text-muted leading-relaxed">
+                  Please contact the clinic to confirm consultation availability.
+                </p>
               </div>
             </motion.div>
 

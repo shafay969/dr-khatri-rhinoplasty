@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
+import { business } from '../../data/business';
 
-// PLACEHOLDER — replace address, phone, email with verified clinic details before launch
-const WHATSAPP_NUMBER = '+923332572052';
-const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to book a rhinoplasty consultation.");
+// Contact links use the client-confirmed telephone in business.ts.
+const WHATSAPP_NUMBER = business.telephone.replace(/\D/g, '');
+const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to arrange a consultation.");
 const INSTAGRAM = 'https://instagram.com/vijay.k.khatri';
 
 const quickLinks = [
@@ -106,7 +107,7 @@ export default function Footer() {
                 </p>
               </li>
               <li>
-                <a href="tel:+923332572052" className="font-sans text-sm text-white/50 hover:text-clay transition-colors duration-200">
+                <a href={`tel:${business.telephone}`} className="font-sans text-sm text-white/50 hover:text-clay transition-colors duration-200">
                   +92 333 2572052
                 </a>
               </li>
@@ -121,8 +122,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Dr. Vijay Khatri. All rights reserved.
           </p>
           <p className="font-sans text-xs text-white/20">
-            {/* PLACEHOLDER — update disclaimer with real medical/legal text before launch */}
-            Results may vary. All testimonials and statistics are for demonstration purposes.
+            Individual experiences vary. Contact the clinic for advice about your circumstances.
           </p>
         </div>
       </div>
