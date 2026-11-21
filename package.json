@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "build:prerender": "npx playwright install --with-deps chromium && tsc && vite build && node scripts/prerender.mjs",
-    "preview": "vite preview"
+    "build": "tsc && vite build && node scripts/prerender.mjs",
+    "build:prerender": "npm run build",
+    "preview": "vite preview",
+    "test:seo": "node scripts/test-seo.mjs",
+    "monitor:seo": "python3 scripts/seo_monitor.py"
   },
   "dependencies": {
     "framer-motion": "^11.3.8",

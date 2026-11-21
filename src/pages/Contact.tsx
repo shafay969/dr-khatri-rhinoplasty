@@ -3,8 +3,8 @@ import SEO, { SITE_URL } from '../components/layout/SEO';
 import { business } from '../data/business';
 
 // Confirmed 2026-08-24: real WhatsApp/phone number.
-const WHATSAPP_NUMBER = '+923332572052';
-const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to book a rhinoplasty consultation.");
+const WHATSAPP_NUMBER = business.telephone.replace(/\D/g, '');
+const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to arrange a consultation.");
 const INSTAGRAM = 'https://instagram.com/vijay.k.khatri';
 
 // Confirmed 2026-08-24 — MidCiti Hospital, Karachi (24.8977718, 67.0784749),

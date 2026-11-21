@@ -5,3 +5,7 @@ dist
 
 # Local Netlify folder
 .netlify
+
+# Confidential SEO operations and isolated local checkouts are never published.
+.seo-private/
+.worktrees/

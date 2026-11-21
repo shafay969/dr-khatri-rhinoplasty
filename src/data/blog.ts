@@ -778,3 +778,28 @@ export const blogPosts: BlogPost[] = [
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((post) => post.slug === slug);
 }
+
+// Keep related reading relevant rather than repeating the first three posts.
+const relatedCategories = [
+  ['Patient Guide', 'Cost & Planning'],
+  ['Recovery'],
+  ['Technique', 'Non-Surgical Options'],
+  ['Trauma Rhinoplasty', 'Functional Rhinoplasty', 'Revision Surgery'],
+];
+const planningGuides = [
+  'questions-to-ask-before-rhinoplasty-consultation',
+  'how-to-choose-a-rhinoplasty-surgeon-in-karachi',
+  'rhinoplasty-cost-in-karachi-what-drives-the-price',
+];
+
+export function getRelatedBlogPosts(post: BlogPost): BlogPost[] {
+  const categories = relatedCategories.find((group) => group.includes(post.category)) ?? [];
+  const candidates = [
+    ...blogPosts.filter((candidate) => candidate.category === post.category),
+    ...blogPosts.filter((candidate) => categories.includes(candidate.category)),
+    ...planningGuides.flatMap((slug) => blogPosts.filter((candidate) => candidate.slug === slug)),
+  ];
+  return [...new Map(candidates.map((candidate) => [candidate.slug, candidate])).values()]
+    .filter((candidate) => candidate.slug !== post.slug)
+    .slice(0, 3);
+}

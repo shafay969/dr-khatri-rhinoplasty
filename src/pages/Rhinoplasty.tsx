@@ -274,6 +274,25 @@ export default function Rhinoplasty() {
       </section>
 
       {/* ── FAQ / CTA ── */}
+      <section className="py-16 bg-white" aria-labelledby="patient-guides-heading">
+        <div className="max-w-5xl mx-auto px-5 md:px-8 lg:px-12">
+          <h2 id="patient-guides-heading" className="section-title mb-4">Plan Your Consultation</h2>
+          <p className="font-sans text-muted mb-8">Explore the journal and bring your questions to your consultation.</p>
+          <nav aria-label="Rhinoplasty patient guides" className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              { slug: 'rhinoplasty-cost-in-karachi-what-drives-the-price', label: 'Rhinoplasty cost in Karachi' },
+              { slug: 'questions-to-ask-before-rhinoplasty-consultation', label: 'Questions to ask at consultation' },
+              { slug: 'revision-rhinoplasty-karachi-fixing-a-previous-surgery', label: 'Revision rhinoplasty guide' },
+              { slug: 'rhinoplasty-aftercare-sleep-diet-daily-life', label: 'Rhinoplasty aftercare guide' },
+            ].map((guide) => (
+              <Link key={guide.slug} to={`/blog/${guide.slug}`} className="card p-5 font-sans text-sm text-charcoal underline underline-offset-4 hover:text-clay">
+                {guide.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </section>
+
       <section className="py-20 bg-paper">
         <div className="max-w-3xl mx-auto px-5 text-center">
           <h2 className="section-title mb-5">Have Questions?</h2>

@@ -102,6 +102,8 @@ export default function Navbar() {
               whileTap={{ scale: 0.88 }}
               transition={{ type: 'spring', bounce: 0, duration: 0.25 }}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
               className={`lg:hidden flex flex-col gap-1.5 p-2 transition-colors duration-200 ${
                 scrolled || !isHomePage ? 'text-charcoal' : 'text-white'
               }`}
@@ -133,7 +135,7 @@ export default function Navbar() {
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-40 bg-charcoal flex flex-col pt-24 px-8 pb-12 lg:hidden overflow-y-auto"
           >
-            <nav className="flex flex-col gap-2">
+            <nav id="mobile-navigation" aria-label="Mobile navigation" className="flex flex-col gap-2">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.to}
