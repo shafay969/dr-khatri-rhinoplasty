@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Link, useParams } from 'react-router-dom';
 import NotFound from './NotFound';
 import SEO, { SITE_URL } from '../components/layout/SEO';
-import { blogPosts, getBlogPostBySlug } from '../data/blog';
+import { getBlogPostBySlug, getRelatedBlogPosts } from '../data/blog';
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
@@ -13,7 +13,7 @@ export default function BlogPost() {
 
   if (!post) return <NotFound />;
 
-  const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const related = getRelatedBlogPosts(post);
 
   return (
     <div className="pt-20">
@@ -108,6 +108,12 @@ export default function BlogPost() {
           ))}
 
           <div className="clay-divider my-10" />
+
+          <nav aria-label="Consultation resources" className="mb-8 flex flex-wrap gap-x-6 gap-y-3 font-sans text-sm text-clay">
+            <Link to="/rhinoplasty" className="underline underline-offset-4">Rhinoplasty in Karachi</Link>
+            <Link to="/about" className="underline underline-offset-4">About Dr. Vijay Khatri</Link>
+            <Link to="/faq" className="underline underline-offset-4">Frequently asked questions</Link>
+          </nav>
 
           <div className="bg-white rounded-2xl shadow-card p-7 md:p-8 flex flex-col md:flex-row items-center gap-6 justify-between">
             <div>
