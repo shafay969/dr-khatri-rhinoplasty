@@ -8,6 +8,8 @@ After an approved merge, an authorized maintainer must verify Actions are enable
 
 The daily schedule is 12:30 UTC (20:30 Asia/Shanghai). It starts measurements before the separate 13:00 UTC / 21:00 Asia/Shanghai consolidated report. GitHub may delay scheduled execution. Never invent a fresh measurement when a run is missing or delayed.
 
+In public repositories, GitHub can disable scheduled workflows after 60 days without repository activity. Weekly maintenance must check the workflow state and latest completed run, and report required reactivation. Do not create artificial commits or change production merely to keep a schedule alive. See [GitHub's schedule limitations](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule).
+
 This workflow sends no email. A single separate Codex/Gmail reporting pipeline owns delivery, the recipient and date-based email deduplication. Keep the recipient and delivery state out of this public repository. A local Codex reporting task depends on its documented host/app availability; GitHub health measurements can run without that Mac once activated.
 
 ## Run locally

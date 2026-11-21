@@ -29,6 +29,10 @@ for (const url of routes) {
   assert.ok(html.includes(`rel="canonical" href="${url}"`), `Canonical: ${url}`);
   assert.ok(!/<meta[^>]*name="robots"[^>]*content="[^"]*noindex/.test(html), `Accidental noindex: ${url}`);
   assert.ok(!html.includes('Loading page…'), `Unresolved route: ${url}`);
+  for (const preload of html.matchAll(/<link[^>]*rel="modulepreload"[^>]*href="([^"]+)"/g)) {
+    assert.ok(preload[1].startsWith('/assets/'), `Unexpected module origin: ${url}`);
+    await stat(resolve(dist, `.${preload[1]}`));
+  }
   for (const m of html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>(.*?)<\/script>/gs)) {
     assert.ok(JSON.parse(m[1]), `Invalid JSON-LD: ${url}`);
   }

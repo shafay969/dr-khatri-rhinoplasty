@@ -54,6 +54,23 @@ try {
     });
     const canonical = await page.locator('link[rel="canonical"]').getAttribute('href');
     if (canonical !== `${origin}${path}` || errors.length) throw new Error(`Prerender failed ${path}: ${canonical}; ${errors.join('; ')}`);
+    // Discover the route's actual emitted modules during rendering. Fetching
+    // them from the initial HTML removes an extra request round-trip when the
+    // interactive entry point later imports the current route.
+    await page.evaluate(() => {
+      const present = new Set([...document.querySelectorAll('script[src], link[rel="modulepreload"]')]
+        .map((element) => element.src || element.href));
+      performance.getEntriesByType('resource').forEach((entry) => {
+        const url = new URL(entry.name);
+        if (entry.initiatorType !== 'script' || url.origin !== location.origin || !url.pathname.startsWith('/assets/') || !url.pathname.endsWith('.js') || present.has(url.href)) return;
+        const link = document.createElement('link');
+        link.rel = 'modulepreload';
+        link.crossOrigin = '';
+        link.href = url.pathname;
+        document.head.appendChild(link);
+        present.add(url.href);
+      });
+    });
     await page.evaluate(() => document.getElementById('root')?.removeAttribute('data-app-ready'));
     const html = await page.content();
     // Flat HTML leaves keep existing slashless URLs under Netlify Pretty URLs.
