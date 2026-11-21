@@ -84,12 +84,100 @@ class SitemapTests(unittest.TestCase):
             with self.subTest(body=body), self.assertRaises(ValueError): monitor.parse_sitemap(body)
 
 
+class GoogleRobotsTests(unittest.TestCase):
+    def rules(self, text):
+        return monitor.GoogleRobotsRules(text.splitlines())
+
+    def test_specific_disallow_beats_earlier_global_allow_and_rule_order_is_irrelevant(self):
+        for rules in ["Allow: /\nDisallow: /rhinoplasty", "Disallow: /rhinoplasty\nAllow: /"]:
+            parsed = self.rules("User-agent: *\n" + rules)
+            self.assertFalse(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/rhinoplasty"))
+            self.assertTrue(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/about"))
+
+    def test_longer_allow_and_allow_tie_are_honored(self):
+        parsed = self.rules("User-agent: *\nDisallow: /rhinoplasty\nAllow: /rhinoplasty/recovery\nDisallow: /contact\nAllow: /contact")
+        self.assertFalse(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/rhinoplasty/risks"))
+        self.assertTrue(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/rhinoplasty/recovery"))
+        self.assertTrue(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/contact"))
+
+    def test_path_matching_is_case_sensitive_and_supports_wildcard_and_terminal_anchor(self):
+        parsed = self.rules("User-agent: *\nDisallow: /blog/*/draft$\nDisallow: /Contact")
+        for path in ["/blog/one/draft", "/blog/one/two/draft", "/blog//draft", "/Contact"]:
+            with self.subTest(path=path): self.assertFalse(parsed.can_fetch("Googlebot", monitor.ORIGIN + path))
+        for path in ["/blog/one/draft/final", "/blog/one/Draft", "/contact"]:
+            with self.subTest(path=path): self.assertTrue(parsed.can_fetch("Googlebot", monitor.ORIGIN + path))
+
+    def test_googlebot_group_replaces_wildcard_group_and_merges_repeated_specific_groups(self):
+        parsed = self.rules("User-agent: *\nDisallow: /\nUser-agent: gOoGlEbOt\nAllow: /\nDisallow: /booking\nUser-agent: Googlebot\nDisallow: /contact")
+        self.assertTrue(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/rhinoplasty"))
+        self.assertFalse(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/booking"))
+        self.assertFalse(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/contact"))
+        self.assertFalse(parsed.can_fetch("Otherbot", monitor.ORIGIN + "/rhinoplasty"))
+
+    def test_other_google_crawler_purpose_does_not_block_googlebot_web(self):
+        parsed = self.rules("User-agent: Googlebot-Image\nDisallow: /\nUser-agent: *\nAllow: /")
+        self.assertTrue(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/"))
+        self.assertFalse(parsed.can_fetch("Googlebot-Image", monitor.ORIGIN + "/"))
+
+    def test_most_specific_crawler_group_is_selected(self):
+        parsed = self.rules("User-agent: Googlebot\nDisallow: /\nUser-agent: Googlebot-News\nAllow: /")
+        self.assertFalse(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/"))
+        self.assertTrue(parsed.can_fetch("Googlebot-News", monitor.ORIGIN + "/"))
+
+    def test_comments_empty_rules_sitemap_and_adjacent_user_agents(self):
+        parsed = self.rules("\ufeffUSER-AGENT: Googlebot\nSitemap: " + monitor.ORIGIN + "/sitemap.xml\nUser-agent: Otherbot\nDisallow: /contact # private section\nAllow: \nDisallow: ")
+        self.assertFalse(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/contact"))
+        self.assertFalse(parsed.can_fetch("Otherbot", monitor.ORIGIN + "/contact"))
+        self.assertTrue(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/"))
+        self.assertEqual(parsed.site_maps(), [monitor.ORIGIN + "/sitemap.xml"])
+
+    def test_equivalent_utf8_percent_escapes_and_reserved_slashes(self):
+        parsed = self.rules("User-agent: *\nDisallow: /鼻\nDisallow: /revision\nDisallow: /a%2Fb")
+        self.assertFalse(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/%E9%BC%BB"))
+        self.assertFalse(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/%72evision"))
+        self.assertFalse(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/a%2fb"))
+        self.assertTrue(parsed.can_fetch("Googlebot", monitor.ORIGIN + "/a/b"))
+
+    def test_official_wildcard_precedence_examples(self):
+        for disallow, expected in [("/*.htm", False), ("/*.ph", True)]:
+            parsed = self.rules("User-agent: *\nAllow: /page\nDisallow: " + disallow)
+            path = "/page.htm" if disallow.endswith("htm") else "/page.php5"
+            self.assertEqual(parsed.can_fetch("Googlebot", monitor.ORIGIN + path), expected)
+
+
 class HTMLTests(unittest.TestCase):
     def test_good_page(self):
         result = monitor.page_analysis(monitor.ORIGIN + "/", fetched(monitor.ORIGIN + "/"))
         self.assertEqual(result["issues"], [])
         self.assertEqual(result["raw_json_ld_count"], 1)
         self.assertEqual(result["consultation"]["malformed"], 0)
+
+    def test_svg_accessibility_titles_do_not_count_as_document_titles(self):
+        url = monitor.ORIGIN + "/"
+        body = html(url).replace("</body>", '<svg role="img"><title>Clinic logo</title></svg><svg><title>Phone icon</title></svg></body>')
+        result = monitor.page_analysis(url, fetched(url, body))
+        self.assertEqual(result["title"], "Page " + url)
+        self.assertNotIn("Expected one nonempty raw HTML title", result["issues"])
+
+    def test_missing_head_title_is_not_hidden_by_svg_title(self):
+        url = monitor.ORIGIN + "/"
+        body = html(url).replace("<title>Page " + url + "</title>", "").replace("</body>", '<svg><title>Clinic logo</title></svg></body>')
+        result = monitor.page_analysis(url, fetched(url, body))
+        self.assertIsNone(result["title"])
+        self.assertIn("Expected one nonempty raw HTML title", result["issues"])
+
+    def test_missing_consultation_channels_on_key_routes_are_reported_only_after_successful_fetch(self):
+        for path in ["/", "/booking", "/contact", "/contact/"]:
+            url = monitor.ORIGIN + path
+            body = html(url).replace('<a href="tel:+923001234567">Phone</a>', '').replace('<a href="https://wa.me/923001234567">WhatsApp</a>', '')
+            result = monitor.page_analysis(url, fetched(url, body))
+            self.assertTrue(any("No telephone/WhatsApp consultation links" in e for e in result["issues"]), path)
+        url = monitor.ORIGIN + "/blog/post"
+        result = monitor.page_analysis(url, fetched(url, body))
+        self.assertFalse(any("No telephone/WhatsApp consultation links" in e for e in result["issues"]))
+        missing = fetched(monitor.ORIGIN + "/", "", status=None)
+        missing["error"] = "Network unavailable"
+        self.assertFalse(any("No telephone/WhatsApp consultation links" in e for e in monitor.page_analysis(monitor.ORIGIN + "/", missing)["issues"]))
 
     def test_noindex_from_meta_or_response_header_is_detected(self):
         page = fetched(monitor.ORIGIN + "/", html(robots="noindex, follow"))
@@ -145,6 +233,20 @@ class FakeFetcher:
 
 
 class EndToEndFixtureTests(unittest.TestCase):
+    @patch("seo_monitor.tls_check", return_value={"verified": True, "days_remaining": 60})
+    def test_specific_robots_block_and_missing_consultation_create_high_findings(self, _tls):
+        class RegressedFetcher(FakeFetcher):
+            def get(self, url):
+                result = super().get(url)
+                if url.endswith("robots.txt"):
+                    result["body"] += "Disallow: /rhinoplasty\n"
+                if url == monitor.ORIGIN + "/booking":
+                    result["body"] = result["body"].replace('<a href="tel:+923001234567">Phone</a>', '').replace('<a href="https://wa.me/923001234567">WhatsApp</a>', '')
+                return result
+        with patch("seo_monitor.Fetcher", RegressedFetcher): report = monitor.run_monitor()
+        self.assertTrue(any(i["priority"] == "P0" and "Googlebot blocked" in i["message"] and "/rhinoplasty" in i["message"] for i in report["issues"]))
+        self.assertTrue(any(i["priority"] == "P1" and "No telephone/WhatsApp consultation links" in i["message"] and "/booking" in i["message"] for i in report["issues"]))
+
     @patch("seo_monitor.Fetcher", FakeFetcher)
     @patch("seo_monitor.tls_check", return_value={"verified": True, "days_remaining": 60})
     def test_report_uses_verified_marker_and_never_invents_search_or_web_vitals_data(self, _tls):

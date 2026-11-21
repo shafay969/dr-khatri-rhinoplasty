@@ -15,9 +15,8 @@ import socket
 import ssl
 import time
 from urllib.error import HTTPError, URLError
-from urllib.parse import urljoin, urlsplit, urlunsplit, parse_qs
+from urllib.parse import urljoin, urlsplit, urlunsplit, parse_qs, quote
 from urllib.request import HTTPRedirectHandler, HTTPSHandler, ProxyHandler, Request, build_opener
-from urllib.robotparser import RobotFileParser
 import xml.etree.ElementTree as ET
 
 ORIGIN = "https://drvijaykhatri.com"
@@ -151,13 +150,14 @@ class PageParser(HTMLParser):
         self.titles, self.descriptions, self.canonicals, self.robots, self.links = [], [], [], [], []
         self.json_ld, self.h1s = [], []
         self._title = self._h1 = self._json = None
-        self._script = self._style = self._body = False
+        self._script = self._style = self._body = self._head = False
         self.body_text_chars = self.images = self.images_without_alt = 0
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
-        if tag == "body": self._body = True
-        if tag == "title": self._title = ""
+        if tag == "head": self._head = True
+        if tag == "body": self._body = True; self._head = False
+        if tag == "title" and self._head: self._title = ""
         if tag == "h1": self._h1 = ""
         if tag == "style": self._style = True
         if tag == "script":
@@ -188,7 +188,101 @@ class PageParser(HTMLParser):
             self._script = False
             if self._json is not None: self.json_ld.append(self._json); self._json = None
         if tag == "style": self._style = False
+        if tag == "head": self._head = False
         if tag == "body": self._body = False
+
+
+def robots_octets(value: str) -> str:
+    """Normalize UTF-8 and escaped octets without decoding reserved URL characters."""
+    encoded = quote(value, safe="/!$&'()*+,-.:;=?@_%")
+    def normalize(match):
+        char = chr(int(match.group(1), 16))
+        return char if re.fullmatch(r"[A-Za-z0-9._~-]", char) else "%" + match.group(1).upper()
+    return re.sub(r"%([0-9a-fA-F]{2})", normalize, encoded)
+
+
+def robots_path_match(rule: str, path: str) -> bool:
+    """Match only REP's '*' and terminal '$', avoiding untrusted regex backtracking."""
+    terminal = rule.endswith("$")
+    pattern = rule[:-1] if terminal else rule
+    pattern_index = path_index = 0
+    star_index = -1
+    retry_index = 0
+    while path_index < len(path):
+        if pattern_index < len(pattern) and pattern[pattern_index] == "*":
+            star_index = pattern_index
+            pattern_index += 1
+            retry_index = path_index
+        elif pattern_index < len(pattern) and pattern[pattern_index] == path[path_index]:
+            pattern_index += 1
+            path_index += 1
+        elif pattern_index == len(pattern) and not terminal:
+            return True
+        elif star_index >= 0:
+            pattern_index = star_index + 1
+            retry_index += 1
+            path_index = retry_index
+        else:
+            return False
+    while pattern_index < len(pattern) and pattern[pattern_index] == "*":
+        pattern_index += 1
+    return pattern_index == len(pattern)
+
+
+class GoogleRobotsRules:
+    """Google-relevant group selection and longest matching path, with Allow ties.
+
+    Implements the documented path/group rules used by this monitor, not Google's
+    fetching/cache behavior. Reference: developers.google.com/crawling/docs/robots-txt/robots-txt-spec.
+    """
+    def __init__(self, lines):
+        self.groups = []
+        self.sitemaps = []
+        agents, rules, saw_rule = [], [], False
+        for line in lines:
+            line = line.lstrip("\ufeff").split("#", 1)[0].strip()
+            if ":" not in line: continue
+            field, value = (part.strip() for part in line.split(":", 1))
+            field = field.lower()
+            if field == "sitemap":
+                if value: self.sitemaps.append(value)
+                continue
+            if field == "user-agent":
+                if not value: continue
+                if saw_rule:
+                    self.groups.append((agents, rules))
+                    agents, rules, saw_rule = [], [], False
+                # Google ignores a UA version or trailing wildcard, not purpose suffixes.
+                token = re.split(r"[/\s*]", value.lower(), maxsplit=1)[0]
+                agents.append(token if token else "*")
+            elif field in {"allow", "disallow"} and agents:
+                saw_rule = True
+                if value.startswith("/"):
+                    path = robots_octets(value)
+                    # A trailing wildcard does not make a prefix more specific.
+                    if not path.endswith("$"): path = path.rstrip("*")
+                    rules.append((len(path.encode("utf-8")), field == "allow", path))
+        if agents: self.groups.append((agents, rules))
+
+    def site_maps(self):
+        return self.sitemaps
+
+    def can_fetch(self, user_agent: str, url: str) -> bool:
+        agent = user_agent.lower().split("/", 1)[0]
+        selected, best_agent_length = [], -1
+        for agents, rules in self.groups:
+            matching = [0 if token == "*" else len(token) for token in agents if token == "*" or agent.startswith(token)]
+            if not matching: continue
+            length = max(matching)
+            if length > best_agent_length:
+                selected, best_agent_length = list(rules), length
+            elif length == best_agent_length:
+                selected.extend(rules)
+        parsed = urlsplit(url)
+        path = robots_octets((parsed.path or "/") + ("?" + parsed.query if parsed.query else ""))
+        matches = [(length, allow) for length, allow, pattern in selected if robots_path_match(pattern, path)]
+        # Tuple ordering prefers the longest rule, then True (Allow) on equal length.
+        return max(matches)[1] if matches else True
 
 
 def parse_sitemap(body: str) -> tuple[str, list[str]]:
@@ -259,6 +353,8 @@ def page_analysis(url: str, fetched: dict) -> dict:
     links = sorted({u for href in p.links if (u := internal_link(url, href))})
     consult = consultation_links(p.links)
     if consult["malformed"]: errors.append("Malformed telephone/WhatsApp consultation link")
+    if measured and fetched.get("status") == 200 and urlsplit(url).path.rstrip("/") in {"", "/booking", "/contact"} and not (consult["phone_links"] or consult["whatsapp_links"]):
+        errors.append("No telephone/WhatsApp consultation links found in raw HTML on a key consultation route; verify rendered navigation")
     return {"url": url, "status": fetched.get("status"), "http_measurement_complete": measured, "elapsed_ms": fetched.get("elapsed_ms"),
             "redirects": fetched.get("redirects", []), "title": p.titles[0] if p.titles else None,
             "description": p.descriptions[0] if p.descriptions else None, "canonicals": p.canonicals,
@@ -298,8 +394,7 @@ def run_monitor(max_urls: int = 30, previous: dict | None = None) -> dict:
     elif tls["days_remaining"] < 21: issue("P1", "TLS certificate expires in fewer than 21 days")
     robots = fetcher.get(ORIGIN + "/robots.txt")
     robots_valid = robots["status"] == 200 and not robots["error"] and not re.match(r"\s*<(?:!doctype|html)", robots["body"], re.I)
-    robot_parser = RobotFileParser()
-    robot_parser.parse(robots["body"].splitlines() if robots_valid else [])
+    robot_parser = GoogleRobotsRules(robots["body"].splitlines() if robots_valid else [])
     safe_sitemaps = []
     rejected_sitemaps = 0
     for entry in robot_parser.site_maps() or []:
