@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-// PLACEHOLDER — update once the real production domain is confirmed.
+// Confirmed production domain; previews retain canonical production URLs.
 // This is the single source of truth for canonical/OG URLs across the site.
 export const SITE_URL = 'https://drvijaykhatri.com';
 const SITE_NAME = 'Dr. Vijay Khatri — Rhinoplasty Surgeon, Karachi';
@@ -43,7 +43,7 @@ export default function SEO({ title, description, path, image, type = 'website',
 
       {jsonLdList.map((data, i) => (
         <script key={i} type="application/ld+json">
-          {JSON.stringify(data)}
+          {JSON.stringify(data).replace(/</g, '\\u003c')}
         </script>
       ))}
     </Helmet>

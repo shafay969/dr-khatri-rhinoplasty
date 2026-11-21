@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { business } from '../data/business';
 import { Link } from 'react-router-dom';
 import SEO, { SITE_URL } from '../components/layout/SEO';
 import StatCounter from '../components/ui/StatCounter';
@@ -12,8 +13,8 @@ import { teaserPairs } from '../data/gallery';
 // PLACEHOLDER — hero background gradient simulates a clinic/luxury aesthetic until real photo is available
 // Replace the gradient with an actual hero image: /public/doctor/hero.jpg
 
-const WHATSAPP_NUMBER = '+923332572052';
-const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to book a rhinoplasty consultation.");
+const WHATSAPP_NUMBER = business.telephone.replace(/\D/g, '');
+const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to arrange a consultation.");
 
 const staggerContainer = {
   animate: {
@@ -68,8 +69,8 @@ export default function Home() {
   return (
     <div className="overflow-x-hidden">
       <SEO
-        title="Dr. Vijay Khatri — Best Rhinoplasty Surgeon in Karachi | Turkish Technique"
-        description="Karachi's Turkish-trained rhinoplasty specialist. Structural, natural-looking nose surgery for South Asian faces — primary, revision & functional rhinoplasty. Book a consultation."
+        title="Dr. Vijay Khatri | Rhinoplasty Surgeon in Karachi"
+        description="Learn about Dr. Vijay Khatri's rhinoplasty practice in Karachi, explore consultation information, and contact the clinic to arrange an appointment."
         path="/"
         jsonLd={{
           '@context': 'https://schema.org',
@@ -284,8 +285,8 @@ export default function Home() {
       {/* ── STATS ── */}
       <section className="py-20 bg-paper" aria-label="Statistics">
         <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
-            {stats.map((stat, i) => (
+          <div className="grid grid-cols-1 max-w-sm mx-auto gap-8">
+            {stats.map((stat) => (
               <StatCounter
                 key={stat.id}
                 value={stat.value}
@@ -406,7 +407,7 @@ export default function Home() {
             <h2 className="font-serif text-3xl md:text-4xl text-white mt-2">What They Say</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 max-w-3xl mx-auto">
             {testimonials.slice(0, 3).map((t, i) => (
               <motion.div
                 key={t.id}

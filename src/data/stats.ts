@@ -1,7 +1,4 @@
-// `experience` below is confirmed (practicing since 2012). `procedures`,
-// `satisfaction`, and `technique` are still unverified placeholder numbers —
-// see the SEO follow-up questions for what's still needed before these are
-// safe to use in structured data or launch copy.
+import { business } from './business';
 
 export interface Stat {
   id: string;
@@ -10,66 +7,33 @@ export interface Stat {
   label: string;
 }
 
+// Derive experience from the client-confirmed start year. Unverified procedure,
+// satisfaction, and Turkish-training statistics are deliberately omitted.
 export const stats: Stat[] = [
   {
-    id: 'procedures',
-    value: 500,
-    suffix: '+',
-    label: 'Successful Procedures', // PLACEHOLDER
-  },
-  {
     id: 'experience',
-    value: 14,
-    suffix: '+',
-    label: 'Years of Surgical Experience', // confirmed — practicing since 2012
-  },
-  {
-    id: 'satisfaction',
-    value: 98,
-    suffix: '%',
-    label: 'Patient Satisfaction Rate', // PLACEHOLDER
-  },
-  {
-    id: 'technique',
-    value: 1,
+    value: new Date().getFullYear() - business.practicingSince,
     suffix: '',
-    label: 'Turkish-Trained Surgeon in Karachi', // PLACEHOLDER
+    label: 'Years in Practice',
   },
 ];
 
-// Credential / timeline items for the About page.
-// First four entries below are confirmed (2026-08-24). The remaining two
-// are still unverified placeholders — see the SEO follow-up questions for
-// what's needed before they're safe to publish as fact.
+// Only facts already recorded as client-confirmed in business.ts are retained.
+// Training dates, published research and clinical-outcome promises need review.
 export const credentials = [
   {
-    year: '2012',
-    title: 'Practicing Since 2012',
-    description: 'Over a decade of dedicated surgical practice in facial plastic and reconstructive surgery.',
+    year: String(business.practicingSince),
+    title: `Practicing Since ${business.practicingSince}`,
+    description: `In clinical practice since ${business.practicingSince}.`,
   },
   {
-    year: 'Board Certified',
-    title: 'FCPS (CPSP) & MRCS (UK)',
+    year: 'Credentials',
+    title: business.credentials.join(' & '),
     description: 'Fellow of the College of Physicians and Surgeons Pakistan, and Member of the Royal College of Surgeons (UK).',
   },
   {
-    year: 'Technique',
-    title: 'Piezo (Harmonic) Rhinoplasty',
-    description: 'Ultrasonic bone-sculpting instrumentation in place of a traditional hammer and chisel — no tissue injury, no nasal packing or splints for most patients, and a recovery timeline as short as 9 days.',
-  },
-  {
     year: 'Practice',
-    title: 'Visiting Consultant — MidCiti Hospital',
-    description: 'Operates at MidCiti Hospital, near National Stadium, Karachi, as a visiting consultant.',
-  },
-  {
-    year: '2015',
-    title: 'ENT Specialization',
-    description: 'Completed residency in Ear, Nose & Throat surgery, building a foundation of functional nasal anatomy.', // UNCONFIRMED — needs verification
-  },
-  {
-    year: '2022',
-    title: 'South Asian Anatomy Research',
-    description: 'Published work on adapting structural rhinoplasty techniques for South Asian facial anatomy.', // UNCONFIRMED — needs verification
+    title: `${business.hospital.role} — ${business.hospital.name}`,
+    description: 'Visiting consultant at MidCiti Hospital, near National Stadium, Karachi.',
   },
 ];

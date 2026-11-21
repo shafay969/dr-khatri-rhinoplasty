@@ -1,6 +1,6 @@
-// Abdullah's testimonial (id 't0') is a real, verified patient story with real before/after photos.
-// The remaining entries below are PLACEHOLDER demo content — replace with verified client
-// content before launch.
+// Preserve the existing client-provided Abdullah record and photo references.
+// Demonstration testimonials have been removed. Consent records and the text's
+// clinical claims still require the practice's documented review before release.
 
 export interface TestimonialPhotoPair {
   before: string;
@@ -30,41 +30,5 @@ export const testimonials: Testimonial[] = [
       { before: '/testimonials/abdullah-front-before.webp', after: '/testimonials/abdullah-front-after.webp', label: 'Front View' },
       { before: '/testimonials/abdullah-profile-before.webp', after: '/testimonials/abdullah-profile-after.webp', label: 'Side Profile' },
     ],
-  },
-  {
-    id: 't1',
-    name: 'Ayesha R.',
-    procedure: 'Rhinoplasty',
-    rating: 5,
-    // PLACEHOLDER — demo testimonial
-    text: 'I was nervous about looking "done" or unnatural, but Dr. Khatri understood exactly what I wanted. Months later, people just say I look refreshed — nobody guesses I had surgery.',
-    initials: 'AR',
-  },
-  {
-    id: 't2',
-    name: 'Bilal S.',
-    procedure: 'Revision Rhinoplasty',
-    rating: 5,
-    // PLACEHOLDER — demo testimonial
-    text: 'After a disappointing first surgery elsewhere, Dr. Khatri corrected everything I was unhappy with. The difference in both how it looks and how I breathe is night and day.',
-    initials: 'BS',
-  },
-  {
-    id: 't3',
-    name: 'Sana M.',
-    procedure: 'Rhinoplasty',
-    rating: 5,
-    // PLACEHOLDER — demo testimonial
-    text: 'The consultation alone told me he actually listens. He didn\'t push one generic "ideal nose" — he worked with my face.',
-    initials: 'SM',
-  },
-  {
-    id: 't4',
-    name: 'Hassan T.',
-    procedure: 'Rhinoplasty',
-    rating: 5,
-    // PLACEHOLDER — demo testimonial
-    text: 'Booked through WhatsApp, had my consultation within the week, and the whole process felt organized and professional from day one.',
-    initials: 'HT',
   },
 ];

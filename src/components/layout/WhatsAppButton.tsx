@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
+import { business } from '../../data/business';
 
-// PLACEHOLDER — replace phone number with verified client number before launch
-const WHATSAPP_NUMBER = '+923332572052';
-const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to book a rhinoplasty consultation.");
+// WhatsApp click-to-chat requires the international number with digits only.
+const WHATSAPP_NUMBER = business.telephone.replace(/\D/g, '');
+const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to arrange a consultation.");
 
 function WhatsAppIcon() {
   return (

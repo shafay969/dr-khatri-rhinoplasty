@@ -1,1 +1,2 @@
-/*    /index.html    200
+# Netlify serves prerendered route files first; unknown paths are genuine 404s.
+/* /404.html 404
