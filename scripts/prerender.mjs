@@ -29,6 +29,7 @@ try {
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto(`http://127.0.0.1:4173${path}`, { waitUntil: 'networkidle' });
+    await page.locator('#root[data-app-ready="true"]').waitFor();
     await page.locator('main h1').waitFor();
     await page.waitForTimeout(800);
     // Complete viewport animations so content remains visible without JavaScript.
@@ -53,6 +54,7 @@ try {
     });
     const canonical = await page.locator('link[rel="canonical"]').getAttribute('href');
     if (canonical !== `${origin}${path}` || errors.length) throw new Error(`Prerender failed ${path}: ${canonical}; ${errors.join('; ')}`);
+    await page.evaluate(() => document.getElementById('root')?.removeAttribute('data-app-ready'));
     const html = await page.content();
     // Flat HTML leaves keep existing slashless URLs under Netlify Pretty URLs.
     // A route/index.html layout would normalize /route to /route/ instead.

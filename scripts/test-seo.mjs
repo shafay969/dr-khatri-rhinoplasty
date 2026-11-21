@@ -89,6 +89,7 @@ try {
   page.on('pageerror', (error) => errors.push(error.message));
   for (const url of routes) {
     assert.equal((await page.goto(base + url.pathname)).status(), 200);
+    await page.locator('#root[data-app-ready="true"]').waitFor();
     await page.locator('main h1').waitFor();
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), String(url));
     const internal = await page.locator('a[href^="/"]').evaluateAll((links) => links.map((a) => new URL(a.href).pathname));
@@ -101,23 +102,50 @@ try {
     }
   }
   await page.goto(base + '/booking');
+  await page.locator('#root[data-app-ready="true"]').waitFor();
   assert.equal(await page.locator('input,textarea').count(), 0, 'No sensitive appointment fields');
   assert.equal(await page.locator('#booking-call-now').getAttribute('href'), 'tel:+923332572052');
   assert.equal(await page.locator('#booking-submit-btn').getAttribute('target'), '_blank');
   assert.match(await page.locator('main').innerText(), /does not send a message or\s+confirm an appointment/);
   assert.equal(await page.locator('#newsletter-email').count(), 0);
+  await page.locator('#mobile-menu-toggle').click();
+  assert.equal(await page.locator('#mobile-menu-toggle').getAttribute('aria-expanded'), 'true');
+  await page.locator('#mobile-navigation').getByRole('link', {name:'Contact', exact:true}).click();
+  await page.locator('link[rel="canonical"][href="https://drvijaykhatri.com/contact"]').waitFor({state:'attached'});
+  assert.equal(await page.locator('#mobile-menu-toggle').getAttribute('aria-expanded'), 'false');
   // Inspect destinations without navigating to WhatsApp or placing a call.
   assert.equal((await page.goto(base + '/not-a-real-page-seo-test')).status(), 404);
+  await page.locator('#root[data-app-ready="true"]').waitFor();
   await page.locator('main h1').waitFor();
   assert.match(await page.locator('main h1').innerText(), /not found/i);
   assert.equal((await page.goto(base + '/blog/not-a-real-post-seo-test')).status(), 404);
+  await page.locator('#root[data-app-ready="true"]').waitFor();
   await page.locator('main h1').waitFor();
   assert.match(await page.locator('main h1').innerText(), /not found/i);
   assert.deepEqual(errors, []);
+  // A slow initial route chunk must leave the full static page in place.
+  // This catches the measured startup fallback/footer layout-shift regression.
+  const slowContext = await browser.newContext({viewport:{width:390,height:844}, reducedMotion:'reduce'});
+  await slowContext.route('**/*', (route) => new URL(route.request().url()).hostname === '127.0.0.1' ? route.continue() : route.abort());
+  await slowContext.route('**/assets/Booking-*.js', async (route) => {
+    await new Promise((done) => setTimeout(done, 900));
+    await route.continue();
+  });
+  const slowPage = await slowContext.newPage();
+  await slowPage.goto(base + '/booking', {waitUntil:'domcontentloaded'});
+  await slowPage.waitForTimeout(100);
+  assert.equal(await slowPage.locator('main h1').innerText(), 'Book a Consultation');
+  assert.equal(await slowPage.getByRole('status').count(), 0, 'No initial loading placeholder may replace the static page');
+  const footerBefore = await slowPage.locator('footer').boundingBox();
+  await slowPage.locator('#root[data-app-ready="true"]').waitFor();
+  const footerAfter = await slowPage.locator('footer').boundingBox();
+  assert.ok(Math.abs(footerBefore.y - footerAfter.y) < 2, 'Initial route startup must not move the footer');
+  await slowContext.close();
   await mkdir(resolve(root,'.seo-private/screenshots'), {recursive:true});
   await page.goto(base + '/booking');
+  await page.locator('#root[data-app-ready="true"]').waitFor();
   await page.screenshot({path:resolve(root,'.seo-private/screenshots/booking-mobile.png'),fullPage:true});
-  console.log(`PASS: ${routes.length} prerendered routes, metadata, JSON-LD, crawlable links, no-JS/mobile content, private output boundaries, consultation privacy and 404 behavior.`);
+  console.log(`PASS: ${routes.length} prerendered routes, metadata, JSON-LD, crawlable links, no-JS/mobile content, private output boundaries, consultation privacy, mobile navigation, stable slow-chunk startup and 404 behavior.`);
 } finally {
   await browser?.close();
   await new Promise((done) => server.close(done));
