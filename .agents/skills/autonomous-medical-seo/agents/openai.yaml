@@ -1,0 +1,4 @@
+interface:
+  display_name: "Autonomous Medical SEO"
+  short_description: "Run Dr Khatri’s approved SEO operations safely"
+  default_prompt: "Use $autonomous-medical-seo to resume the highest-impact unblocked SEO task for drvijaykhatri.com and record verified results."

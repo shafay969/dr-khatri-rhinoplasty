@@ -1,3 +1,4 @@
+import { business } from '../data/business';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import SEO, { SITE_URL } from '../components/layout/SEO';
@@ -12,8 +13,8 @@ import { teaserPairs } from '../data/gallery';
 // PLACEHOLDER — hero background gradient simulates a clinic/luxury aesthetic until real photo is available
 // Replace the gradient with an actual hero image: /public/doctor/hero.jpg
 
-const WHATSAPP_NUMBER = '+923332572052';
-const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to book a rhinoplasty consultation.");
+const WHATSAPP_NUMBER = business.telephone.replace(/\D/g, '');
+const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to arrange a consultation.");
 
 const staggerContainer = {
   animate: {

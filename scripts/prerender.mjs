@@ -1,68 +1,95 @@
-// Build-time static prerendering.
-//
-// Runs *after* `vite build`. Serves the already-built dist/ with `vite
-// preview`, visits every known route in a real headless browser, and
-// writes the fully-rendered HTML (with react-helmet-async's per-route
-// title/description/OG/canonical/JSON-LD already baked in) to a static
-// index.html per route. This is NOT user-agent-based "dynamic rendering"
-// (which Google discourages) — every visitor and every crawler gets the
-// exact same static file. It only supplements, never replaces, the
-// existing client-side app: the prerendered HTML still loads the same JS
-// bundle and hydrates into the normal interactive SPA.
-//
-// Adding a route: add it to STATIC_ROUTES below, or it's picked up
-// automatically if it's a blog post (see BLOG_ROUTES).
-
+// Serve identical route HTML to people and crawlers. No bot detection.
 import { chromium } from 'playwright';
 import { preview } from 'vite';
-import { mkdirSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
+import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { blogPosts } from '../src/data/blog.ts';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const DIST_DIR = join(__dirname, '..', 'dist');
-const PORT = 4173;
-
-const STATIC_ROUTES = [
-  '/',
-  '/about',
-  '/rhinoplasty',
-  '/gallery',
-  '/testimonials',
-  '/blog',
-  '/faq',
-  '/booking',
-  '/contact',
-];
-const BLOG_ROUTES = blogPosts.map((post) => `/blog/${post.slug}`);
-const ROUTES = [...STATIC_ROUTES, ...BLOG_ROUTES];
-
-async function main() {
-  const server = await preview({ preview: { port: PORT, strictPort: true } });
-  const baseUrl = `http://localhost:${PORT}`;
-
-  const browser = await chromium.launch();
-  const page = await browser.newPage();
-
-  for (const route of ROUTES) {
-    await page.goto(`${baseUrl}${route}`, { waitUntil: 'networkidle' });
-    // Let framer-motion's mount animations settle so prerendered HTML
-    // reflects the final, visible state rather than an opacity:0 frame.
-    await page.waitForTimeout(400);
-    const html = await page.content();
-
-    const outDir = route === '/' ? DIST_DIR : join(DIST_DIR, route);
-    mkdirSync(outDir, { recursive: true });
-    writeFileSync(join(outDir, 'index.html'), html);
-    console.log(`prerendered ${route}`);
-  }
-
-  await browser.close();
-  await new Promise((resolve) => server.httpServer.close(resolve));
-}
-
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const dist = resolve(root, 'dist');
+const origin = 'https://drvijaykhatri.com';
+const sitemap = await readFile(resolve(dist, 'sitemap.xml'), 'utf8');
+const routes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => {
+  const url = new URL(match[1]);
+  if (url.origin !== origin || url.search || url.hash) throw new Error('Invalid sitemap URL');
+  return url.pathname;
 });
+if (!routes.length || new Set(routes).size !== routes.length) throw new Error('Invalid route inventory');
+
+let server;
+let browser;
+try {
+  server = await preview({ root, preview: { host: '127.0.0.1', port: 4173, strictPort: true } });
+  browser = await chromium.launch();
+  const context = await browser.newContext({ reducedMotion: 'reduce', viewport: { width: 1440, height: 1000 } });
+  // Build rendering never transmits page content or patient images to third parties.
+  await context.route('**/*', (route) => new URL(route.request().url()).hostname === '127.0.0.1' ? route.continue() : route.abort());
+  for (const path of [...routes, '/404']) {
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.goto(`http://127.0.0.1:4173${path}`, { waitUntil: 'networkidle' });
+    await page.locator('#root[data-app-ready="true"]').waitFor();
+    await page.locator('main h1').waitFor();
+    await page.waitForTimeout(800);
+    // Complete viewport animations so content remains visible without JavaScript.
+    await page.evaluate(async () => {
+      for (let y = 0; y < document.documentElement.scrollHeight; y += window.innerHeight) {
+        window.scrollTo(0, y);
+        await new Promise((done) => setTimeout(done, 80));
+      }
+      window.scrollTo(0, 0);
+    });
+    await page.waitForTimeout(800);
+    // Some responsive variants never intersect this desktop viewport and
+    // staggered FAQ reveals can outlast a scroll. Only the saved snapshot is
+    // normalized; interactive visitors retain the existing motion code.
+    await page.evaluate(() => {
+      document.querySelectorAll('main [style]').forEach((element) => {
+        if (element instanceof HTMLElement && element.style.opacity === '0' && element.textContent?.trim()) {
+          element.style.opacity = '1';
+          element.style.transform = 'none';
+        }
+      });
+    });
+    const canonical = await page.locator('link[rel="canonical"]').getAttribute('href');
+    if (canonical !== `${origin}${path}` || errors.length) throw new Error(`Prerender failed ${path}: ${canonical}; ${errors.join('; ')}`);
+    // Discover the route's actual emitted modules during rendering. Fetching
+    // them from the initial HTML removes an extra request round-trip when the
+    // interactive entry point later imports the current route.
+    await page.evaluate(() => {
+      const present = new Set([...document.querySelectorAll('script[src], link[rel="modulepreload"]')]
+        .map((element) => element.src || element.href));
+      performance.getEntriesByType('resource').forEach((entry) => {
+        const url = new URL(entry.name);
+        if (entry.initiatorType !== 'script' || url.origin !== location.origin || !url.pathname.startsWith('/assets/') || !url.pathname.endsWith('.js') || present.has(url.href)) return;
+        const link = document.createElement('link');
+        link.rel = 'modulepreload';
+        link.crossOrigin = '';
+        link.href = url.pathname;
+        document.head.appendChild(link);
+        present.add(url.href);
+      });
+    });
+    await page.evaluate(() => document.getElementById('root')?.removeAttribute('data-app-ready'));
+    const html = await page.content();
+    // Flat HTML leaves keep existing slashless URLs under Netlify Pretty URLs.
+    // A route/index.html layout would normalize /route to /route/ instead.
+    const destination = path === '/' ? resolve(dist, 'index.html') : resolve(dist, `.${path}.html`);
+    await mkdir(dirname(destination), { recursive: true });
+    await writeFile(destination, html);
+    console.log(`prerendered ${path}`);
+    await page.close();
+  }
+  await writeFile(resolve(dist, '_redirects'), 'https://drvijaykhatri.netlify.app/* https://drvijaykhatri.com/:splat 301!\n/* /404.html 404\n');
+  await writeFile(resolve(dist, 'build-info.json'), JSON.stringify({
+    commit: /^[a-f0-9]{40}$/.test(process.env.COMMIT_REF || '') ? process.env.COMMIT_REF : null,
+    builtAt: new Date().toISOString(),
+  }) + '\n');
+  if (['deploy-preview', 'branch-deploy'].includes(process.env.CONTEXT)) {
+    await writeFile(resolve(dist, '_headers'), '/*\n  X-Robots-Tag: noindex, nofollow\n');
+  }
+} finally {
+  await browser?.close();
+  if (server) await new Promise((done, reject) => server.httpServer.close((error) => error ? reject(error) : done()));
+}
