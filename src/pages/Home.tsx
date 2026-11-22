@@ -266,9 +266,9 @@ export default function Home() {
                   <div className="inline-flex self-start bg-clay/10 text-clay border border-clay/30 rounded-full px-2.5 py-0.5 text-[9px] tracking-widest uppercase font-semibold">
                     Istanbul Training
                   </div>
-                  <h4 className="font-serif text-lg text-white font-medium tracking-tight">
+                  <p className="font-serif text-lg text-white font-medium tracking-tight">
                     Turkish Technique Architecture
-                  </h4>
+                  </p>
                   <p className="font-sans text-[11px] text-white/40 leading-relaxed">
                     Cartilage reconstruction &amp; tip projection engineered for South Asian anatomy.
                   </p>

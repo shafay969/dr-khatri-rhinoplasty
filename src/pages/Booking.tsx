@@ -74,7 +74,7 @@ export default function Booking() {
               target="_blank"
               rel="noopener noreferrer"
               id="booking-whatsapp-direct"
-              className="flex items-center gap-4 bg-[#25D366] text-white rounded-2xl p-5 hover:bg-[#1da851] transition-colors duration-200 group"
+              className="flex items-center gap-4 bg-[#25D366] text-charcoal rounded-2xl p-5 hover:bg-[#1da851] transition-colors duration-200 group"
             >
               <div className="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center">
                 <svg viewBox="0 0 24 24" fill="white" className="w-6 h-6">
@@ -82,7 +82,7 @@ export default function Booking() {
                 </svg>
               </div>
               <div>
-                <p className="font-sans text-xs text-white/70 uppercase tracking-wider">WhatsApp</p>
+                <p className="font-sans text-xs text-charcoal/80 uppercase tracking-wider">WhatsApp</p>
                 <p className="font-serif text-base font-semibold">Book Directly via Chat</p>
               </div>
             </a>
