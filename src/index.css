@@ -1,3 +1,20 @@
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url(/fonts/inter-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(/fonts/playfair-display-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -37,22 +54,22 @@
 @layer components {
   .btn-primary {
     @apply inline-flex items-center gap-2 bg-clay text-[#0A121C] font-sans font-semibold
-           px-7 py-3.5 rounded-full text-sm tracking-wide transition-all duration-300
-           hover:bg-clay-dark hover:text-white hover:shadow-clay hover:-translate-y-0.5
+           px-7 py-3.5 rounded-full text-sm tracking-wide transition-[background-color,color,border-color,transform] duration-150
+           hover:bg-clay-dark hover:text-white
            active:translate-y-0 active:scale-[0.97] active:duration-100;
   }
 
   .btn-secondary {
     @apply inline-flex items-center gap-2 border border-charcoal/20 text-charcoal font-sans font-medium
-           px-7 py-3.5 rounded-full text-sm tracking-wide transition-all duration-300
-           hover:border-clay hover:text-clay hover:shadow-clay/20 hover:-translate-y-0.5
+           px-7 py-3.5 rounded-full text-sm tracking-wide transition-[background-color,color,border-color,transform] duration-150
+           hover:border-clay-dark hover:text-clay-dark
            active:translate-y-0 active:scale-[0.97] active:duration-100;
   }
 
   .btn-ghost-white {
     @apply inline-flex items-center gap-2 border border-white/30 text-white font-sans font-medium
-           px-7 py-3.5 rounded-full text-sm tracking-wide transition-all duration-300
-           hover:border-clay hover:text-clay hover:-translate-y-0.5
+           px-7 py-3.5 rounded-full text-sm tracking-wide transition-[background-color,color,border-color,transform] duration-150
+           hover:border-clay hover:text-white
            active:translate-y-0 active:scale-[0.97] active:duration-100;
   }
 
@@ -178,3 +195,36 @@
     scroll-behavior: auto;
   }
 }
+
+/* Restrained medical editorial system; preserve the existing brand palette. */
+:root { --text-accent: #7A424C; --ui-ease: cubic-bezier(.23,1,.32,1); }
+body { line-height: 1.6; }
+.bg-white, .bg-paper { --text-accent: #7A424C; }
+.bg-charcoal, .bg-sage-dark, .home-hero, .navigation-dark { --text-accent: #E3B8BF; }
+.text-clay, .section-label { color: var(--text-accent); }
+.hero-heading { font-size: clamp(2.75rem, 5.2vw, 5.5rem); line-height: 1.12; letter-spacing: -.025em; }
+.section-title { line-height: 1.18; text-wrap: balance; }
+.navigation-light { background: rgba(251,248,245,.98); border-bottom: 1px solid rgba(22,40,61,.1); }
+.site-navigation { transition: background-color 150ms ease; }
+.nav-link { text-underline-offset: 7px; }
+.nav-link[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 1px; }
+a, button, input, textarea, select { -webkit-tap-highlight-color: transparent; }
+button, input, textarea, select { font: inherit; }
+input, textarea, select { min-width: 0; max-width: 100%; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+input:focus-visible, textarea:focus-visible, select:focus-visible { outline-color: #7A424C; outline-offset: 3px; }
+.skip-link { position: fixed; z-index: 100; top: 12px; left: 12px; transform: translateY(-180%); background: #FBF8F5; color: #16283D; padding: 12px 20px; border-radius: 8px; font-weight: 600; }
+.skip-link:focus { transform: none; }
+@media (max-width:767px) {
+  input, select, textarea { font-size: 16px !important; }
+  .home-hero #hero-book-cta, .home-hero #hero-gallery-cta { width: 100%; justify-content: center; }
+  #floating-whatsapp-btn { bottom: max(20px,env(safe-area-inset-bottom)); right: 16px; }
+}
+@media (hover:hover) and (pointer:fine) {
+  .nav-link:hover { text-decoration: underline; }
+}
+@media (prefers-reduced-motion:reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+#floating-whatsapp-btn[inert] { visibility: hidden; }

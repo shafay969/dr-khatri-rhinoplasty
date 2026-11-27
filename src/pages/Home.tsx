@@ -1,5 +1,4 @@
 import { business } from '../data/business';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import SEO, { SITE_URL } from '../components/layout/SEO';
 import StatCounter from '../components/ui/StatCounter';
@@ -15,19 +14,6 @@ import { teaserPairs } from '../data/gallery';
 
 const WHATSAPP_NUMBER = business.telephone.replace(/\D/g, '');
 const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to arrange a consultation.");
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-const wordReveal = {
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
-};
 
 const turkishCards = [
   {
@@ -81,18 +67,14 @@ export default function Home() {
         }}
       />
       {/* ── HERO ── */}
-      <section className="relative min-h-screen flex items-center" aria-label="Hero">
+      <section className="home-hero relative min-h-screen flex items-center" aria-label="Hero">
         {/* Background — animated gradient until real photo */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0A1017] via-[#16283D] to-[#1F3347] overflow-hidden">
           {/* Animated orbs */}
-          <motion.div
-            animate={{ scale: [1, 1.15, 1], opacity: [0.12, 0.22, 0.12] }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-clay/20 blur-3xl"
+          <div
+            className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-clay/20 blur-3xl opacity-20"
           />
-          <motion.div
-            animate={{ scale: [1.1, 1, 1.1], opacity: [0.08, 0.16, 0.08] }}
-            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+          <div
             className="absolute bottom-1/3 left-1/4 w-80 h-80 rounded-full bg-clay/10 blur-3xl"
           />
           {/* Subtle grid */}
@@ -105,15 +87,12 @@ export default function Home() {
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-8 lg:px-12 py-32 md:py-40">
+        <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-8 lg:px-12 py-28 md:py-36">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             {/* Left Column - Headline & CTAs */}
             <div className="lg:col-span-7">
               {/* Label */}
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+              <div
                 className="flex items-center gap-3 mb-6"
               >
                 <div className="w-8 h-px bg-clay" />
@@ -121,45 +100,27 @@ export default function Home() {
                   {/* PLACEHOLDER — tagline for demo */}
                   Turkish Technique · Karachi Practice
                 </span>
-              </motion.div>
+              </div>
 
               {/* Headline — staggered word reveal */}
-              <motion.h1
-                variants={staggerContainer}
-                initial="initial"
-                animate="animate"
-                className="font-serif text-4xl md:text-6xl lg:text-7xl text-white display-type mb-6 text-balance"
+              <h1
+                className="hero-heading font-serif text-white display-type mb-6 text-balance"
               >
-                {['Your', 'Natural', 'Nose,'].map((word, i) => (
-                  <motion.span key={i} variants={wordReveal} className="inline-block mr-4">
-                    {word}
-                  </motion.span>
-                ))}
-                <br />
-                {['Refined', 'by', 'Expertise.'].map((word, i) => (
-                  <motion.span key={i} variants={wordReveal} className={`inline-block mr-4 ${i === 0 ? 'gradient-text' : ''}`}>
-                    {word}
-                  </motion.span>
-                ))}
-              </motion.h1>
+                Your Natural Nose,<br />
+                <span className="text-clay-light">Refined</span>{' by Expertise.'}
+              </h1>
 
               {/* Subhead */}
-              <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.9 }}
-                className="font-sans text-white/60 text-base md:text-lg leading-relaxed max-w-xl mb-10"
+              <p
+                className="font-sans text-white/80 text-base md:text-lg leading-relaxed max-w-xl mb-10"
               >
                 {/* PLACEHOLDER — description for demo */}
                 Dr. Vijay Khatri brings Turkish rhinoplasty's structural artistry to Karachi — results
                 that look like they were always meant to be there.
-              </motion.p>
+              </p>
 
               {/* CTAs */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.05 }}
+              <div
                 className="flex flex-wrap gap-4"
               >
                 <Link to="/booking" id="hero-book-cta" className="btn-primary text-sm px-8 py-4">
@@ -171,38 +132,30 @@ export default function Home() {
                 <Link to="/gallery" id="hero-gallery-cta" className="btn-ghost-white">
                   View Gallery
                 </Link>
-              </motion.div>
+              </div>
 
               {/* Scroll indicator */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5 }}
+              <div
                 className="mt-12 lg:mt-16 flex items-center gap-3"
               >
-                <motion.div
-                  animate={{ y: [0, 6, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                <div
                   className="w-5 h-8 border border-white/20 rounded-full flex items-start justify-center pt-1"
                 >
                   <div className="w-1 h-2 bg-clay/60 rounded-full" />
-                </motion.div>
-                <span className="font-sans text-xs tracking-widest uppercase text-white/30">Scroll</span>
-              </motion.div>
+                </div>
+                <span className="font-sans text-xs tracking-widest uppercase text-white/80">Scroll</span>
+              </div>
             </div>
 
             {/* Right Column - Premium Golden Ratio Silhouette Visual */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+            <div
               className="lg:col-span-5 relative w-full flex justify-center"
             >
               {/* Glassmorphic Art Card */}
-              <div className="relative w-full max-w-sm aspect-[4/5] bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-md overflow-hidden flex flex-col justify-between shadow-2xl group">
+              <div className="relative w-full max-w-sm aspect-[4/5] bg-white/5 border border-white/10 rounded-2xl p-6 overflow-hidden flex flex-col justify-between shadow-2xl group">
                 {/* Background Shimmer & Pulse */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-clay/10 via-transparent to-transparent pointer-events-none group-hover:opacity-100 transition-opacity duration-500 opacity-50" />
-                
+
                 {/* Corner details */}
                 <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-clay/40" />
                 <div className="absolute top-4 right-4 w-4 h-4 border-t border-r border-clay/40" />
@@ -213,50 +166,41 @@ export default function Home() {
                 <div className="absolute inset-0 flex items-center justify-center p-8 opacity-90">
                   <svg viewBox="0 0 200 250" fill="none" className="w-full h-full text-clay">
                     {/* Golden circles/ratio markers */}
-                    <motion.circle 
+                    <circle
                       cx="110" cy="115" r="45" stroke="currentColor" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.3"
-                      initial={{ opacity: 0 }} animate={{ opacity: 0.3 }} transition={{ delay: 1 }}
                     />
-                    <motion.circle 
+                    <circle
                       cx="110" cy="115" r="72" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.15"
-                      initial={{ opacity: 0 }} animate={{ opacity: 0.15 }} transition={{ delay: 1.2 }}
                     />
                     {/* Angle lines */}
-                    <motion.line 
+                    <line
                       x1="30" y1="125" x2="180" y2="125" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.25"
-                      initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.5 }}
                     />
-                    <motion.line 
+                    <line
                       x1="93" y1="40" x2="93" y2="210" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.25"
-                      initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.7 }}
                     />
                     {/* Nasofaxial angle ray */}
-                    <motion.line 
+                    <line
                       x1="93" y1="110" x2="140" y2="60" stroke="currentColor" strokeWidth="1" opacity="0.4"
-                      initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1, delay: 1.5 }}
                     />
-                    <motion.text 
+                    <text
                       x="145" y="58" fill="currentColor" fontSize="6" fontFamily="sans-serif" letterSpacing="1" opacity="0.6"
-                      initial={{ opacity: 0 }} animate={{ opacity: 0.6 }} transition={{ delay: 2 }}
                     >
                       115°
-                    </motion.text>
-                    
+                    </text>
+
                     {/* Facial profile outline */}
-                    <motion.path
+                    <path
                       d="M60,20 Q85,50 90,85 Q93,100 93,110 L108,125 L93,128 Q95,145 90,165 Q85,185 80,210"
                       stroke="currentColor"
                       strokeWidth="1.5"
                       strokeLinecap="round"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 2.2, ease: "easeInOut", delay: 0.8 }}
                     />
                   </svg>
                 </div>
 
                 {/* Top Badge */}
-                <div className="relative z-10 flex items-center justify-between text-white/50 text-[9px] tracking-[0.2em] font-sans uppercase">
+                <div className="relative z-10 flex items-center justify-between text-white/80 text-[9px] tracking-[0.2em] font-sans uppercase">
                   <span>Aesthetic Harmony</span>
                   <span className="text-clay">Active Grid</span>
                 </div>
@@ -269,12 +213,12 @@ export default function Home() {
                   <p className="font-serif text-lg text-white font-medium tracking-tight">
                     Turkish Technique Architecture
                   </p>
-                  <p className="font-sans text-[11px] text-white/40 leading-relaxed">
+                  <p className="font-sans text-[11px] text-white/80 leading-relaxed">
                     Cartilage reconstruction &amp; tip projection engineered for South Asian anatomy.
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
 
@@ -303,44 +247,29 @@ export default function Home() {
       <section className="py-24 bg-white" aria-label="Why the Turkish Technique">
         <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
           <div className="text-center mb-16">
-            <motion.span
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+            <span
               className="section-label"
             >
               The Difference
-            </motion.span>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+            </span>
+            <h2
               className="section-title mt-3 mb-4"
             >
               Why the Turkish Technique?
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+            </h2>
+            <p
               className="section-subtitle max-w-lg mx-auto"
             >
               {/* PLACEHOLDER — intro copy for demo */}
               Turkey leads the world in rhinoplasty volume and innovation. Here is what sets
               the technique apart — and why Dr. Khatri trained there.
-            </motion.p>
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {turkishCards.map((card, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.5, delay: i * 0.12 }}
                 className="card p-8 flex flex-col gap-5 group hover:-translate-y-1 transition-transform duration-300"
               >
                 <div className="w-14 h-14 rounded-2xl bg-clay/10 flex items-center justify-center text-clay group-hover:bg-clay/20 transition-colors duration-300">
@@ -348,21 +277,17 @@ export default function Home() {
                 </div>
                 <h3 className="font-serif text-xl font-semibold text-charcoal">{card.title}</h3>
                 <p className="font-sans text-muted text-sm leading-relaxed">{card.body}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
+          <div
             className="text-center mt-12"
           >
             <Link to="/rhinoplasty" className="btn-primary">
               Learn About the Procedure
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -381,19 +306,15 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {teaserPairs.map((pair, i) => (
-              <motion.div
+              <div
                 key={pair.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
               >
                 <BeforeAfterSlider
                   before={pair.before}
                   after={pair.after}
                   label={pair.label}
                 />
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -409,12 +330,8 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.slice(0, 3).map((t, i) => (
-              <motion.div
+              <div
                 key={t.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.12 }}
                 className="bg-white/5 border border-white/10 rounded-2xl p-7 flex flex-col gap-4"
               >
                 <div className="text-clay/30 font-serif text-5xl leading-none">&ldquo;</div>
@@ -428,10 +345,10 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="font-sans text-sm text-white font-medium">{t.name}</p>
-                    <p className="font-sans text-xs text-white/40">{t.procedure}</p>
+                    <p className="font-sans text-xs text-white/80">{t.procedure}</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
@@ -449,39 +366,24 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             {/* Copy */}
             <div className="lg:col-span-6 lg:order-1 order-2 text-center lg:text-left">
-              <motion.span
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
+              <span
                 className="section-label"
               >
                 Follow Along
-              </motion.span>
-              <motion.h2
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
+              </span>
+              <h2
                 className="section-title mt-3 mb-5"
               >
                 See the Work Before You Ever Book
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
+              </h2>
+              <p
                 className="section-subtitle max-w-md mx-auto lg:mx-0 mb-8"
               >
                 Dr. Khatri posts real case walkthroughs, recovery breakdowns, and behind-the-scenes
                 footage from the OR on Instagram — not just polished after-photos. It's the most
                 honest look at his work you'll find before stepping into a consultation.
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
+              </p>
+              <div
                 className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
               >
                 <a
@@ -499,19 +401,15 @@ export default function Home() {
                   Follow @vijay.k.khatri
                 </a>
                 <span className="font-sans text-xs text-muted">10.6K followers · verified account</span>
-              </motion.div>
+              </div>
             </div>
 
             {/* Phone mockup */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ type: 'spring', bounce: 0, duration: 0.7 }}
+            <div
               className="lg:col-span-6 order-1 lg:order-2"
             >
               <InstagramPhoneMockup />
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -519,39 +417,24 @@ export default function Home() {
       {/* ── CTA BANNER ── */}
       <section className="py-20 bg-white" aria-label="Call to Action">
         <div className="max-w-3xl mx-auto px-5 text-center">
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+          <span
             className="section-label"
           >
             Ready?
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+          </span>
+          <h2
             className="section-title mt-3 mb-5"
           >
             Start with a Conversation
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+          </h2>
+          <p
             className="section-subtitle mb-8"
           >
             {/* PLACEHOLDER — CTA description for demo */}
             Consultations are relaxed, no-pressure, and focused entirely on what you want.
             Consultations are online. Surgery takes place only at MidCiti Hospital, Karachi.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+          </p>
+          <div
             className="flex flex-wrap justify-center gap-4"
           >
             <Link to="/booking" className="btn-primary">Book Online</Link>
@@ -563,7 +446,7 @@ export default function Home() {
             >
               WhatsApp Us
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

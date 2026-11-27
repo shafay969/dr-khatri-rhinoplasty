@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Testimonial } from '../../data/testimonials';
 import BeforeAfterSlider from './BeforeAfterSlider';
 
@@ -26,14 +25,10 @@ function StarRating({ rating }: { rating: number }) {
   );
 }
 
-export default function TestimonialCard({ testimonial, delay = 0 }: TestimonialCardProps) {
+export default function TestimonialCard({ testimonial }: TestimonialCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.5, delay, ease: 'easeOut' }}
-      className="card p-7 flex flex-col gap-4 hover:shadow-card-hover transition-shadow duration-300"
+    <div
+      className="card p-7 flex flex-col gap-4 "
     >
       {/* Quote mark */}
       <div className="text-clay/25 font-serif text-5xl leading-none select-none">&ldquo;</div>
@@ -62,11 +57,11 @@ export default function TestimonialCard({ testimonial, delay = 0 }: TestimonialC
         <div className="w-10 h-10 rounded-full bg-clay/15 flex items-center justify-center flex-shrink-0">
           <span className="font-serif text-sm font-semibold text-clay">{testimonial.initials}</span>
         </div>
-        <div>
+        <div className="min-w-0 break-words">
           <p className="font-sans text-sm font-semibold text-charcoal">{testimonial.name}</p>
           <p className="font-sans text-xs text-muted">{testimonial.procedure}</p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

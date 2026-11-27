@@ -65,7 +65,7 @@ export default function Booking() {
                 </svg>
               </div>
               <div>
-                <p className="font-sans text-xs text-white/50 uppercase tracking-wider">Call Now</p>
+                <p className="font-sans text-xs text-white/80 uppercase tracking-wider">Call Now</p>
                 <p className="font-serif text-base font-semibold text-white">+92 333 2572052</p>
               </div>
             </a>

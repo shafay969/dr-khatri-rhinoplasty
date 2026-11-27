@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { business } from '../../data/business';
 
 // WhatsApp click-to-chat requires the international number with digits only.
@@ -15,26 +14,20 @@ function WhatsAppIcon() {
 
 export default function WhatsAppButton() {
   return (
-    <motion.a
+    <a
       href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
       id="floating-whatsapp-btn"
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1, transition: { delay: 1.5, type: 'spring', stiffness: 200, damping: 15 } }}
-      whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 300, damping: 20 } }}
-      whileTap={{ scale: 0.94, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
-      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg group"
+      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-charcoal shadow-lg group"
     >
-      {/* Pulse ring */}
-      <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30 pointer-events-none" />
       <WhatsAppIcon />
 
       {/* Tooltip */}
-      <span className="absolute right-16 whitespace-nowrap bg-charcoal text-white text-xs font-sans font-medium px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+      <span className="absolute right-16 whitespace-nowrap bg-charcoal text-white text-xs font-sans font-medium px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-150 group-focus-visible:opacity-100 pointer-events-none">
         Chat with us
       </span>
-    </motion.a>
+    </a>
   );
 }

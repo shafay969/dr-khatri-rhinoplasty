@@ -20,6 +20,7 @@ function rubberband(overshoot: number, dimension: number, constant = 0.55) {
 
 export default function BeforeAfterSlider({ before, after, label, onOpenLightbox }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [failed, setFailed] = useState(false);
   const [position, setPosition] = useState(50); // percentage 0–100
   const [isDragging, setIsDragging] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState({ before: false, after: false });
@@ -45,6 +46,7 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
   // Pointer Events (mouse/touch/pen unified) with capture — tracking continues
   // 1:1 with the pointer even when it leaves the element's bounds.
   const handlePointerDown = (e: React.PointerEvent) => {
+    if (failed) return;
     e.preventDefault();
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     setIsDragging(true);
@@ -61,7 +63,7 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
     setPosition((p) => clamp(p, MIN, MAX)); // settle back from any rubber-banded overshoot
   };
 
-  const allLoaded = imagesLoaded.before && imagesLoaded.after;
+  const allLoaded = failed || (imagesLoaded.before && imagesLoaded.after);
 
   return (
     <div className="group relative rounded-xl overflow-hidden bg-charcoal shadow-card">
@@ -94,6 +96,7 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
       >
+        {failed && <div className="absolute inset-0 z-30 bg-charcoal text-white flex items-center justify-center p-6 text-center font-sans text-sm">Comparison images are unavailable.</div>}
         {/* Skeleton */}
         {!allLoaded && (
           <div className="absolute inset-0 bg-charcoal/20 animate-pulse" />
@@ -107,7 +110,7 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
           loading="lazy"
           decoding="async"
           onLoad={() => setImagesLoaded(p => ({ ...p, after: true }))}
-          onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${after}-after/600/800`; setImagesLoaded(p => ({ ...p, after: true })); }}
+          onError={() => { setFailed(true); setImagesLoaded(p => ({ ...p, after: true })); }}
           draggable={false}
         />
 
@@ -124,7 +127,7 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
             loading="lazy"
             decoding="async"
             onLoad={() => setImagesLoaded(p => ({ ...p, before: true }))}
-            onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${before}-before/600/800`; setImagesLoaded(p => ({ ...p, before: true })); }}
+            onError={() => { setFailed(true); setImagesLoaded(p => ({ ...p, before: true })); }}
             draggable={false}
           />
         </div>
@@ -137,7 +140,13 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
 
         {/* Handle */}
         <motion.div
-          className={`ba-slider-handle absolute top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-clay shadow-clay flex items-center justify-center border-2 border-white/30 ${!isDragging ? 'transition-[left] duration-300 ease-out' : ''}`}
+          role="slider" tabIndex={failed ? -1 : 0} aria-disabled={failed} aria-label={label ? `${label}: before and after comparison` : 'Before and after comparison'} aria-valuemin={MIN} aria-valuemax={MAX} aria-valuenow={Math.round(position)} aria-valuetext={`${Math.round(position)} percent before image`}
+          onKeyDown={(event) => {
+            if (failed) return;
+            const change = event.key === 'ArrowLeft' ? -5 : event.key === 'ArrowRight' ? 5 : 0;
+            if (change || event.key === 'Home' || event.key === 'End') { event.preventDefault(); setPosition(p => event.key === 'Home' ? MIN : event.key === 'End' ? MAX : clamp(p + change, MIN, MAX)); }
+          }}
+          className={`ba-slider-handle absolute top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-clay shadow-clay flex items-center justify-center border-2 border-white/30 ${!isDragging ? 'transition-[left] duration-300 ease-out' : ''}`}
           style={{ left: `${position}%` }}
           animate={{ scale: isDragging ? 1.15 : 1 }}
           transition={{ type: 'spring', stiffness: 400, damping: 25 }}

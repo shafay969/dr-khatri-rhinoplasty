@@ -76,8 +76,9 @@ export default function App() {
       <MotionConfig reducedMotion="user">
         <BrowserRouter>
           <div className="min-h-screen flex flex-col bg-paper">
+            <a href="#main-content" className="skip-link">Skip to main content</a>
             <Navbar />
-            <main className="flex-1 min-w-0 overflow-x-clip">
+            <main id="main-content" tabIndex={-1} className="flex-1 min-w-0 overflow-x-clip">
               <Suspense fallback={<div className="pt-40 pb-24 text-center" role="status">Loading page…</div>}>
                 <AnimatedRoutes />
               </Suspense>

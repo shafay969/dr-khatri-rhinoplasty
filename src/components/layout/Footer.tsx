@@ -47,7 +47,7 @@ export default function Footer() {
             <p className="text-clay text-xs tracking-[0.18em] uppercase font-sans mb-5">
               Rhinoplasty · Karachi
             </p>
-            <p className="font-sans text-white/50 text-sm leading-relaxed max-w-xs">
+            <p className="font-sans text-white/80 text-sm leading-relaxed max-w-xs">
               {/* PLACEHOLDER — replace with verified clinic tagline before launch */}
               Turkish-trained rhinoplasty expertise — natural results that respect your face.
             </p>
@@ -58,7 +58,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Instagram"
                 id="footer-instagram-link"
-                className="text-white/50 hover:text-clay transition-colors duration-200"
+                className="text-white/80 hover:text-clay-light transition-colors duration-200"
               >
                 <InstagramIcon />
               </a>
@@ -68,7 +68,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
                 id="footer-whatsapp-link"
-                className="text-white/50 hover:text-green-400 transition-colors duration-200"
+                className="text-white/80 hover:text-green-400 transition-colors duration-200"
               >
                 <WhatsAppIcon />
               </a>
@@ -85,7 +85,7 @@ export default function Footer() {
                 <li key={l.to}>
                   <Link
                     to={l.to}
-                    className="font-sans text-sm text-white/50 hover:text-clay transition-colors duration-200"
+                    className="font-sans text-sm text-white/80 hover:text-clay-light transition-colors duration-200"
                   >
                     {l.label}
                   </Link>
@@ -101,14 +101,14 @@ export default function Footer() {
             </p>
             <ul className="flex flex-col gap-3">
               <li>
-                <p className="font-sans text-sm text-white/50 leading-relaxed">
+                <p className="font-sans text-sm text-white/80 leading-relaxed">
                   Online consultations · Surgery only at<br />
                   MidCiti Hospital, near National Stadium,<br />
                   Gulshan-e-Iqbal, Karachi
                 </p>
               </li>
               <li>
-                <a href={`tel:${business.telephone}`} className="font-sans text-sm text-white/50 hover:text-clay transition-colors duration-200">
+                <a href={`tel:${business.telephone}`} className="font-sans text-sm text-white/80 hover:text-clay-light transition-colors duration-200">
                   +92 333 2572052
                 </a>
               </li>
@@ -119,10 +119,10 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="font-sans text-xs text-white/30">
+          <p className="font-sans text-xs text-white/80">
             © {new Date().getFullYear()} Dr. Vijay Khatri. All rights reserved.
           </p>
-          <p className="font-sans text-xs text-white/20">
+          <p className="font-sans text-xs text-white/80">
             Results may vary. All testimonials and statistics are for demonstration purposes.
           </p>
         </div>

@@ -7,9 +7,9 @@ interface PageTransitionProps {
 }
 
 const variants = {
-  initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -8 },
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
 };
 
 export default function PageTransition({ children, keyProp }: PageTransitionProps) {
@@ -20,7 +20,7 @@ export default function PageTransition({ children, keyProp }: PageTransitionProp
       initial="initial"
       animate="animate"
       exit="exit"
-      transition={{ type: 'spring', bounce: 0, duration: 0.45 }}
+      transition={{ duration: 0.18, ease: 'easeOut' }}
       className="page-transition-wrapper"
     >
       {children}
