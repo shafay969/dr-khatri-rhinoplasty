@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import ConsultationPreview from '../components/booking/ConsultationPreview';
 import SEO from '../components/layout/SEO';
 import { business } from '../data/business';
 
@@ -9,8 +10,8 @@ export default function Booking() {
   return (
     <div className="pt-20">
       <SEO
-        title="Book a Rhinoplasty Consultation | Dr. Vijay Khatri Karachi"
-        description="Book your rhinoplasty consultation with Dr. Vijay Khatri in Karachi — in-clinic or via WhatsApp."
+        title="Online Consultation | Dr. Vijay Khatri Karachi"
+        description="Request an online consultation with Dr. Vijay Khatri. Consultations are online; surgery takes place only at MidCiti Hospital, Karachi."
         path="/booking"
       />
       {/* ── PAGE HERO ── */}
@@ -31,15 +32,15 @@ export default function Booking() {
             transition={{ delay: 0.15 }}
             className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mt-3 mb-4"
           >
-            Book a Consultation
+            Request an Online Consultation
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="font-sans text-white/50 text-sm max-w-md mx-auto leading-relaxed"
+            className="font-sans text-white/80 text-sm max-w-md mx-auto leading-relaxed"
           >
-            Contact the clinic by phone or WhatsApp to ask about consultation availability.
+            Consult Dr. Vijay Khatri online. He operates only at MidCiti Hospital, Karachi.
           </motion.p>
         </div>
       </section>
@@ -88,6 +89,8 @@ export default function Booking() {
             </a>
           </motion.div>
 
+          <ConsultationPreview />
+
           {/* Enquiries continue in WhatsApp; no patient details are collected here. */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -96,10 +99,10 @@ export default function Booking() {
             transition={{ delay: 0.2 }}
             className="card p-8 md:p-10"
           >
-            <h2 className="font-serif text-2xl text-charcoal mb-2">Continue in WhatsApp</h2>
+            <h2 className="font-serif text-2xl text-charcoal mb-2">Ask About an Online Consultation</h2>
             <p className="font-sans text-sm text-muted mb-6 leading-relaxed">
-              Open a general consultation enquiry with the clinic. This page does not collect
-              your name, phone number, appointment preferences, or medical details.
+              Ask about availability, consultation fees or joining the online call through WhatsApp.
+              Confirm the time and meeting method directly before your appointment.
             </p>
             <a
               href={WHATSAPP_URL}
@@ -113,7 +116,8 @@ export default function Booking() {
             <p className="font-sans text-xs text-muted mt-5 leading-relaxed">
               WhatsApp is an external messaging service. Opening it does not send a message or
               confirm an appointment. Choose what to share, press Send in WhatsApp, and wait for
-              the clinic to confirm a time. Ask the clinic how to share sensitive medical information.
+              Dr. Khatri’s team to confirm a time. Keep booking questions separate from medical details;
+              ask how to share those during your consultation.
             </p>
           </motion.div>
         </div>

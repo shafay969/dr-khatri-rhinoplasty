@@ -30,6 +30,7 @@ export default function BlogPost() {
           description: post.excerpt,
           image: `${SITE_URL}${post.cover}`,
           datePublished: post.date,
+          ...(post.updated ? { dateModified: post.updated } : {}),
           author: { '@type': 'Person', name: 'Dr. Vijay Khatri' },
           publisher: { '@type': 'Organization', name: 'Dr. Vijay Khatri — Rhinoplasty Surgeon, Karachi' },
           mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
@@ -65,7 +66,7 @@ export default function BlogPost() {
             transition={{ delay: 0.25 }}
             className="font-sans text-white/60 text-xs tracking-wide"
           >
-            {formatDate(post.date)} · Dr. Vijay Khatri's Practice
+            {formatDate(post.date)}{post.updated && ` · Updated ${formatDate(post.updated)}`} · Dr. Vijay Khatri's Practice
           </motion.p>
         </div>
       </section>
@@ -107,6 +108,14 @@ export default function BlogPost() {
             </motion.div>
           ))}
 
+          {post.sources && (
+            <aside aria-label="Further reading" className="border-t border-charcoal/10 pt-6 mt-10">
+              <h2 className="font-serif text-xl text-charcoal mb-3">Further reading</h2>
+              <ul className="font-sans text-sm space-y-2">
+                {post.sources.map((source) => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer" className="text-charcoal underline underline-offset-4">{source.label}</a></li>)}
+              </ul>
+            </aside>
+          )}
           <div className="clay-divider my-10" />
 
           <nav aria-label="Consultation resources" className="mb-8 flex flex-wrap gap-x-6 gap-y-3 font-sans text-sm text-clay">
@@ -118,13 +127,13 @@ export default function BlogPost() {
           <div className="bg-white rounded-2xl shadow-card p-7 md:p-8 flex flex-col md:flex-row items-center gap-6 justify-between">
             <div>
               <p className="font-serif text-xl text-charcoal font-semibold mb-1.5">
-                Curious how this applies to your nose specifically?
+                Have questions for Dr. Vijay Khatri?
               </p>
               <p className="font-sans text-muted text-sm leading-relaxed">
-                General advice only goes so far. A consultation looks at your actual anatomy.
+                Request an online consultation. Surgery takes place only at MidCiti Hospital, Karachi.
               </p>
             </div>
-            <Link to="/booking" className="btn-primary shrink-0 whitespace-nowrap">Book a Consultation</Link>
+            <Link to="/booking" className="btn-primary shrink-0 whitespace-nowrap">Request an Online Consultation</Link>
           </div>
         </div>
       </article>

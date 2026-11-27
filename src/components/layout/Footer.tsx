@@ -102,6 +102,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               <li>
                 <p className="font-sans text-sm text-white/50 leading-relaxed">
+                  Online consultations · Surgery only at<br />
                   MidCiti Hospital, near National Stadium,<br />
                   Gulshan-e-Iqbal, Karachi
                 </p>

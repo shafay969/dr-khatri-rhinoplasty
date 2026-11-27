@@ -31,29 +31,25 @@ export default function Contact() {
   return (
     <div className="pt-20">
       <SEO
-        title="Contact & Location | Dr. Vijay Khatri Rhinoplasty Karachi"
-        description="Get in touch with Dr. Vijay Khatri, visiting consultant at MidCiti Hospital, near National Stadium, Karachi — WhatsApp, phone, email, or visit the clinic."
+        title="Online Consultations & Contact | Dr. Vijay Khatri"
+        description="Contact Dr. Vijay Khatri about online consultations. Surgery takes place only at MidCiti Hospital, near National Stadium, Karachi."
         path="/contact"
         jsonLd={{
           '@context': 'https://schema.org',
-          '@type': 'MedicalBusiness',
-          name: business.displayName,
+          '@type': 'Person',
+          name: business.legalName,
           url: `${SITE_URL}/contact`,
-          medicalSpecialty: 'Otolaryngologic',
           telephone: business.telephone,
-          address: {
-            '@type': 'PostalAddress',
-            streetAddress: business.hospital.name,
-            addressLocality: business.hospital.addressLocality,
-            addressRegion: business.hospital.addressRegion,
-            addressCountry: 'PK',
+          affiliation: {
+            '@type': 'Hospital',
+            name: business.hospital.name,
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: business.hospital.addressLocality,
+              addressRegion: business.hospital.addressRegion,
+              addressCountry: 'PK',
+            },
           },
-          geo: {
-            '@type': 'GeoCoordinates',
-            latitude: business.hospital.latitude,
-            longitude: business.hospital.longitude,
-          },
-          // NOTE: openingHours deliberately omitted — still unconfirmed as of 2026-08-24.
         }}
       />
       {/* ── PAGE HERO ── */}
@@ -74,15 +70,15 @@ export default function Contact() {
             transition={{ delay: 0.15 }}
             className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mt-3 mb-4"
           >
-            Contact &amp; Location
+            Online Consultations &amp; Contact
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="font-sans text-white/50 text-sm max-w-md mx-auto"
+            className="font-sans text-white/80 text-sm max-w-md mx-auto"
           >
-            Dr. Khatri operates at MidCiti Hospital, near National Stadium, Karachi. Reach us via WhatsApp, phone, or email — or drop by the clinic.
+            Consultations with Dr. Khatri are online. He operates only at MidCiti Hospital, Karachi; the hospital is not a walk-in consultation clinic for his practice.
           </motion.p>
         </div>
       </section>
@@ -100,8 +96,8 @@ export default function Contact() {
               <h2 className="section-title mb-2">Get in Touch</h2>
               <p className="section-subtitle mb-6">
                 {/* PLACEHOLDER — contact intro for demo */}
-                The fastest way to reach us is WhatsApp. Consultations can be arranged
-                within the week in most cases.
+                Use WhatsApp or phone for online consultation availability and booking questions.
+                Confirm the appointment time, fee and meeting method before attending.
               </p>
 
               <ContactRow
@@ -148,26 +144,16 @@ export default function Contact() {
                     <circle cx="12" cy="10" r="3" />
                   </svg>
                 }
-                label="Clinic Address"
-                value="MidCiti Hospital, near National Stadium, Gulshan-e-Iqbal, Karachi (Visiting Consultant)"
+                label="Surgery Location"
+                value="MidCiti Hospital, near National Stadium, Gulshan-e-Iqbal, Karachi (Surgery Only)"
               />
 
-              {/* Hours */}
               <div className="mt-2 p-5 bg-white rounded-xl shadow-card">
-                <p className="font-sans text-[10px] tracking-widest uppercase text-muted mb-3">Clinic Hours</p>
-                {/* PLACEHOLDER — replace with verified clinic hours before launch */}
-                <div className="flex flex-col gap-1.5">
-                  {[
-                    { day: 'Monday – Friday', hours: '10:00 AM – 6:00 PM' },
-                    { day: 'Saturday', hours: '10:00 AM – 2:00 PM' },
-                    { day: 'Sunday', hours: 'By Appointment Only' },
-                  ].map((row) => (
-                    <div key={row.day} className="flex justify-between text-sm font-sans">
-                      <span className="text-muted">{row.day}</span>
-                      <span className="text-charcoal font-medium">{row.hours}</span>
-                    </div>
-                  ))}
-                </div>
+                <h2 className="font-serif text-xl text-charcoal mb-3">Online consultations by arrangement</h2>
+                <p className="font-sans text-sm text-muted leading-relaxed">
+                  Dr. Khatri does not hold clinic consultations. Request an online appointment
+                  and wait for confirmation before making plans. Surgery takes place only at MidCiti Hospital.
+                </p>
               </div>
             </motion.div>
 
@@ -182,7 +168,7 @@ export default function Contact() {
               <div className="rounded-2xl overflow-hidden shadow-card-hover h-80 lg:h-full min-h-[360px] bg-charcoal/10">
                 {/* PLACEHOLDER — replace src with verified clinic Google Maps embed URL before launch */}
                 <iframe
-                  title="Dr. Khatri Clinic Location — Karachi"
+                  title="MidCiti Hospital surgery location — Karachi"
                   src={MAPS_EMBED_URL}
                   width="100%"
                   height="100%"

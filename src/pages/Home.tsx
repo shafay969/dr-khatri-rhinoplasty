@@ -545,7 +545,7 @@ export default function Home() {
           >
             {/* PLACEHOLDER — CTA description for demo */}
             Consultations are relaxed, no-pressure, and focused entirely on what you want.
-            Book yours today — in-clinic or via WhatsApp.
+            Consultations are online. Surgery takes place only at MidCiti Hospital, Karachi.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 12 }}

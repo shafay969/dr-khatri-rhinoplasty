@@ -4,7 +4,7 @@
 // for why that boundary matters (YMYL structured data must be verifiable).
 //
 // Still unconfirmed / needed: exact MBBS year & institution, ENT residency
-// specifics, ultrasonic/piezo training details, clinic hours, procedure
+// specifics, ultrasonic/piezo training details, procedure
 // count / satisfaction rate, Google Business Profile status. Do not add
 // those to this file until confirmed — see the SEO follow-up questions
 // raised alongside this file for the full list.
@@ -16,6 +16,9 @@ export const business = {
   credentials: ['FCPS (CPSP)', 'MRCS (UK)'],
   specialty: 'Piezo (Harmonic) Rhinoplasty',
   telephone: '+923332572052',
+  // Surgeon clarification relayed by the developer 2026-11-27.
+  consultationMode: 'online',
+  operatesOnlyAtHospital: true,
   hospital: {
     name: 'MidCiti Hospital',
     role: 'Visiting Consultant',

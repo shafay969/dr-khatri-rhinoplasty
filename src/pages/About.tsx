@@ -17,18 +17,17 @@ export default function About() {
         path="/about"
         jsonLd={{
           '@context': 'https://schema.org',
-          '@type': 'Physician',
+          '@type': 'Person',
           name: business.legalName,
           honorificPrefix: 'Dr.',
           url: `${SITE_URL}/about`,
-          medicalSpecialty: 'Otolaryngologic',
           knowsAbout: ['Rhinoplasty', 'Piezo (Harmonic) Rhinoplasty', 'Facial Plastic Surgery'],
           hasCredential: business.credentials.map((name) => ({
             '@type': 'EducationalOccupationalCredential',
             credentialCategory: 'certification',
             name,
           })),
-          worksFor: {
+          affiliation: {
             '@type': 'Hospital',
             name: business.hospital.name,
             address: {

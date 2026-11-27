@@ -13,6 +13,8 @@ export interface BlogPost {
   excerpt: string;
   category: string;
   date: string; // ISO
+  updated?: string;
+  sources?: { label: string; url: string }[];
   readTime: string;
   coverGradient: string; // tailwind gradient utility classes — fallback wash behind `cover`
   cover: string; // path to cover illustration in /public/blog/
@@ -401,51 +403,54 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'rhinoplasty-cost-in-karachi-what-drives-the-price',
-    title: 'How Much Does Rhinoplasty Actually Cost in Karachi? What Drives the Price Up or Down',
-    excerpt:
-      "Everyone wants a number before they've even sat down for a consultation. Here's the honest breakdown of what actually moves rhinoplasty cost in Karachi — and why a suspiciously low quote should worry you more than a high one.",
+    title: "Rhinoplasty Cost in Karachi: Questions to Ask About Your Quote",
+    excerpt: "A practical checklist for discussing rhinoplasty costs in Karachi, consultation fees, written quotes, inclusions and payment terms.",
     category: 'Cost & Planning',
     date: '2026-08-24',
     readTime: '6 min read',
     coverGradient: 'from-charcoal via-sage-dark to-clay-dark',
     cover: '/blog/rhinoplasty-cost-karachi.svg',
+    updated: '2026-11-27',
+    sources: [{"label": "NHS: nose reshaping (rhinoplasty), including cost considerations", "url": "https://www.nhs.uk/tests-and-treatments/cosmetic-procedures/cosmetic-surgery/nose-reshaping-rhinoplasty/"}],
     content: [
       {
-        paragraphs: [
-          "The first message I get from a lot of prospective patients isn't about technique, recovery, or even whether they're a good candidate. It's “how much does a nose job cost in Karachi?” — usually sent before we've had a single conversation about their actual nose. I understand why it's the first question. It's also the one I'm least able to answer honestly without seeing you in person, and anyone who quotes you a firm number over WhatsApp before an exam is either guessing or setting you up to be upsold once you're already in the chair.",
-        ],
+            "heading": "Start with the booking details",
+            "paragraphs": [
+                  "Looking for rhinoplasty costs in Karachi? Use a written quote to understand the proposed charges. Dr. Vijay Khatri offers online consultations and operates only at MidCiti Hospital. Ask about the consultation fee when arranging your appointment; this page does not publish a price or promise a fixed package."
+            ]
       },
       {
-        heading: "Why Nobody Honest Can Give You a Number Sight Unseen",
-        paragraphs: [
-          "Rhinoplasty cost in Karachi — and everywhere else, for that matter — isn't a flat rate the way a haircut or a filler session is, because the procedure itself isn't standardized. A primary rhinoplasty addressing a modest hump and some tip refinement is a fundamentally shorter, less complex operation than a structural rebuild using rib cartilage, or a revision working through scar tissue from a previous surgery. Quoting one number for all of that would mean either overcharging the simple cases to cover the complex ones, or underquoting the complex cases and hoping nobody notices until the invoice. Neither is honest pricing — it's why a real quote only comes after a real physical exam.",
-        ],
+            "heading": "Questions about the proposed procedure",
+            "paragraphs": [
+                  "Ask which procedure the quote covers, what assessment is needed before it is final, and how a change in the proposed treatment would affect the amount."
+            ]
       },
       {
-        heading: "The Variables That Actually Move the Price",
-        paragraphs: [
-          "A handful of factors do most of the work in determining where your quote lands. Whether it's a primary or revision case matters most — revision surgery, which we've written about separately, is slower and technically harder, and the price reflects that. What grafting material is needed matters too: septal cartilage, sourced from your own nose, keeps costs lower than rib cartilage, which involves an additional harvest site and a longer operation. Open versus closed technique plays a smaller role, but structural, graft-heavy work generally leans open, which adds some operating time. And then there's the facility fee and anesthesiologist fee, which are separate from the surgeon's fee and shouldn't be treated as an afterthought in any transparent quote — general anesthesia administered by a qualified anesthesiologist in an accredited facility costs more than a corner clinic cutting that corner, and it's one corner you don't want cut on your behalf.",
-        ],
+            "heading": "Ask for an itemised quote",
+            "paragraphs": [
+                  "Check whether the surgeon’s fee, hospital or facility charges, anaesthesia, tests, medicines and follow-up appointments are included or charged separately. These are questions to confirm with the practice, not a list of promised inclusions."
+            ]
       },
       {
-        heading: "What a Suspiciously Cheap Quote Usually Means",
-        paragraphs: [
-          "Karachi has a wide spread of prices for the same procedure name, and the lowest numbers you'll see advertised are almost never comparing like for like. A rock-bottom price is a signal worth investigating rather than celebrating — it often means a local rather than general anesthetic in a case that genuinely needs one, an unaccredited facility without proper post-op monitoring, a surgeon without the specific rhinoplasty training the sign implies, or a “package” that excludes revision if something goes wrong. None of that shows up in the number itself. It shows up months later, in the outcome — and by then the money you saved up front tends to look very small next to the cost of fixing what went wrong.",
-        ],
+            "heading": "Check the terms before paying",
+            "paragraphs": [
+                  "Ask about deposits, payment dates, cancellation and rescheduling terms, and any charges for further treatment. Request written clarification of anything that is unclear."
+            ]
       },
       {
-        heading: "What Should Actually Be In a Legitimate Quote",
-        paragraphs: [
-          "A transparent, itemized quote should specify the surgeon's fee, the facility fee, the anesthesiologist's fee, any grafting material costs, standard post-operative visits, and — critically — what happens if a revision is later needed. That last item is the one people forget to ask about and regret not asking later. Some practices build a limited revision allowance into the original fee; others charge for it as an entirely separate procedure. Neither answer is automatically wrong, but you should know which one you're getting before surgery, not after.",
-        ],
+            "heading": "Compare the scope as well as the total",
+            "paragraphs": [
+                  "Put quotes side by side and compare the included services, exclusions and follow-up arrangements. An overseas price guide is not a quote for surgery in Karachi."
+            ]
       },
       {
-        heading: "The Honest Way to Compare Two Quotes",
-        paragraphs: [
-          "Don't compare two numbers in isolation. Compare what's included in each — facility accreditation, anesthesia type, the surgeon's specific rhinoplasty training and experience, what the post-op care package covers, and the revision policy — and only then compare price. A higher quote that includes a properly accredited facility, a dedicated anesthesiologist, and a clear revision policy is very often the actual better value, even though it doesn't look that way on the first glance at two numbers side by side. The real cost of rhinoplasty isn't what you pay on the day of surgery — it's what you end up with a year later, and that's worth paying for honestly rather than shopping for the lowest number on a screen.",
-        ],
-      },
-    ],
+            "heading": "Arrange an online consultation",
+            "paragraphs": [
+                  "Contact Dr. Khatri’s team to confirm the consultation time, fee and meeting method. Ask how and when a written surgical quote would be provided. An enquiry does not reserve a consultation or an operation."
+            ]
+      }
+],
+
   },
   {
     slug: 'how-to-choose-a-rhinoplasty-surgeon-in-karachi',
@@ -732,46 +737,84 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'questions-to-ask-before-rhinoplasty-consultation',
-    title: 'Ten Questions Worth Asking Before You Book a Rhinoplasty Consultation',
-    excerpt:
-      "A short, practical list — the kind I'd want my own family to walk in with — for separating a good fit from a good sales pitch.",
+    title: "10 Questions to Ask at Your Rhinoplasty Consultation",
+    excerpt: "Prepare for an online consultation with Dr. Vijay Khatri: questions about qualifications, assessment, risks, costs and next steps.",
     category: 'Patient Guide',
     date: '2026-03-05',
     readTime: '5 min read',
     coverGradient: 'from-clay via-sage-dark to-charcoal',
     cover: '/blog/consultation-questions.svg',
+    updated: '2026-11-27',
+    sources: [{"label": "American Society of Plastic Surgeons: rhinoplasty consultation questions", "url": "https://www.plasticsurgery.org/cosmetic-procedures/rhinoplasty/questions"}],
     content: [
       {
-        paragraphs: [
-          "Consultations can be a little disorienting, especially the first one. There's a lot of information, some of it technical, delivered by someone you've just met about a decision that's going to sit in the middle of your face for the rest of your life. Here's the short list I'd hand my own family before they walked into any surgeon's office — mine included.",
-        ],
+            "heading": "Start with the appointment",
+            "paragraphs": [
+                  "Dr. Vijay Khatri offers online consultations and operates only at MidCiti Hospital, Karachi. Confirm the appointment time, consultation fee and meeting method when arranging your call. Keep this question list beside you and write down anything you want clarified."
+            ]
       },
       {
-        heading: '1–3: About the Surgeon',
-        paragraphs: [
-          "How many rhinoplasties do you perform in a typical year, and what share of those are revisions of someone else's work? A high revision volume isn't automatically a red flag — skilled revision surgeons attract complicated cases — but it's worth understanding the context.",
-          "Are you board-certified in a relevant specialty, and can I see genuine before-and-after photos of patients with a similar nose shape or skin type to mine? Ask specifically for patients who look like you, not just the best three photos on the wall.",
-          "What's your complication and revision rate, honestly? Any experienced surgeon should be comfortable answering this without getting defensive.",
-        ],
+            "heading": "1. Which qualifications can I verify?",
+            "paragraphs": [
+                  "Ask for the surgeon’s registration details and relevant qualifications, and where you can verify them."
+            ]
       },
       {
-        heading: '4–6: About Your Specific Nose',
-        paragraphs: [
-          "What exactly are you planning to change, structurally, and why? You want a specific answer — “we'll refine the tip” isn't a plan, “we'll place a columellar strut graft to support tip projection because the current cartilage is weak” is.",
-          "Given my skin thickness, what's a realistic outcome, and what isn't? A surgeon who tempers a reference photo with honest anatomical limits is doing you a favor, even if it's not what you want to hear in the moment.",
-          "Will this affect my breathing, one way or the other? A good rhinoplasty consultation should always touch on function, not just appearance — the two are more connected than most people assume going in.",
-        ],
+            "heading": "2. What experience do you have with my concerns?",
+            "paragraphs": [
+                  "Ask about experience with cases similar to yours and whether any patient examples can be shared with permission."
+            ]
       },
       {
-        heading: '7–10: About the Process',
-        paragraphs: [
-          "What does recovery actually look like at one week, one month, and one year for someone with my anatomy specifically? Vague timelines are a soft warning sign.",
-          "What happens if I'm not satisfied with the result — is there a revision policy, and what does it cost? Get this in writing.",
-          "Who will actually be doing my surgery, start to finish? In some practices, parts of a procedure are delegated. You should know exactly who's operating.",
-          "And finally, the least technical but maybe most important one: do I feel comfortable being honest with this person about what I want? You'll be trusting their judgment on the table when you're not conscious to weigh in. That trust has to be earned in the room, not assumed because of a nice website.",
-        ],
+            "heading": "3. What can this online consultation cover?",
+            "paragraphs": [
+                  "Ask what can be discussed remotely and whether any further assessment would be needed before a treatment decision."
+            ]
       },
-    ],
+      {
+            "heading": "4. What changes are you proposing, and why?",
+            "paragraphs": [
+                  "Ask the surgeon to explain the proposed approach and any alternatives in language you understand."
+            ]
+      },
+      {
+            "heading": "5. What outcome is realistic for me?",
+            "paragraphs": [
+                  "Discuss your goals and ask about limitations rather than relying on a reference photograph."
+            ]
+      },
+      {
+            "heading": "6. How will my breathing concerns be assessed?",
+            "paragraphs": [
+                  "If breathing is a concern, ask how it will be assessed and what additional assessment may be needed."
+            ]
+      },
+      {
+            "heading": "7. What risks should I understand?",
+            "paragraphs": [
+                  "Ask about risks, complications and who to contact if you have concerns after treatment."
+            ]
+      },
+      {
+            "heading": "8. What recovery arrangements should I plan?",
+            "paragraphs": [
+                  "Ask what follow-up, time away from work and support would be appropriate for your circumstances."
+            ]
+      },
+      {
+            "heading": "9. What is included in the written quote?",
+            "paragraphs": [
+                  "Ask about hospital and anaesthesia charges, follow-up costs, cancellation terms and any later treatment costs."
+            ]
+      },
+      {
+            "heading": "10. What happens after this conversation?",
+            "paragraphs": [
+                  "Ask for the next steps and time to consider your options. Confirm who will perform the operation and where it would take place."
+            ]
+      }
+],
+
   },
 ];
 
