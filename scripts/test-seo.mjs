@@ -162,6 +162,8 @@ try {
     await route.continue();
   });
   const slowPage = await slowContext.newPage();
+  slowPage.on('console', message => { if (message.type() === 'error') console.error('Slow-start browser:', message.text()); });
+  slowPage.on('pageerror', error => console.error('Slow-start page:', error.message));
   await slowPage.goto(base + '/booking', {waitUntil:'domcontentloaded'});
   await slowPage.waitForTimeout(100);
   assert.equal(await slowPage.locator('main h1').innerText(), 'Request an Online Consultation');

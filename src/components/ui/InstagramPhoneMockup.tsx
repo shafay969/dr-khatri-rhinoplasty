@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 
 // PLACEHOLDER — this is a styled preview, not a live data feed. Instagram does not allow
 // pulling a full profile + Reels grid client-side without Meta's Graph API (a Business/Creator
@@ -65,18 +64,14 @@ export default function InstagramPhoneMockup() {
   return (
     <div className="relative mx-auto w-[260px] sm:w-[280px] select-none">
       {/* Live-sync pill */}
-      <motion.div
-        initial={{ opacity: 0, y: -8 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+      <div
         className="absolute -top-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 bg-charcoal text-white text-[10px] font-sans font-medium tracking-wide px-3 py-1.5 rounded-full shadow-card whitespace-nowrap"
       >
         <span className="relative flex w-1.5 h-1.5">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
           <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-400" />
         </span>
         @{INSTAGRAM_HANDLE}
-      </motion.div>
+      </div>
 
       {/* Phone frame */}
       <div className="relative rounded-[2.5rem] bg-charcoal p-2.5 shadow-card-hover">
@@ -187,7 +182,7 @@ export default function InstagramPhoneMockup() {
           <div className="grid grid-cols-2 gap-[1.5px] flex-1 bg-charcoal/10 overflow-hidden">
             {reels.map((reel, i) => (
               <div key={i} className="relative bg-charcoal overflow-hidden">
-                <img src={reel.src} alt={reel.caption} className="w-full h-full object-cover opacity-90" loading="lazy" />
+                <img src={reel.src} alt={reel.caption} className="w-full h-full object-cover opacity-90" loading="lazy" fetchPriority="low" />
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent" />
                 <div className="absolute top-1.5 left-1.5">
                   <PlayIcon />

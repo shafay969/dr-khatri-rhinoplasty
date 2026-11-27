@@ -2,7 +2,6 @@ import { business } from '../data/business';
 import { Link } from 'react-router-dom';
 import SEO, { SITE_URL } from '../components/layout/SEO';
 import StatCounter from '../components/ui/StatCounter';
-import TestimonialCard from '../components/ui/TestimonialCard';
 import BeforeAfterSlider from '../components/ui/BeforeAfterSlider';
 import InstagramPhoneMockup from '../components/ui/InstagramPhoneMockup';
 import { stats } from '../data/stats';

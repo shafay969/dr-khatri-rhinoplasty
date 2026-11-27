@@ -1,5 +1,4 @@
 import { useRef, useState, useCallback } from 'react';
-import { motion } from 'framer-motion';
 
 interface BeforeAfterSliderProps {
   before: string;
@@ -108,6 +107,7 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
           alt="After rhinoplasty"
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
+          fetchPriority="low"
           decoding="async"
           onLoad={() => setImagesLoaded(p => ({ ...p, after: true }))}
           onError={() => { setFailed(true); setImagesLoaded(p => ({ ...p, after: true })); }}
@@ -125,6 +125,7 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
             className="absolute inset-0 h-full object-cover"
             style={{ width: `${(100 / position) * 100}%`, maxWidth: 'none' }}
             loading="lazy"
+            fetchPriority="low"
             decoding="async"
             onLoad={() => setImagesLoaded(p => ({ ...p, before: true }))}
             onError={() => { setFailed(true); setImagesLoaded(p => ({ ...p, before: true })); }}
@@ -139,7 +140,7 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
         />
 
         {/* Handle */}
-        <motion.div
+        <div
           role="slider" tabIndex={failed ? -1 : 0} aria-disabled={failed} aria-label={label ? `${label}: before and after comparison` : 'Before and after comparison'} aria-valuemin={MIN} aria-valuemax={MAX} aria-valuenow={Math.round(position)} aria-valuetext={`${Math.round(position)} percent before image`}
           onKeyDown={(event) => {
             if (failed) return;
@@ -147,16 +148,14 @@ export default function BeforeAfterSlider({ before, after, label, onOpenLightbox
             if (change || event.key === 'Home' || event.key === 'End') { event.preventDefault(); setPosition(p => event.key === 'Home' ? MIN : event.key === 'End' ? MAX : clamp(p + change, MIN, MAX)); }
           }}
           className={`ba-slider-handle absolute top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-clay shadow-clay flex items-center justify-center border-2 border-white/30 ${!isDragging ? 'transition-[left] duration-300 ease-out' : ''}`}
-          style={{ left: `${position}%` }}
-          animate={{ scale: isDragging ? 1.15 : 1 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+          style={{ left: `${position}%`, transform: `translate(-50%, -50%) scale(${isDragging ? 1.08 : 1})` }}
           onPointerDown={handlePointerDown}
         >
           {/* Left-right arrows */}
           <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
             <path d="M8 9l-4 3 4 3M16 9l4 3-4 3" />
           </svg>
-        </motion.div>
+        </div>
 
         {/* BEFORE label */}
         <div

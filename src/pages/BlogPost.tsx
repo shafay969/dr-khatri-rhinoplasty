@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Link, useParams } from 'react-router-dom';
 import NotFound from './NotFound';
 import SEO, { SITE_URL } from '../components/layout/SEO';
@@ -41,9 +40,7 @@ export default function BlogPost() {
         <img src={post.cover} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-charcoal/50" />
         <div className="relative z-10 max-w-3xl mx-auto px-5 md:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
             className="flex items-center justify-center gap-3 mb-5"
           >
             <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-white/90 font-semibold">
@@ -51,23 +48,17 @@ export default function BlogPost() {
             </span>
             <span className="w-1 h-1 rounded-full bg-white/40" />
             <span className="font-sans text-xs text-white/70">{post.readTime}</span>
-          </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          </div>
+          <h1
             className="font-serif text-3xl md:text-4xl lg:text-5xl text-white display-type mb-4 text-balance"
           >
             {post.title}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.25 }}
+          </h1>
+          <p
             className="font-sans text-white/60 text-xs tracking-wide"
           >
             {formatDate(post.date)}{post.updated && ` · Updated ${formatDate(post.updated)}`} · Dr. Vijay Khatri's Practice
-          </motion.p>
+          </p>
         </div>
       </section>
 
@@ -87,12 +78,8 @@ export default function BlogPost() {
       <article className="py-16 md:py-20 bg-paper">
         <div className="max-w-3xl mx-auto px-5 md:px-8">
           {post.content.map((section, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
               className="mb-9"
             >
               {section.heading && (
@@ -105,7 +92,7 @@ export default function BlogPost() {
                   {p}
                 </p>
               ))}
-            </motion.div>
+            </div>
           ))}
 
           {post.sources && (

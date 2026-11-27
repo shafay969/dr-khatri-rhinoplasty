@@ -1,6 +1,5 @@
 import { lazy, Suspense, useEffect, type ComponentType } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, MotionConfig } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -8,15 +7,24 @@ import WhatsAppButton from './components/layout/WhatsAppButton';
 import PageTransition from './components/layout/PageTransition';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
-const LazyAbout = lazy(() => import('./pages/About'));
-const LazyRhinoplasty = lazy(() => import('./pages/Rhinoplasty'));
-const LazyGallery = lazy(() => import('./pages/Gallery'));
-const LazyTestimonials = lazy(() => import('./pages/Testimonials'));
-const LazyBooking = lazy(() => import('./pages/Booking'));
-const LazyContact = lazy(() => import('./pages/Contact'));
-const LazyBlog = lazy(() => import('./pages/Blog'));
+// Load animation support with the routes that need it, rather than the homepage.
+type PageModule = { default: ComponentType };
+async function loadMotionPage(loader: () => Promise<PageModule>): Promise<PageModule> {
+  const [page, { MotionConfig }] = await Promise.all([loader(), import('framer-motion')]);
+  const Component = page.default;
+  return { default: function ConfiguredPage() {
+    return <MotionConfig reducedMotion="user"><Component /></MotionConfig>;
+  } };
+}
+const LazyAbout = lazy(() => loadMotionPage(() => import('./pages/About')));
+const LazyRhinoplasty = lazy(() => loadMotionPage(() => import('./pages/Rhinoplasty')));
+const LazyGallery = lazy(() => loadMotionPage(() => import('./pages/Gallery')));
+const LazyTestimonials = lazy(() => loadMotionPage(() => import('./pages/Testimonials')));
+const LazyBooking = lazy(() => loadMotionPage(() => import('./pages/Booking')));
+const LazyContact = lazy(() => loadMotionPage(() => import('./pages/Contact')));
+const LazyBlog = lazy(() => loadMotionPage(() => import('./pages/Blog')));
 const LazyBlogPost = lazy(() => import('./pages/BlogPost'));
-const LazyFAQ = lazy(() => import('./pages/FAQ'));
+const LazyFAQ = lazy(() => loadMotionPage(() => import('./pages/FAQ')));
 
 // Keep the prerendered document visible while the initial route chunk loads.
 // Mount its resolved component directly, so Suspense cannot collapse the page
@@ -35,7 +43,7 @@ export async function prepareInitialRoute(path: string) {
   };
   const key = path.replace(/\/$/, '') || '/';
   if (key.startsWith('/blog/')) initialPages.BlogPost = (await import('./pages/BlogPost')).default;
-  else if (loaders[key]) initialPages[key] = (await loaders[key]()).default;
+  else if (loaders[key]) initialPages[key] = (await loadMotionPage(loaders[key])).default;
 }
 
 function AnimatedRoutes() {
@@ -51,7 +59,6 @@ function AnimatedRoutes() {
   const BlogPost = initialPages.BlogPost || LazyBlogPost;
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition keyProp="/"><Home /></PageTransition>} />
         <Route path="/about" element={<PageTransition keyProp="/about"><About /></PageTransition>} />
@@ -65,7 +72,6 @@ function AnimatedRoutes() {
         <Route path="*" element={<NotFound />} />
         <Route path="/contact" element={<PageTransition keyProp="/contact"><Contact /></PageTransition>} />
       </Routes>
-    </AnimatePresence>
   );
 }
 
@@ -73,7 +79,6 @@ export default function App() {
   useEffect(() => { document.getElementById('root')?.setAttribute('data-app-ready', 'true'); }, []);
   return (
     <HelmetProvider>
-      <MotionConfig reducedMotion="user">
         <BrowserRouter>
           <div className="min-h-screen flex flex-col bg-paper">
             <a href="#main-content" className="skip-link">Skip to main content</a>
@@ -87,7 +92,6 @@ export default function App() {
             <WhatsAppButton />
           </div>
         </BrowserRouter>
-      </MotionConfig>
     </HelmetProvider>
   );
 }
